@@ -5,14 +5,17 @@
 syntax enable                       " Colorear la sintaxis
 
 " Configuracion del tema
-" Para funcionar, necesita el tema JellyBeans. Puede obtenerlo aqui:
+" Para funcionar, necesita el tema JellyBeans:
 " https://github.com/nanotech/jellybeans.vim
+" Ademas se recomienda utilizar una fuente para desarrolladores:
+" https://www.fontyukle.net/en/Monaco.ttf
 if &term =~ "linux"                 " Configuracion para TTY
   set background=dark
   colorscheme slate
-else                                " Configuracion para otras terminales
+else
   set t_Co=256
   set background=dark
+  set guifont=Monaco:h13
   colorscheme jellybeans
 endif
 
@@ -31,6 +34,7 @@ set nobackup                        " No crear respaldos (archivos~)
 set nowritebackup                   " No sobreescribir respaldos (archivos~)
 set incsearch                       " Busquedas incrementales
 set hlsearch                        " Resaltar busquedas
+set noantialias                     " Desactiva el suavizado de la fuente
 set magic                           " Dejar la magia habilitada para regex
 
 " Interface
@@ -144,8 +148,8 @@ set statusline+=%y\                         " tipo de archivo (filetype)
 set statusline+=%l:%c                       " linea:columna
 
 " Setear colores para la statusline activa y no-activa
-hi StatusLine ctermbg=black ctermfg=cyan
-hi StatusLineNC ctermbg=black ctermfg=gray
+" hi StatusLine ctermbg=black ctermfg=cyan guibg=black guifg=cyan
+" hi StatusLineNC ctermbg=black ctermfg=gray guibg=black guifg=gray
 
 " ---------------------------------------------------------------------------- "
 " ATAJOS DE TECLADO PERSONALES
