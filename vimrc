@@ -34,7 +34,7 @@ set nobackup                        " No crear respaldos (archivos~)
 set nowritebackup                   " No sobreescribir respaldos (archivos~)
 set incsearch                       " Busquedas incrementales
 set hlsearch                        " Resaltar busquedas
-set noantialias                     " Desactiva el suavizado de la fuente
+set antialias                       " Desactiva el suavizado de la fuente
 set magic                           " Dejar la magia habilitada para regex
 
 " Interface
@@ -124,11 +124,11 @@ if has("autocmd")
   autocmd BufWritePre * :%s/\s\+$//e
 
   " Abrir explorador de archivos si no se especifica archivo al inicio
-  autocmd VimEnter * call Explorador()
-  autocmd StdinReadPre * let s:std_in=1
-  function! Explorador()
-    if argc() == 0 && !exists("s:std_in") | Explore | end
-  endfunction
+  " autocmd VimEnter * call Explorador()
+  " autocmd StdinReadPre * let s:std_in=1
+  " function! Explorador()
+  "   if argc() == 0 && !exists("s:std_in") | Explore | end
+  " endfunction
 
 endif " has("autocmd")
 
@@ -143,7 +143,8 @@ set statusline+=%m                          " Solo lectura | modificado
 
 set statusline+=%=                          " Separador izq/der
 
-set statusline+=[%{&fenc}]\                 " codificacion del archivo
+set statusline+=[%{&fileformat}]\           " formato del archivo (dos, unix)
+"set statusline+=[%{&fileencoding}]\        " codificacion del archivo
 set statusline+=%y\                         " tipo de archivo (filetype)
 set statusline+=%l:%c                       " linea:columna
 
