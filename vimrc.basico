@@ -24,6 +24,7 @@ set incsearch                       " Busquedas incrementales
 set hlsearch                        " Resaltar busquedas
 set antialias                       " Desactiva el suavizado de la fuente
 set magic                           " Dejar la magia habilitada para regex
+let g:netrw_dirhistmax = 0          " No guardar historial en .vim/.netrwhist
 
 " Interface
 set encoding=utf-8                  " Codificacion UTF-8
