@@ -9,8 +9,9 @@
 \set HISTSIZE 2000
 
 -- Usar formato de tabla por defecto, pero cambiar a modo expandido de tabla
--- cuando hay muchos datos
-\x auto
+-- cuando hay muchos datos (pg9.2+)
+-- \x auto
+\pset expanded
 
 -- Autocompletar palabras reservadas en upper-case
 \set COMP_KEYWORD_CASE upper
