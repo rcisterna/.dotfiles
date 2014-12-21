@@ -5,6 +5,9 @@ source ~/.github-personal/vimrc.basico
 
 " Visualizacion
 syntax enable                       " Colorear la sintaxis
+if has("gui_macvim")
+  set guifont=Monaco:h13
+endif
 
 " Se recomienda utilizar una fuente para desarrolladores:
 " https://www.fontyukle.net/en/Monaco.ttf
@@ -13,15 +16,10 @@ syntax enable                       " Colorear la sintaxis
 " CONFIGURACION DE PLUGINS
 
 " Jellybeans (no requiere configuracion)
-" git@github.com:rcisterna/.github-personal.git
+" https://github.com/nanotech/jellybeans.vim
 
-if &term =~ "linux"                 " Configuracion para TTY
-  set background=dark
-  colorscheme slate
-else
+if &term != "linux"
   set t_Co=256
-  set background=dark
-  set guifont=Monaco:h13
   colorscheme jellybeans
 endif
 
