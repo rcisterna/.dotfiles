@@ -4,19 +4,11 @@
 " Visualizacion
 syntax enable                       " Colorear la sintaxis
 
-" Configuracion del tema
-" Para funcionar, necesita el tema JellyBeans:
-" https://github.com/nanotech/jellybeans.vim
-" Ademas se recomienda utilizar una fuente para desarrolladores:
-" https://www.fontyukle.net/en/Monaco.ttf
 if &term =~ "linux"                 " Configuracion para TTY
   set background=dark
   colorscheme slate
 else
   set t_Co=256
-  set background=dark
-  set guifont=Monaco:h13
-  colorscheme jellybeans
 endif
 
 " General
