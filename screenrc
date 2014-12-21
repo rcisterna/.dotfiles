@@ -72,7 +72,7 @@ hardstatus string "%h%? users: %u%?"
 # windownames and highlighting the current windowname in blue. (This is only
 # enabled if there is no hardstatus setting for your terminal)
 #
-hardstatus alwayslastline "%{-b wk}%=%-Lw%{+b wk}[%n%f %t]%{-}%+Lw%=%c"
+hardstatus alwayslastline "%{-b wk}%=%-Lw%{+b wk}[%n%f %t]%{-}%+Lw%="
 
 # set these terminals up to be 'optimal' instead of vt100
 termcapinfo xterm*|linux*|rxvt*|Eterm* OP
