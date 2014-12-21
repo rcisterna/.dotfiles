@@ -1,7 +1,7 @@
 " ---------------------------------------------------------------------------- "
 " CONFIGURACIONES PERSONALES
 
-source ~/.github-personal/vimrc.basico
+source ~/.personal-config/vimrc
 
 " Visualizacion
 if has("gui_macvim")
