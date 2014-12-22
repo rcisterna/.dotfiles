@@ -184,5 +184,8 @@ endif
 " ---------------------------------------------------------------------------- "
 " CONFIGURACION DE PLUGINS
 
+" Jellybeans (no requiere configuracion)
+" git@github.com:rcisterna/.github-personal.git
+
 " CTRL-P
 " https://github.com/kien/ctrlp.vim
