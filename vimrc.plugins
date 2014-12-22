@@ -187,5 +187,12 @@ endif
 " Jellybeans (no requiere configuracion)
 " git@github.com:rcisterna/.github-personal.git
 
+" ---------------------
+
 " CTRL-P
 " https://github.com/kien/ctrlp.vim
+
+" Ignorar carpeta de Yii Framework
+let g:ctrlp_custom_ignore = {
+  \ 'dir':  '\v[\/]yii$',
+  \ }
