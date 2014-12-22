@@ -6,20 +6,20 @@ simbolicos a las configuraciones necesarias
 ## Instalacion basica
 Paquetes basicos para Debian
 - sudo
-
-    # visudo
-
+``` bash
+# visudo
+```
 - git
-
-    $ git config --global user.name "Nombre"
-    $ git config --global user.email correo@servidor.dom
-    $ git config --global color.ui true
-
+``` bash
+$ git config --global user.name "Nombre"
+$ git config --global user.email correo@servidor.dom
+$ git config --global color.ui true
+```
 - vim
-
-    $ export VISUAL=vim
-    $ export EDITOR=vim
-
+``` bash
+$ export VISUAL=vim
+$ export EDITOR=vim
+```
 - screen
 
 ## Instalacion de servidor X
