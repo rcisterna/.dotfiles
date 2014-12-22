@@ -1,0 +1,35 @@
+-- Para que no muestre mensajes de activacion de opciones
+\set QUIET 1
+
+-- Ver campos nulos como NULL
+\pset null 'NULL'
+
+-- Historiales separados por DB
+\set HISTFILE ~/.psql_history- :DBNAME
+\set HISTSIZE 2000
+
+-- Usar formato de tabla por defecto, pero cambiar a modo expandido de tabla
+-- cuando hay muchos datos
+\x auto
+
+-- Autocompletar palabras reservadas en upper-case
+\set COMP_KEYWORD_CASE upper
+
+-- Prompts
+-- \set PROMPT1 '\033[0;32m%/\033[m %R \033[1m%#\033[m '
+-- \set PROMPT2 '\033[0;32m%/\033[m %R \033[1m%#\033[m '
+
+-- Establecer informes de erroes detallados
+\set VERBOSITY verbose
+
+-- Encoding
+\encoding unicode
+
+-- Bordes completos
+\pset border 2
+
+-- Estilos de linea
+\pset linestyle unicode
+
+-- Para que muestre mensajes normalmente en la sesion interactiva
+\unset QUIET
