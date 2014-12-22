@@ -2,8 +2,6 @@
 " CONFIGURACIONES PERSONALES
 
 " Visualizacion
-syntax enable                       " Colorear la sintaxis
-
 if &term =~ "linux"                 " Configuracion para TTY
   set background=dark
   colorscheme slate
