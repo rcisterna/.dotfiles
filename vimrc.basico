@@ -51,6 +51,9 @@ set showmatch                       " Ver corchetes coincidentes
 if has('mouse')
   set mouse=a                       " Habilitar mouse, si existe
 endif
+if has("gui_macvim")
+  set guioptions-=r                 " Eliminar scrollbar en MacVim
+endif
 "set cursorline                     " Resaltar linea actual
 "set cursorcolumn                   " Resaltar columna actual
 
