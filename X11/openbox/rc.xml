@@ -6,6 +6,7 @@
     <strength>10</strength>
     <screen_edge_strength>20</screen_edge_strength>
   </resistance>
+
   <focus>
     <focusNew>yes</focusNew>
     <!-- always try to focus new windows when they appear. other rules do
@@ -24,6 +25,7 @@
     <!-- when followMouse is enabled, and a window is given focus by moving the
        mouse into it, also raise the window -->
   </focus>
+
   <placement>
     <policy>Smart</policy>
     <!-- 'Smart' or 'UnderMouse' -->
@@ -41,6 +43,7 @@
        following: 'Mouse' - where the mouse is, or
                   'Active' - where the active window is -->
   </placement>
+
   <theme>
     <name>minidark</name>
     <titleLayout>NLIMC</titleLayout>
@@ -111,6 +114,7 @@
       <!-- 'italic' or 'normal' -->
     </font>
   </theme>
+
   <desktops>
     <!-- this stuff is only used at startup, pagers allow you to change them
        during a session
@@ -133,6 +137,7 @@
     <!-- The number of milliseconds to show the popup for when switching
        desktops.  Set this to 0 to disable the popup. -->
   </desktops>
+
   <resize>
     <drawContents>yes</drawContents>
     <popupShow>Nonpixel</popupShow>
@@ -159,6 +164,7 @@
     <left>0</left>
     <right>0</right>
   </margins>
+
   <dock>
     <position>TopLeft</position>
     <!-- (Top|Bottom)(Left|Right|)|Top|Bottom|Left|Right|Floating -->
@@ -177,80 +183,9 @@
     <moveButton>Middle</moveButton>
     <!-- 'Left', 'Middle', 'Right' -->
   </dock>
+
   <keyboard>
     <chainQuitKey>C-g</chainQuitKey>
-    <!-- Keybindings for desktop switching -->
-    <keybind key="C-A-Left">
-      <action name="GoToDesktop">
-        <to>left</to>
-        <wrap>no</wrap>
-      </action>
-    </keybind>
-    <keybind key="C-A-Right">
-      <action name="GoToDesktop">
-        <to>right</to>
-        <wrap>no</wrap>
-      </action>
-    </keybind>
-    <keybind key="C-A-Up">
-      <action name="GoToDesktop">
-        <to>up</to>
-        <wrap>no</wrap>
-      </action>
-    </keybind>
-    <keybind key="C-A-Down">
-      <action name="GoToDesktop">
-        <to>down</to>
-        <wrap>no</wrap>
-      </action>
-    </keybind>
-    <keybind key="S-A-Left">
-      <action name="SendToDesktop">
-        <to>left</to>
-        <wrap>no</wrap>
-      </action>
-    </keybind>
-    <keybind key="S-A-Right">
-      <action name="SendToDesktop">
-        <to>right</to>
-        <wrap>no</wrap>
-      </action>
-    </keybind>
-    <keybind key="S-A-Up">
-      <action name="SendToDesktop">
-        <to>up</to>
-        <wrap>no</wrap>
-      </action>
-    </keybind>
-    <keybind key="S-A-Down">
-      <action name="SendToDesktop">
-        <to>down</to>
-        <wrap>no</wrap>
-      </action>
-    </keybind>
-    <keybind key="W-F1">
-      <action name="GoToDesktop">
-        <to>1</to>
-      </action>
-    </keybind>
-    <keybind key="W-F2">
-      <action name="GoToDesktop">
-        <to>2</to>
-      </action>
-    </keybind>
-    <keybind key="W-F3">
-      <action name="GoToDesktop">
-        <to>3</to>
-      </action>
-    </keybind>
-    <keybind key="W-F4">
-      <action name="GoToDesktop">
-        <to>4</to>
-      </action>
-    </keybind>
-    <keybind key="W-d">
-      <action name="ToggleShowDesktop"/>
-    </keybind>
     <!-- Keybindings for windows -->
     <keybind key="A-q">
       <action name="Close"/>
@@ -263,12 +198,6 @@
     <keybind key="A-space">
       <action name="ShowMenu">
         <menu>client-menu</menu>
-      </action>
-    </keybind>
-    <!-- Take a screenshot of the current window with gnome-screenshot when Alt+Print are pressed -->
-    <keybind key="A-Print">
-      <action name="Execute">
-        <command>gnome-screenshot -w</command>
       </action>
     </keybind>
     <!-- Keybindings for window switching -->
@@ -301,44 +230,8 @@
         </finalactions>
       </action>
     </keybind>
-    <!-- Keybindings for window switching with the arrow keys -->
-    <keybind key="W-S-Right">
-      <action name="DirectionalCycleWindows">
-        <direction>right</direction>
-      </action>
-    </keybind>
-    <keybind key="W-S-Left">
-      <action name="DirectionalCycleWindows">
-        <direction>left</direction>
-      </action>
-    </keybind>
-    <keybind key="W-S-Up">
-      <action name="DirectionalCycleWindows">
-        <direction>up</direction>
-      </action>
-    </keybind>
-    <keybind key="W-S-Down">
-      <action name="DirectionalCycleWindows">
-        <direction>down</direction>
-      </action>
-    </keybind>
-    <!-- Keybindings for running applications -->
-    <keybind key="W-e">
-      <action name="Execute">
-        <startupnotify>
-          <enabled>true</enabled>
-          <name>Konqueror</name>
-        </startupnotify>
-        <command>kfmclient openProfile filemanagement</command>
-      </action>
-    </keybind>
-    <!-- Launch gnome-screenshot when Print is pressed -->
-    <keybind key="Print">
-      <action name="Execute">
-        <command>gnome-screenshot</command>
-      </action>
-    </keybind>
   </keyboard>
+
   <mouse>
     <dragThreshold>1</dragThreshold>
     <!-- number of pixels the mouse must move before a drag begins -->
@@ -369,41 +262,6 @@
       </mousebind>
       <mousebind button="A-Right" action="Drag">
         <action name="Resize"/>
-      </mousebind>
-      <mousebind button="A-Middle" action="Press">
-        <action name="Lower"/>
-        <action name="FocusToBottom"/>
-        <action name="Unfocus"/>
-      </mousebind>
-      <mousebind button="A-Up" action="Click">
-        <action name="GoToDesktop">
-          <to>previous</to>
-        </action>
-      </mousebind>
-      <mousebind button="A-Down" action="Click">
-        <action name="GoToDesktop">
-          <to>next</to>
-        </action>
-      </mousebind>
-      <mousebind button="C-A-Up" action="Click">
-        <action name="GoToDesktop">
-          <to>previous</to>
-        </action>
-      </mousebind>
-      <mousebind button="C-A-Down" action="Click">
-        <action name="GoToDesktop">
-          <to>next</to>
-        </action>
-      </mousebind>
-      <mousebind button="A-S-Up" action="Click">
-        <action name="SendToDesktop">
-          <to>previous</to>
-        </action>
-      </mousebind>
-      <mousebind button="A-S-Down" action="Click">
-        <action name="SendToDesktop">
-          <to>next</to>
-        </action>
       </mousebind>
     </context>
     <context name="Titlebar">
@@ -439,11 +297,6 @@
         <action name="Focus"/>
         <action name="Raise"/>
         <action name="Unshade"/>
-      </mousebind>
-      <mousebind button="Middle" action="Press">
-        <action name="Lower"/>
-        <action name="FocusToBottom"/>
-        <action name="Unfocus"/>
       </mousebind>
       <mousebind button="Right" action="Press">
         <action name="Focus"/>
@@ -503,10 +356,6 @@
         <action name="Focus"/>
         <action name="Raise"/>
       </mousebind>
-      <mousebind button="Middle" action="Press">
-        <action name="Focus"/>
-        <action name="Raise"/>
-      </mousebind>
       <mousebind button="Right" action="Press">
         <action name="Focus"/>
         <action name="Raise"/>
@@ -563,11 +412,6 @@
         <action name="Raise"/>
         <action name="Unshade"/>
       </mousebind>
-      <mousebind button="Middle" action="Press">
-        <action name="Focus"/>
-        <action name="Raise"/>
-        <action name="Unshade"/>
-      </mousebind>
       <mousebind button="Right" action="Press">
         <action name="Focus"/>
         <action name="Raise"/>
@@ -575,11 +419,6 @@
       </mousebind>
       <mousebind button="Left" action="Click">
         <action name="ToggleMaximize"/>
-      </mousebind>
-      <mousebind button="Middle" action="Click">
-        <action name="ToggleMaximize">
-          <direction>vertical</direction>
-        </action>
       </mousebind>
       <mousebind button="Right" action="Click">
         <action name="ToggleMaximize">
@@ -639,11 +478,6 @@
     </context>
     <context name="Root">
       <!-- Menus -->
-      <mousebind button="Middle" action="Press">
-        <action name="ShowMenu">
-          <menu>client-list-combined-menu</menu>
-        </action>
-      </mousebind>
       <mousebind button="Right" action="Press">
         <action name="ShowMenu">
           <menu>root-menu</menu>
@@ -673,6 +507,7 @@
       </mousebind>
     </context>
   </mouse>
+
   <menu>
     <!-- You can specify more than one menu file in here and they are all loaded,
        just don't make menu ids clash or, well, it'll be kind of pointless -->
@@ -700,6 +535,7 @@
     <manageDesktops>yes</manageDesktops>
     <!-- show the manage desktops section in the client-list-(combined-)menu -->
   </menu>
+
   <applications>
     <!--
   # this is an example with comments through out. use these to make your
@@ -782,9 +618,9 @@
 
   # end of the example
 -->
-    <!-- Ventanas sin decoraciones -->
     <application class="*">
       <decor>no</decor>
     </application>
   </applications>
+
 </openbox_config>
