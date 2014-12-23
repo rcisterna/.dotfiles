@@ -1,0 +1,57 @@
+! ---| URxvt |---
+URxvt.termName:             rxvt-unicode-256color
+
+URxvt.imLocale:             ex_CL.UTF-8
+URxvt.scrollBar:            false
+URxvt.saveLines:            32767
+URxvt.iso14755:             false
+URxvt.iso14755_52:          false
+
+!!Real transparency
+URxvt.depth:                32
+URxvt.background:           [100]#000000
+!!Fake transparency
+!URxvt.transparent:         true
+!URxvt.shading:             40
+
+!! Cursor
+URxvt.cursorBlink:          true
+URxvt.cursorColor:          [100]#FED053
+
+URxvt.visualBell:           true
+URxvt.urgentOnBell:         true
+
+!! Fonts
+! Inconsolata es para airline de VIM
+URxvt.font:                 xft:Monaco:pixelsize=12:antialias=true:hinting=true
+URxvt.boldFont:             xft:Monaco:pixelsize=12:antialias=true:bold:hinting=true
+URxvt.italicFont:           xft:Monaco:pixelsize=12:antialias=true:italic:autohint=true:hinting=true
+URxvt.bolditalicFont:       xft:Monaco:pixelsize=12:antialias=true:bold:italic:autohint=true:hinting=true
+
+! ---| Jellybeans |---
+!*background:               #222222
+*foreground:                #a4a4a4
+! Black
+*color0:                    #0a0a0a
+*color8:                    #505050
+! Red
+*color1:                    #d75f5f
+*color9:                    #fd8787
+! Green
+*color2:                    #87af5f
+*color10:                   #c7f09f
+! Yellow
+*color3:                    #ffaf5f
+*color11:                   #ffcc9a
+! Blue
+*color4:                    #87afd7
+*color12:                   #a5caef
+! Mangenta
+*color5:                    #8d6fbb
+*color13:                   #a6a6de
+! Cyan
+*color6:                    #5f8787
+*color14:                   #69b2b2
+! White
+*color7:                    #a0a0a0
+*color15:                   #d7d7d7
