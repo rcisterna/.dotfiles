@@ -9,7 +9,6 @@ Para configurar interfaz grafica, es necesario instalar los siguientes paquetes
 (en Debian)
 - xorg
 - openbox
-- obconf
-- lxappearance
 - rxvt-unicode-256color
-- nitrogen
+- lxappearance (escoger tema GTK2)
+- nitrogen (cambiar fondo de escritorio)
