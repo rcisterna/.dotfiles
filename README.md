@@ -14,7 +14,7 @@ Paquetes basicos para Debian
 $ git config --global user.name "Nombre"
 $ git config --global user.email correo@servidor.dom
 $ git config --global color.ui auto
-$ git config --global help.autocorrect 1
+$ git config --global help.autocorrect 10
 $ git config --global core.autocrlf input # debe ser 'true' en Windows
 
 $ git config --global merge.tool vimdiff
