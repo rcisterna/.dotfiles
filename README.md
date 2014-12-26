@@ -6,17 +6,17 @@ simbolicos a las configuraciones necesarias
 ## Instalacion basica
 Paquetes basicos para Debian
 - sudo
-``` bash
+``` console
 # visudo
 ```
 - git
-``` bash
+``` console
 $ git config --global user.name "Nombre"
 $ git config --global user.email correo@servidor.dom
 $ git config --global color.ui true
 ```
 - vim
-``` bash
+``` console
 $ export VISUAL=vim
 $ export EDITOR=vim
 ```
