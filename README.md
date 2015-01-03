@@ -13,7 +13,15 @@ Paquetes basicos para Debian
 ``` console
 $ git config --global user.name "Nombre"
 $ git config --global user.email correo@servidor.dom
-$ git config --global color.ui true
+$ git config --global color.ui auto
+$ git config --global help.autocorrect 1
+$ git config --global core.autocrlf input # debe ser 'true' en Windows
+
+$ git config --global merge.tool vimdiff
+$ git config --global mergetool.prompt false
+
+$ git config --global diff.tool vimdiff
+$ git config --global difftool.prompt false
 ```
 - vim
 ``` console
