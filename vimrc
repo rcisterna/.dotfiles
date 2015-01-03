@@ -81,7 +81,7 @@ set whichwrap+=<,>,h,l
 
 " Resaltar la columna 80
 set colorcolumn=80
-highlight ColorColumn ctermbg=8
+highlight ColorColumn ctermbg=darkred guibg=darkred
 
 if has("autocmd")
 

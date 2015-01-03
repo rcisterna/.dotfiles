@@ -6,6 +6,7 @@ source ~/.personal-config/vimrc
 " Visualizacion
 if has("gui_macvim")
   set guifont=Monaco:h11
+  set transparency=05
 endif
 
 " Se recomienda utilizar una fuente para desarrolladores:
@@ -20,6 +21,7 @@ endif
 if &term != "linux"
   set t_Co=256
   colorscheme jellybeans
+  highlight ColorColumn ctermbg=darkred guibg=darkred
 endif
 
 " ---------------------
