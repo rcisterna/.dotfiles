@@ -38,13 +38,7 @@ set more                            " ---more---
 set title                           " Titulo de la ventana
 set visualbell                      " Campana visual
 set noerrorbells                    " Campana visual
-set wildmenu                        " Autocompletar mejorado
-set wildignore=.bak,.pyc,.o,.,      " Ignorar tipos de archivo
-              \.pdf,.jpg,.gif,.png,
-              \.ttf,.otf,
-              \a,.so
-set wildmode=list:longest           " Lista larga de wildome
-set hidden                          " Buffer invisible si se abandona
+set hidden                          " Buffer invisible si deja de estar abierto
 set laststatus=2                    " Siempre ver la linea de status
 set cmdheight=1                     " Altura linea de comandos
 set showmatch                       " Ver corchetes coincidentes
@@ -56,6 +50,30 @@ if has("gui_macvim")
 endif
 "set cursorline                     " Resaltar linea actual
 "set cursorcolumn                   " Resaltar columna actual
+
+" Wild Options
+set wildchar=<Tab>                  " Disparar wildmenu en linea de comandos
+set wildmenu                        " Autocompletar mejorado en linea de com.
+set wildmode=list:full              " Modo de operar de wildmenu
+" Archivos swap de vim
+set wildignore=[._]*.s[a-w][a-z]
+" Ignorar archivadores
+set wildignore+=*.7z,*.jar,*.rar,*.zip,*.gz,*.bzip,*.bz2,*.xz,*.lzma,*.cab,*.tar
+" Ignorar paquetes
+set wildignore+=*.iso,*.dmg,*.xpi,*.gem,*.egg,*.deb,*.rpm,*.msi,*.msm,*.msp
+" Archivos, imagenes y audio
+set wildignore+=*.pdf,*.jpg,*.gif,*.png,*.wav,*.mp3,*.ogg
+" OS X
+set wildignore+=.DS_Store,._*,.Trashes
+" Lenguaje C
+set wildignore+=*.o,*.lib,*.a,*.la,*.lo,*.dll,*.so,*.so.*,*.exe,*.out,*.app
+" Lenguaje Python
+set wildignore+=.Python,*.py[cod]
+
+" set wildignore+=.bak,.pyc,.o,.,     " Ignorar tipos de archivo
+"               \.pdf,.jpg,.gif,.png,
+"               \.ttf,.otf,
+"               \a,.so
 
 " Archivos
 set autochdir                       " Siempre usar directorio actual
