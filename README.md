@@ -29,9 +29,6 @@ $ git config --global diff.tool vimdiff
 $ git config --global difftool.prompt false
 ```
 #### samba
-``` console
-# /etc/samba/smb.conf
-```
 En el archivo ```/etc/samba/smb.conf``` buscar y editar las siguientes lineas
 ``` console
 [global]
