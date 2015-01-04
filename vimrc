@@ -17,6 +17,7 @@ set noexrc                          " No usar .*rc(s) externos
 set nostartofline                   " No ir al primer caracter de la linea
 set nowrap                          " No cortar lineas
 set ignorecase                      " Ignorar case en las busquedas
+set smartcase                       " Considerar case si se buscan mayusculas
 set numberwidth=7                   " 99999 lineas
 set nobackup                        " No crear respaldos (archivos~)
 set nowritebackup                   " No sobreescribir respaldos (archivos~)
@@ -25,9 +26,10 @@ set hlsearch                        " Resaltar busquedas
 set antialias                       " Desactiva el suavizado de la fuente
 set magic                           " Dejar la magia habilitada para regex
 let g:netrw_dirhistmax = 0          " No guardar historial en .vim/.netrwhist
+set hidden                          " Buffer invisible si deja de estar abierto
+set encoding=utf-8                  " Codificacion UTF-8
 
 " Interface
-set encoding=utf-8                  " Codificacion UTF-8
 set so=2                            " Espacio de cursor hasta borde sup/inf
 set number                          " Ver los numeros de línea
 set relativenumber                  " Ver numeros relativos
@@ -38,23 +40,22 @@ set more                            " ---more---
 set title                           " Titulo de la ventana
 set visualbell                      " Campana visual
 set noerrorbells                    " Campana visual
-set hidden                          " Buffer invisible si deja de estar abierto
 set laststatus=2                    " Siempre ver la linea de status
 set cmdheight=1                     " Altura linea de comandos
 set showmatch                       " Ver corchetes coincidentes
+"set cursorline                     " Resaltar linea actual
+"set cursorcolumn                   " Resaltar columna actual
 if has('mouse')
   set mouse=a                       " Habilitar mouse, si existe
 endif
 if has("gui_macvim")
   set guioptions-=r                 " Eliminar scrollbar en MacVim
 endif
-"set cursorline                     " Resaltar linea actual
-"set cursorcolumn                   " Resaltar columna actual
 
 " Wild Options
 set wildchar=<Tab>                  " Disparar wildmenu en linea de comandos
 set wildmenu                        " Autocompletar mejorado en linea de com.
-set wildmode=list:full              " Modo de operar de wildmenu
+set wildmode=longest:full           " Modo de operar de wildmenu
 " Archivos swap de vim
 set wildignore=[._]*.s[a-w][a-z]
 " Ignorar archivadores
@@ -63,17 +64,16 @@ set wildignore+=*.7z,*.jar,*.rar,*.zip,*.gz,*.bzip,*.bz2,*.xz,*.lzma,*.cab,*.tar
 set wildignore+=*.iso,*.dmg,*.xpi,*.gem,*.egg,*.deb,*.rpm,*.msi,*.msm,*.msp
 " Archivos, imagenes y audio
 set wildignore+=*.pdf,*.jpg,*.gif,*.png,*.wav,*.mp3,*.ogg
-" OS X
-set wildignore+=.DS_Store,._*,.Trashes
+" Fuentes
+set wildignore+=*.ttf,*.otf
+" Sistemas de control de versiones
+"set wildignore+=[\/]\.(git|hg|svn)
 " Lenguaje C
 set wildignore+=*.o,*.lib,*.a,*.la,*.lo,*.dll,*.so,*.so.*,*.exe,*.out,*.app
 " Lenguaje Python
 set wildignore+=.Python,*.py[cod]
-
-" set wildignore+=.bak,.pyc,.o,.,     " Ignorar tipos de archivo
-"               \.pdf,.jpg,.gif,.png,
-"               \.ttf,.otf,
-"               \a,.so
+" OS X
+set wildignore+=.DS_Store,._*,.Trashes
 
 " Archivos
 set autochdir                       " Siempre usar directorio actual
