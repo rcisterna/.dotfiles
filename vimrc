@@ -24,10 +24,10 @@ set nowritebackup                   " No sobreescribir respaldos (archivos~)
 set incsearch                       " Busquedas incrementales
 set hlsearch                        " Resaltar busquedas
 set antialias                       " Desactiva el suavizado de la fuente
-set magic                           " Dejar la magia habilitada para regex
-let g:netrw_dirhistmax = 0          " No guardar historial en .vim/.netrwhist
+set magic                           " Regex son tratados del modo tradicinal
 set hidden                          " Buffer invisible si deja de estar abierto
 set encoding=utf-8                  " Codificacion UTF-8
+let g:netrw_dirhistmax = 0          " No guardar historial en .vim/.netrwhist
 
 " Interface
 set so=2                            " Espacio de cursor hasta borde sup/inf
@@ -67,7 +67,7 @@ set wildignore+=*.pdf,*.jpg,*.gif,*.png,*.wav,*.mp3,*.ogg
 " Fuentes
 set wildignore+=*.ttf,*.otf
 " Sistemas de control de versiones
-"set wildignore+=[\/]\.(git|hg|svn)
+set wildignore+=[\/]\.(git|hg|svn)
 " Lenguaje C
 set wildignore+=*.o,*.lib,*.a,*.la,*.lo,*.dll,*.so,*.so.*,*.exe,*.out,*.app
 " Lenguaje Python
