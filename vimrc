@@ -4,6 +4,9 @@
 " Visualizacion
 " Monochrome (no requiere configuracion)
 " https://github.com/joakin/vim-monochrome
+if &term != "linux"
+  set t_Co=256
+endif
 syntax enable                       " Colorear la sintaxis
 colorscheme monochrome
 
