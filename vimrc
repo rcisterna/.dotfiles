@@ -49,7 +49,10 @@ if has('mouse')
   set mouse=a                       " Habilitar mouse, si existe
 endif
 if has("gui_macvim")
-  set guioptions-=r                 " Eliminar scrollbar en MacVim
+  set guioptions-=r                 " Eliminar scrollbar derecha permanente
+  set guioptions-=R                 " Eliminar scrollbar derecha en splits
+  set guioptions-=l                 " Eliminar scrollbar izquierda permanente
+  set guioptions-=L                 " Eliminar scrollbar izquierda en splits
 endif
 
 " Wild Options
@@ -67,7 +70,7 @@ set wildignore+=*.pdf,*.jpg,*.gif,*.png,*.wav,*.mp3,*.ogg
 " Fuentes
 set wildignore+=*.ttf,*.otf
 " Sistemas de control de versiones
-set wildignore+=[\/]\.(git|hg|svn)
+set wildignore+=[\/]\.\(git\|hg\|svn\)
 " Lenguaje C
 set wildignore+=*.o,*.lib,*.a,*.la,*.lo,*.dll,*.so,*.so.*,*.exe,*.out,*.app
 " Lenguaje Python
