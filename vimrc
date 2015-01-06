@@ -61,7 +61,7 @@ endif
 " Wild Options
 set wildchar=<Tab>                  " Disparar wildmenu en linea de comandos
 set wildmenu                        " Autocompletar mejorado en linea de com.
-set wildmode=longest:full           " Modo de operar de wildmenu
+set wildmode=longest:full,full      " Modo de operar de wildmenu
 " Archivos swap de vim
 set wildignore=[._]*.s[a-w][a-z]
 " Ignorar archivadores
