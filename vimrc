@@ -61,7 +61,7 @@ endif
 " Wild Options
 set wildchar=<Tab>                  " Disparar wildmenu en linea de comandos
 set wildmenu                        " Autocompletar mejorado en linea de com.
-set wildmode=longest:full,full      " Modo de operar de wildmenu
+set wildmode=full                   " Modo de operar de wildmenu
 " Archivos swap de vim
 set wildignore=[._]*.s[a-w][a-z]
 " Ignorar archivadores
@@ -102,6 +102,13 @@ set shiftround                      " Indentacion inteligente
 set autoindent                      " Autoindentar
 set backspace=eol,start,indent      " Backspace inteligente
 set whichwrap+=<,>,h,l
+
+" Sesiones (guardar y restaurar)
+set sessionoptions=blank            " Ventanas vacias
+set sessionoptions+=buffers         " Buffers
+set sessionoptions+=sesdir          " Directorio del archivo de sesion
+set sessionoptions+=tabpages        " Guarda todas las paginas tab
+set sessionoptions+=winsize         " Tamano de las ventanas
 
 " Resaltar la columna 80
 set colorcolumn=80
@@ -180,8 +187,8 @@ inoremap ' ''<LEFT>
 inoremap " ""<LEFT>
 
 " Cambio de buffers
-nnoremap <C-TAB> :bnext<cr>
-nnoremap <C-S-TAB> :bprev<cr>
+"nnoremap <C-TAB> :bnext<cr>
+"nnoremap <C-S-TAB> :bprev<cr>
 
 " Usar Q para dar formato al texto
 map Q gq
