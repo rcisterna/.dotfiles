@@ -177,7 +177,7 @@ set statusline+=%l:%c                       " linea:columna
 " hi StatusLineNC ctermbg=black ctermfg=gray guibg=black guifg=gray
 
 " ---------------------------------------------------------------------------- "
-" ATAJOS DE TECLADO PERSONALES
+" MEJORAS PERSONALES
 
 " (INSERT) Autocerrar parentesis y comillas
 inoremap [ []<LEFT>
@@ -205,12 +205,12 @@ if !exists(":DiffOrig")
   noremap <D-d> :DiffOrig<cr>
 endif
 
-" ---------------------------------------------------------------------------- "
-" FUNCIONES PERSONALES
+" ----- SESIONES
 
 let g:SessionDir = $HOME."/.vim/sessions/"
 
-" Guarda automaticamente una sesion
+" Guarda automaticamente una sesion al cerrar vim
+autocmd VimLeave * call SaveSession()
 function! SaveSession()
   if !exists('g:Session')
     return 0
@@ -226,13 +226,16 @@ endfunc
 function! SetSession(session)
   let g:Session = a:session
   let l:sname = g:SessionDir.g:Session.".session.vim"
-  if !exists('&l:sname')
+  if !filereadable(l:sname)
     echo "No existe la sesion. Se creara al cerrar vim."
     return 0
   endif
+  echo "Abriendo sesion ".l:sname
   execute "source ".l:sname
   return 1
 endfunc
 
-" Ejecuta automaticamente las funciones anteriores
-autocmd VimLeave * call SaveSession()
+if !exists(":Session")
+  " Mapea la funcion SetSession a un comando :Session
+  command -nargs=1 Session call SetSession(<f-args>)
+endif
