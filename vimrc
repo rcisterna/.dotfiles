@@ -106,7 +106,8 @@ set whichwrap+=<,>,h,l
 " Sesiones (guardar y restaurar)
 set sessionoptions=blank            " Ventanas vacias
 set sessionoptions+=buffers         " Buffers
-set sessionoptions+=sesdir          " Directorio del archivo de sesion
+set sessionoptions+=curdir          " Directorio actual
+set sessionoptions+=globals         " Guardar variables globales
 set sessionoptions+=tabpages        " Guarda todas las paginas tab
 set sessionoptions+=winsize         " Tamano de las ventanas
 
@@ -203,3 +204,35 @@ if !exists(":DiffOrig")
       \ | set bt=nofile | r ++edit # | 0d_ | diffthis | wincmd p | diffthis
   noremap <D-d> :DiffOrig<cr>
 endif
+
+" ---------------------------------------------------------------------------- "
+" FUNCIONES PERSONALES
+
+let g:SessionDir = $HOME."/.vim/sessions/"
+
+" Guarda automaticamente una sesion
+function! SaveSession()
+  if !exists('g:Session')
+    return 0
+  endif
+  if !isdirectory(g:SessionDir)
+    call mkdir(g:SessionDir, "p")
+  endif
+  execute "mksession! ".g:SessionDir.g:Session.".session.vim"
+  return 1
+endfunc
+
+" Crea una nueva sesion, y la carga si existe
+function! SetSession(session)
+  let g:Session = a:session
+  let l:sname = g:SessionDir.g:Session.".session.vim"
+  if !exists('&l:sname')
+    echo "No existe la sesion. Se creara al cerrar vim."
+    return 0
+  endif
+  execute "source ".l:sname
+  return 1
+endfunc
+
+" Ejecuta automaticamente las funciones anteriores
+autocmd VimLeave * call SaveSession()
