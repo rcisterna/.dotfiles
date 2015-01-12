@@ -212,36 +212,41 @@ let g:SessionDir = $HOME."/.vim/sessions/"
 " Guarda automaticamente una sesion al cerrar vim
 autocmd VimLeave * call SaveSession()
 function! SaveSession()
-  if !exists('g:Session')
-    return 0
-  endif
-  if !isdirectory(g:SessionDir)
-    call mkdir(g:SessionDir, "p")
-  endif
-  execute "mksession! ".g:SessionDir.g:Session.".session.vim"
+  if !exists('g:Session') | return 0 | endif
+  if !isdirectory(g:SessionDir) | call mkdir(g:SessionDir, "p") | endif
+
+  exe "mksession! ".g:SessionDir.g:Session.".session.vim"
   return 1
 endfunc
 
 " Crea una nueva sesion, y la carga si existe
 function! SetSession(session)
+  if exists('g:Session') | call SaveSession() | exe "bufdo! bdelete" | endif
   let g:Session = a:session
   let l:sname = g:SessionDir.g:Session.".session.vim"
+
   if !filereadable(l:sname)
-    echo "No existe la sesion. Se creara al cerrar vim."
+    echo "No existe la sesion, se creara al cerrar vim."
     return 0
   endif
-  try
-    echo "Utilizando sesion ".l:sname
-    execute "source ".l:sname
-    return 1
-  catch
-    echo "Error cargando sesion. La sesion no sera guardada."
-    unlet g:Session g:SessionLoad
-    return 0
+
+  try | exe "source ".l:sname | return 1
+  catch | echo "Error cargando ".l:sname | call KillSession() | return 0
   endtry
 endfunc
 
+" Elimina las variables globales que indican que existe una sesion
+function! KillSession()
+  echo "La sesion ya no sera guardada al cerrar vim."
+  unlet! g:Session g:SessionLoad
+endfunc
+
+" Mapea la funcion SetSession al comando :Session
 if !exists(":Session")
-  " Mapea la funcion SetSession a un comando :Session
   command -nargs=1 Session call SetSession(<f-args>)
+endif
+
+" Mapea la funcion KillSession al comando :SessionKill
+if !exists(":KillSession")
+  command SessionKill call KillSession()
 endif
