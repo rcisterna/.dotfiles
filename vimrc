@@ -230,9 +230,15 @@ function! SetSession(session)
     echo "No existe la sesion. Se creara al cerrar vim."
     return 0
   endif
-  echo "Abriendo sesion ".l:sname
-  execute "source ".l:sname
-  return 1
+  try
+    echo "Utilizando sesion ".l:sname
+    execute "source ".l:sname
+    return 1
+  catch
+    echo "Error cargando sesion. La sesion no sera guardada."
+    unlet g:Session g:SessionLoad
+    return 0
+  endtry
 endfunc
 
 if !exists(":Session")
