@@ -20,19 +20,16 @@
 # SCREEN SETTINGS
 # ------------------------------------------------------------------------------
 
-#startup_message off
+startup_message off
 #nethack on
-
+altscreen on
+shelltitle ""
 #defflow on # will force screen to process ^S/^Q
 deflogin on
 #autodetach off
-
-# turn visual bell on
-vbell on
+vbell on # turn visual bell on
 vbell_msg "   Wuff  ----  Wuff!!  "
-
-# define a bigger scrollback, default is 100 lines
-defscrollback 1024
+defscrollback 1024 # define a bigger scrollback, default is 100 lines
 
 # ------------------------------------------------------------------------------
 # SCREEN KEYBINDINGS
@@ -72,7 +69,10 @@ hardstatus string "%h%? users: %u%?"
 # windownames and highlighting the current windowname in blue. (This is only
 # enabled if there is no hardstatus setting for your terminal)
 #
-hardstatus alwayslastline "%{-b wk}%=%-Lw%{+b wk}[%n%f %t]%{-}%+Lw%="
+#hardstatus alwayslastline "%{-b wk}%=%-Lw%{+b wk}[%n%f %t]%{-}%+Lw%="
+caption splitonly
+caption string "%=%{+b kw}[%n*%f %t]%="
+hardstatus alwayslastline "%=%?%{-b kw}%-Lw%?%{+b kw}[%n*%f %t]%?%{-b kw}%+Lw%?%="
 
 # set these terminals up to be 'optimal' instead of vt100
 termcapinfo xterm*|linux*|rxvt*|Eterm* OP
@@ -105,3 +105,5 @@ defnonblock 5
 # screen -t monkey ssh monkey
 # screen -t mail 8 mutt
 # screen -t daemon 9 tail -f /var/log/daemon.log
+screen -t mac
+screen -t ssh
