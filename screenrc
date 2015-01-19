@@ -1,21 +1,3 @@
-# $Id: screenrc,v 1.15 2003/10/08 11:39:03 zal Exp $
-#
-# /etc/screenrc
-#
-#   This is the system wide screenrc.
-#
-#   You can use this file to change the default behavior of screen system wide
-#   or copy it to ~/.screenrc and use it as a starting point for your own
-#   settings.
-#
-#   Commands in this file are used to set options, bind screen functions to
-#   keys, redefine terminal capabilities, and to automatically establish one or
-#   more windows at the beginning of your screen session.
-#
-#   This is not a comprehensive list of options, look at the screen manual for
-#   details on everything that you can put in this file.
-#
-
 # ------------------------------------------------------------------------------
 # SCREEN SETTINGS
 # ------------------------------------------------------------------------------
@@ -46,11 +28,6 @@ bind I login on
 bind O login off
 bind } history
 
-# An example of a "screen scraper" which will launch urlview on the current
-# screen window
-#
-#bind ^B eval "hardcopy_append off" "hardcopy -h $HOME/.screen-urlview" "screen urlview $HOME/.screen-urlview"
-
 # ------------------------------------------------------------------------------
 # TERMINAL SETTINGS
 # ------------------------------------------------------------------------------
@@ -68,11 +45,11 @@ hardstatus string "%h%? users: %u%?"
 # An alternative hardstatus to display a bar at the bottom listing the
 # windownames and highlighting the current windowname in blue. (This is only
 # enabled if there is no hardstatus setting for your terminal)
-#
-#hardstatus alwayslastline "%{-b wk}%=%-Lw%{+b wk}[%n%f %t]%{-}%+Lw%="
+hardstatus alwayslastline "%=%?%{-b}%-Lw%?%{+b}[%n*%f %t]%?%{-b}%+Lw%?%="
+
+# Caption
 caption splitonly
 caption string "%=%{+b kw}[%n*%f %t]%="
-hardstatus alwayslastline "%=%?%{-b kw}%-Lw%?%{+b kw}[%n*%f %t]%?%{-b kw}%+Lw%?%="
 
 # set these terminals up to be 'optimal' instead of vt100
 termcapinfo xterm*|linux*|rxvt*|Eterm* OP
@@ -95,15 +72,5 @@ defnonblock 5
 # STARTUP SCREENS
 # ------------------------------------------------------------------------------
 
-# Example of automatically running some programs in windows on screen startup.
-#
-#   The following will open top in the first window, an ssh session to monkey
-#   in the next window, and then open mutt and tail in windows 8 and 9
-#   respectively.
-#
-# screen top
-# screen -t monkey ssh monkey
-# screen -t mail 8 mutt
-# screen -t daemon 9 tail -f /var/log/daemon.log
 screen -t mac
 screen -t ssh
