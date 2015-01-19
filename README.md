@@ -5,11 +5,16 @@ simbolicos a las configuraciones necesarias
 
 ## Instalacion basica
 Paquetes basicos para Debian
-- sudo
+#### sudo
 ``` console
 # visudo
 ```
-- git
+#### vim
+``` console
+$ export VISUAL=vim
+$ export EDITOR=vim
+```
+#### git
 ``` console
 $ git config --global user.name "Nombre"
 $ git config --global user.email correo@servidor.dom
@@ -23,18 +28,33 @@ $ git config --global mergetool.prompt false
 $ git config --global diff.tool vimdiff
 $ git config --global difftool.prompt false
 ```
-- vim
+#### samba
+En el archivo ```/etc/samba/smb.conf``` buscar y editar las siguientes lineas
 ``` console
-$ export VISUAL=vim
-$ export EDITOR=vim
+[global]
+workgroup = DEVELOPERS
 ```
-- screen
+``` console
+####### Authentication #######
+security = user
+```
+``` console
+[nombre-perfil]
+	comment = Descripcion del perfil
+	path = /directorio/del/perfil/
+	guest ok = no
+	writable = yes
+	browseable = yes
+	create mask = 0755
+	directory mask = 0755
+```
+#### screen
 
 ## Instalacion de servidor X
 Para configurar interfaz grafica, es necesario instalar los siguientes paquetes
 (en Debian)
-- xorg
-- openbox
-- rxvt-unicode-256color
-- lxappearance (escoger tema GTK2)
-- nitrogen (cambiar fondo de escritorio)
+#### xorg
+#### openbox
+#### rxvt-unicode-256color
+#### lxappearance (escoger tema GTK2)
+#### nitrogen (cambiar fondo de escritorio)
