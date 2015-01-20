@@ -1,7 +1,22 @@
 " ---------------------------------------------------------------------------- "
-" CONFIGURACIONES PERSONALES
+" VUNDLE MANAGER
+" git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 
-source ~/.personal-config/vimrc
+set nocompatible
+filetype off
+
+set runtimepath+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+
+Plugin 'gmarik/Vundle.vim'
+Plugin 'nanotech/jellybeans.vim'
+Plugin 'rcisterna/sensession.vim'
+Plugin 'kien/ctrlp.vim'
+
+call vundle#end()
+
+" Cargar configuraciones personales
+source $HOME/.personal-config/vimrc
 
 " Se recomienda utilizar una fuente para desarrolladores:
 " https://www.fontyukle.net/en/Monaco.ttf
@@ -12,11 +27,15 @@ source ~/.personal-config/vimrc
 " Jellybeans (no requiere configuracion)
 " https://github.com/nanotech/jellybeans.vim
 
+if !isdirectory($HOME."/.vim/bundle/jellybeans.vim/")
+    exe "PluginInstall"
+endif
+colorscheme jellybeans
+highlight ColorColumn ctermbg=darkred guibg=darkred
+
 if has("gui_macvim")
   set guifont=Monaco:h11
   set transparency=05
-  colorscheme jellybeans
-  highlight ColorColumn ctermbg=darkred guibg=darkred
 endif
 
 " ---------------------
