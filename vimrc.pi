@@ -15,6 +15,11 @@ Plugin 'kien/ctrlp.vim'
 
 call vundle#end()
 
+" Instalacion automatica de plugins
+if !isdirectory($HOME."/.vim/bundle/Vundle.vim/")
+    exe "PluginInstall"
+endif
+
 " Cargar configuraciones personales
 source $HOME/.personal-config/vimrc
 
@@ -27,9 +32,6 @@ source $HOME/.personal-config/vimrc
 " Jellybeans (no requiere configuracion)
 " https://github.com/nanotech/jellybeans.vim
 
-if !isdirectory($HOME."/.vim/bundle/jellybeans.vim/")
-    exe "PluginInstall"
-endif
 colorscheme jellybeans
 highlight ColorColumn ctermbg=darkred guibg=darkred
 
