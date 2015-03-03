@@ -4,7 +4,7 @@ Archivos de configuración personales, para clonar en $HOME y hacer link
 simbolicos a las configuraciones necesarias
 
 ## Instalacion basica
-Paquetes basicos para Debian
+Paquetes basicos para Debian (además de Parallels Tools)
 #### sudo
 ``` console
 # visudo
@@ -28,32 +28,26 @@ $ git config --global mergetool.prompt false
 $ git config --global diff.tool vimdiff
 $ git config --global difftool.prompt false
 ```
-#### samba
-En el archivo ```/etc/samba/smb.conf``` buscar y editar las siguientes lineas
-``` console
-[global]
-workgroup = DEVELOPERS
-```
-``` console
-####### Authentication #######
-security = user
-```
-``` console
-[nombre-perfil]
-	comment = Descripcion del perfil
-	path = /directorio/del/perfil/
-	guest ok = no
-	writable = yes
-	browseable = yes
-	create mask = 0755
-	directory mask = 0755
-```
 #### screen
 
 ## Instalacion de servidor X
 Para configurar interfaz grafica, es necesario instalar los siguientes paquetes
 (en Debian)
 #### xorg
+En el archivo ```/usr/share/X11/xorg.conf.d/40-prltools.conf``` buscar y editar las siguientes lineas,
+agregando el modo "1280x800".
+``` console
+Section "Screen"
+	Identifier	"Parallels Screen"
+	Device	"Parallels Video"
+	Monitor	"Parallels Monitor"
+	Option	"NoMTRR"
+	SubSection	"Display"
+		Depth	24
+		Modes	"1280x800" "1024x768" "800x600" "640x480"
+	EndSubSection
+EndSection
+```
 #### openbox
 #### rxvt-unicode-256color
 #### lxappearance (escoger tema GTK2)
