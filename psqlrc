@@ -13,6 +13,9 @@
 -- \x auto
 -- \pset expanded
 
+-- Ver correctamente texto muy largo
+\pset format wrapped
+
 -- Autocompletar palabras reservadas en upper-case
 \set COMP_KEYWORD_CASE upper
 
