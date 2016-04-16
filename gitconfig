@@ -1,0 +1,17 @@
+[user]
+	name = Ricardo Cisterna
+	email = r.cisternasantos@gmail.com
+[color]
+	ui = auto
+[help]
+	autocorrect = 10
+[merge]
+	tool = vimdiff
+[mergetool]
+	prompt = false
+[diff]
+	tool = vimdiff
+[difftool]
+	prompt = false
+[core]
+	autocrlf = input

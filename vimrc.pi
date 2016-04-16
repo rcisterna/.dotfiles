@@ -1,6 +1,6 @@
 " ---------------------------------------------------------------------------- "
 " VUNDLE MANAGER
-" git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+" git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 
 set nocompatible
 filetype off
@@ -8,15 +8,16 @@ filetype off
 set runtimepath+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
-Plugin 'gmarik/Vundle.vim'
+Plugin 'VundleVim/Vundle.vim'
 Plugin 'nanotech/jellybeans.vim'
 Plugin 'rcisterna/sensession.vim'
-Plugin 'kien/ctrlp.vim'
+Plugin 'wincent/command-t'
+Plugin 'Valloric/YouCompleteMe'
 
 call vundle#end()
 
 " Instalacion automatica de plugins
-if !isdirectory($HOME."/.vim/bundle/Vundle.vim/")
+if !isdirectory($HOME."/.vim/bundle/jellybeans.vim/")
     exe "PluginInstall"
 endif
 
@@ -42,16 +43,21 @@ endif
 
 " ---------------------
 
-" CTRL-P
-" https://github.com/kien/ctrlp.vim
+" Command-T
+" https://github.com/wincent/command-t
 
-" Si se usa MacVim, utiliza <D-p> para llamar a CtrlP
-" if has("gui_macvim")
-"   macmenu File.Print key=<nop>
-"   let g:ctrlp_map = '<D-p>'
-" endif
+" cd ~/.vim/bundle/command-t/ruby/command-t
+" ruby extconf.rb
+" make
+map <D-t> :CommandT<CR>
+map <D-p> :CommandT<CR>
 
-" Ignorar carpeta de Yii Framework
-let g:ctrlp_custom_ignore = {
-  \ 'dir':  '\v[\/]yii$',
-  \ }
+" ---------------------
+
+" YouCompleteMe
+" https://github.com/Valloric/YouCompleteMe
+
+" cd ~/.vim/bundle/YouCompleteMe
+" ./install.py
+map <D-t> :CommandT<CR>
+map <D-p> :CommandT<CR>
