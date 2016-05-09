@@ -2,19 +2,18 @@
 " VUNDLE MANAGER
 " git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 
-set nocompatible
 filetype off
 
-set runtimepath+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
+set runtimepath+=~/.config/nvim/bundle/Vundle.vim
+call vundle#begin('~/.config/nvim/bundle')
 
 Plugin 'VundleVim/Vundle.vim'
 "Plugin 'nanotech/jellybeans.vim'
 Plugin 'rcisterna/sensession.vim'
 Plugin 'wincent/command-t'
 Plugin 'tpope/vim-git'
-Plugin 'shougo/neocomplete.vim'
-Plugin 'chriskempson/base16-vim'
+"Plugin 'chriskempson/base16-vim'
+Plugin 'Shougo/deoplete.nvim'
 
 call vundle#end()
 
@@ -28,14 +27,6 @@ source $HOME/.personal-config/vimrc
 
 " Se recomienda utilizar una fuente para desarrolladores:
 " https://www.fontyukle.net/en/Monaco.ttf
-
-" ---------------------------------------------------------------------------- "
-" CONFIGURACION DE PLUGINS
-
-" Jellybeans (no requiere configuracion)
-" https://github.com/nanotech/jellybeans.vim
-
-"colorscheme jellybeans
 
 " ---------------------
 
@@ -59,8 +50,7 @@ map <D-p> :CommandT<CR>
 
 " ---------------------
 
-" NeoComplete
-" https://github.com/shougo/neocomplete.vim
+" Deoplete
+" https://github.com/Shougo/deoplete.nvim
 
-" Habilitar el autocompletado al inicio
-let g:neocomplete#enable_at_startup = 1
+let g:deoplete#enable_at_startup = 1

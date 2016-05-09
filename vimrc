@@ -27,7 +27,6 @@ set nobackup                        " No crear respaldos (archivos~)
 set nowritebackup                   " No sobreescribir respaldos (archivos~)
 set incsearch                       " Busquedas incrementales
 set hlsearch                        " Resaltar busquedas
-set antialias                       " Desactiva el suavizado de la fuente
 set magic                           " Regex son tratados del modo tradicinal
 set hidden                          " Buffer invisible si deja de estar abierto
 set encoding=utf-8                  " Codificacion UTF-8
@@ -49,6 +48,9 @@ set cmdheight=1                     " Altura linea de comandos
 set showmatch                       " Ver corchetes coincidentes
 "set cursorline                     " Resaltar linea actual
 "set cursorcolumn                   " Resaltar columna actual
+if !has('nvim')
+  set antialias                     " Desactiva el suavizado de la fuente
+endif
 if has('mouse')
   set mouse=a                       " Habilitar mouse, si existe
 endif
