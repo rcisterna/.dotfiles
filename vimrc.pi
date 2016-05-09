@@ -9,15 +9,17 @@ set runtimepath+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
 Plugin 'VundleVim/Vundle.vim'
-Plugin 'nanotech/jellybeans.vim'
+"Plugin 'nanotech/jellybeans.vim'
 Plugin 'rcisterna/sensession.vim'
 Plugin 'wincent/command-t'
-Plugin 'Valloric/YouCompleteMe'
+Plugin 'tpope/vim-git'
+Plugin 'shougo/neocomplete.vim'
+Plugin 'chriskempson/base16-vim'
 
 call vundle#end()
 
 " Instalacion automatica de plugins
-if !isdirectory($HOME."/.vim/bundle/jellybeans.vim/")
+if !isdirectory($HOME."/.vim/bundle/sensession.vim/")
     exe "PluginInstall"
 endif
 
@@ -33,13 +35,16 @@ source $HOME/.personal-config/vimrc
 " Jellybeans (no requiere configuracion)
 " https://github.com/nanotech/jellybeans.vim
 
-colorscheme jellybeans
-highlight ColorColumn ctermbg=darkred guibg=darkred
+"colorscheme jellybeans
 
-if has("gui_macvim")
-  set guifont=Monaco:h11
-  set transparency=05
-endif
+" ---------------------
+
+" base16
+" https://github.com/chriskempson/base16-vim
+
+let base16colorspace=256
+"set background=dark
+"colorscheme base16-default
 
 " ---------------------
 
@@ -54,10 +59,8 @@ map <D-p> :CommandT<CR>
 
 " ---------------------
 
-" YouCompleteMe
-" https://github.com/Valloric/YouCompleteMe
+" NeoComplete
+" https://github.com/shougo/neocomplete.vim
 
-" cd ~/.vim/bundle/YouCompleteMe
-" ./install.py
-map <D-t> :CommandT<CR>
-map <D-p> :CommandT<CR>
+" Habilitar el autocompletado al inicio
+let g:neocomplete#enable_at_startup = 1

@@ -4,11 +4,12 @@
 " Visualizacion
 " Monochrome (no requiere configuracion)
 " https://github.com/joakin/vim-monochrome
-if &term != "linux"
+if &term == "linux"
+  colorscheme monochrome
+else
   set t_Co=256
 endif
 syntax enable                       " Colorear la sintaxis
-colorscheme monochrome
 
 " General
 filetype plugin indent on           " Habilitar plugins de filetype
@@ -50,12 +51,6 @@ set showmatch                       " Ver corchetes coincidentes
 "set cursorcolumn                   " Resaltar columna actual
 if has('mouse')
   set mouse=a                       " Habilitar mouse, si existe
-endif
-if has("gui_macvim")
-  set guioptions-=r                 " Eliminar scrollbar derecha permanente
-  set guioptions-=R                 " Eliminar scrollbar derecha en splits
-  set guioptions-=l                 " Eliminar scrollbar izquierda permanente
-  set guioptions-=L                 " Eliminar scrollbar izquierda en splits
 endif
 
 " Wild Options
