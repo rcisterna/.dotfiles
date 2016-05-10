@@ -2,6 +2,17 @@ let s:nvim_dir = expand("~/.config/nvim")
 let s:plug_dir = s:nvim_dir . '/plugged'
 
 " ---------------------
+" Deoplete
+
+let g:deoplete#enable_at_startup = 1
+
+" ---------------------
+" FZF
+
+nnoremap <C-p> :FZF<cr>
+nnoremap <C-b> :Buffers<cr>
+
+" ---------------------
 " base16
 
 let s:base16_readme = expand(s:plug_dir . '/base16-vim/README.md')
@@ -10,11 +21,6 @@ function! WhenBase16Ready(info)
   set background=dark
   colorscheme base16-ocean
 endfunction
-
-" ---------------------
-" Deoplete
-
-let g:deoplete#enable_at_startup = 1
 
 " ---------------------
 " Plug
