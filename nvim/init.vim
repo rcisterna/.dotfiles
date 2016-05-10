@@ -1,9 +1,10 @@
 let s:nvim_dir = expand("~/.config/nvim")
+let s:plug_dir = s:nvim_dir . '/plugged'
 
 " ---------------------
 " base16
 
-let s:base16_readme = expand(s:nvim_dir . '/plugged/base16-vim/README.md')
+let s:base16_readme = expand(s:plug_dir . '/base16-vim/README.md')
 
 function! WhenBase16Ready(info)
   set background=dark
@@ -31,12 +32,14 @@ if empty(glob(s:plug_vim))
 endif
 
 " Configuracion
-call plug#begin(s:nvim_dir . '/plugged')
+call plug#begin(s:plug_dir)
 
+Plug 'Shougo/deoplete.nvim'
+Plug 'junegunn/fzf', { 'do': './install --bin' }
+Plug 'junegunn/fzf.vim'
+Plug 'chriskempson/base16-vim', { 'do': function('WhenBase16Ready') }
 Plug 'rcisterna/sensession.vim'
 Plug 'tpope/vim-git'
-Plug 'chriskempson/base16-vim', { 'do': function('WhenBase16Ready') }
-Plug 'Shougo/deoplete.nvim'
 
 call plug#end()
 
