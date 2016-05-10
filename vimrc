@@ -12,11 +12,14 @@ endif
 syntax enable                       " Colorear la sintaxis
 
 " General
-filetype plugin indent on           " Habilitar plugins de filetype
+if !has('nvim')
+  filetype plugin indent on         " Habilitar plugins de filetype
+  set nocompatible                  " No hacer vi-compatible
+  set encoding=utf-8                " Codificacion UTF-8
+endif
 set history=700                     " Por defecto 20
 set list                            " Mostrar caracteres especiales
 set listchars=tab:\>\               " Para resaltar los <tab>
-set nocompatible                    " No hacer vi-compatible
 set noexrc                          " No usar .*rc(s) externos
 set nostartofline                   " No ir al primer caracter de la linea
 set nowrap                          " No cortar lineas
@@ -29,10 +32,18 @@ set incsearch                       " Busquedas incrementales
 set hlsearch                        " Resaltar busquedas
 set magic                           " Regex son tratados del modo tradicinal
 set hidden                          " Buffer invisible si deja de estar abierto
-set encoding=utf-8                  " Codificacion UTF-8
 let g:netrw_dirhistmax = 0          " No guardar historial en .vim/.netrwhist
 
 " Interface
+if has('mouse')
+  set mouse=a                       " Habilitar mouse, si existe
+endif
+if !has('nvim')
+  set antialias                     " Desactiva el suavizado de la fuente
+else
+  set cursorline                    " Resaltar linea actual
+endif
+"set cursorcolumn                   " Resaltar columna actual
 set so=2                            " Espacio de cursor hasta borde sup/inf
 set number                          " Ver los numeros de línea
 set relativenumber                  " Ver numeros relativos
@@ -46,14 +57,6 @@ set noerrorbells                    " Campana visual
 set laststatus=2                    " Siempre ver la linea de status
 set cmdheight=1                     " Altura linea de comandos
 set showmatch                       " Ver corchetes coincidentes
-"set cursorline                     " Resaltar linea actual
-"set cursorcolumn                   " Resaltar columna actual
-if !has('nvim')
-  set antialias                     " Desactiva el suavizado de la fuente
-endif
-if has('mouse')
-  set mouse=a                       " Habilitar mouse, si existe
-endif
 
 " Wild Options
 set wildchar=<Tab>                  " Disparar wildmenu en linea de comandos
@@ -110,7 +113,9 @@ set sessionoptions+=winsize         " Tamano de las ventanas
 
 " Resaltar la columna 80
 set colorcolumn=80
-highlight ColorColumn ctermbg=darkred guibg=darkred
+if !has('nvim')
+  highlight ColorColumn ctermbg=darkred guibg=darkred
+endif
 
 if has("autocmd")
 
