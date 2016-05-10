@@ -1,46 +1,50 @@
-" ---------------------------------------------------------------------------- "
-" VUNDLE MANAGER
-" git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+" ---------------------
+" Vundle
 
 filetype off
+let s:nvim_dir=expand("~/.config/nvim")
+
+let s:vundle_installed=0
+if !filereadable(s:nvim_dir . '/bundle/Vundle.vim/README.md')
+  echo "Instalando Vundle..."
+  let s:vundle_repo="git clone https://github.com/VundleVim/Vundle.vim.git"
+  silent execute "!" . s:vundle_repo . " " . s:nvim_dir . "/bundle/Vundle.vim"
+  let s:vundle_installed=1
+endif
 
 set runtimepath+=~/.config/nvim/bundle/Vundle.vim
-call vundle#begin('~/.config/nvim/bundle')
+call vundle#begin(s:nvim_dir . '/bundle')
 
 Plugin 'VundleVim/Vundle.vim'
 "Plugin 'nanotech/jellybeans.vim'
 Plugin 'rcisterna/sensession.vim'
 Plugin 'wincent/command-t'
 Plugin 'tpope/vim-git'
-"Plugin 'chriskempson/base16-vim'
+Plugin 'chriskempson/base16-vim'
 Plugin 'Shougo/deoplete.nvim'
 
 call vundle#end()
 
-" Instalacion automatica de plugins
-if !isdirectory($HOME."/.vim/bundle/sensession.vim/")
-    exe "PluginInstall"
+if s:vundle_installed
+  echo "Instalando plugins..."
+  silent execute "PluginInstall"
+  echo "Plugins instalados. Tal vez necesite ejecutar ':UpdateRemotePlugins'."
 endif
 
-" Cargar configuraciones personales
-source $HOME/.personal-config/vimrc
+" ---------------------
+" Configuraciones personales
 
-" Se recomienda utilizar una fuente para desarrolladores:
-" https://www.fontyukle.net/en/Monaco.ttf
+source ~/.personal-config/vimrc
 
 " ---------------------
-
 " base16
-" https://github.com/chriskempson/base16-vim
 
-let base16colorspace=256
-"set background=dark
-"colorscheme base16-default
+"let base16colorspace=256
+set background=dark
+colorscheme base16-default
 
 " ---------------------
-
 " Command-T
-" https://github.com/wincent/command-t
 
 " cd ~/.vim/bundle/command-t/ruby/command-t
 " ruby extconf.rb
@@ -49,8 +53,7 @@ map <D-t> :CommandT<CR>
 map <D-p> :CommandT<CR>
 
 " ---------------------
-
 " Deoplete
-" https://github.com/Shougo/deoplete.nvim
 
 let g:deoplete#enable_at_startup = 1
+
