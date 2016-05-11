@@ -219,7 +219,7 @@
 	<key>columnCount</key>
 	<integer>120</integer>
 	<key>name</key>
-	<string>base16-ocean.dark</string>
+	<string>Base16 Ocean Dark</string>
 	<key>noWarnProcesses</key>
 	<array>
 		<dict>
@@ -242,6 +242,6 @@
 	<key>type</key>
 	<string>Window Settings</string>
 	<key>useOptionAsMetaKey</key>
-	<true/>
+	<false/>
 </dict>
 </plist>
