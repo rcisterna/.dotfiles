@@ -10,9 +10,8 @@ if [ -d "/Applications/VMware Fusion.app/Contents/Library" ]; then
 fi
 
 # Git prompt
-if [ -f "$(brew --prefix bash-git-prompt)/share/gitprompt.sh" ]; then
-	GIT_PROMPT_THEME=Default_NoExitState
-	source "$(brew --prefix bash-git-prompt)/share/gitprompt.sh"
+if [ -f ~/.bash_prompt ]; then
+	. ~/.bash_prompt
 fi
 
 # Archivo de alias local
