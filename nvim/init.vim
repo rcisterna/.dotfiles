@@ -1,3 +1,6 @@
+" ---------------------
+" Variables localizacion archivos
+
 let s:nvim_dir = expand("~/.config/nvim")
 let s:plug_dir = s:nvim_dir . '/plugged'
 

@@ -40,13 +40,12 @@ function __prompt()
     if [[ ! -z "$branch" ]]; then
         local status_color
         if [[ -z "$dirty" ]] ; then
-            status_color=$LGREEN
+            status_color=$GREEN
         else
-            status_color=$LRED
+            status_color=$RED
         fi
-        PS1="$PS1[$BOLD$status_color$branch$RESET]"
+        PS1="$PS1($status_color$branch$RESET)"
     fi
-
     PS1="$PS1\$ "
 }
 
