@@ -6,12 +6,17 @@
 [help]
 	autocorrect = 10
 [merge]
-	tool = vimdiff
+	tool = nvimmerge
 [mergetool]
 	prompt = false
 [diff]
-	tool = vimdiff
+	tool = nvimdiff
 [difftool]
 	prompt = false
 [core]
 	autocrlf = input
+	editor = nvim
+[difftool "nvimdiff"]
+    cmd = "nvim -d \"$LOCAL\" \"$REMOTE\""
+[mergetool "nvimmerge"]
+    cmd = "nvim -f -d -c \"wincmd J\" \"$MERGED\" \"$LOCAL\" \"$REMOTE\""
