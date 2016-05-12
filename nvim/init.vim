@@ -12,8 +12,15 @@ let g:deoplete#enable_at_startup = 1
 " ---------------------
 " FZF
 
-nnoremap <C-p> :FZF<cr>
+let g:fzf_commits_log_options = '--graph --color=always --format="%C(auto)%h%d %C(blue)%an: %Creset%s %C(magenta)%cr"'
+let g:fzf_layout = { 'down': '~30%' }
+let g:fzf_buffers_jump = 1
+
+nnoremap <C-a> :FZF<cr>
+nnoremap <C-p> :GitFiles<cr>
 nnoremap <C-b> :Buffers<cr>
+nnoremap <C-l> :BLines<cr>
+nnoremap <C-c> :Commits<cr>
 
 " ---------------------
 " base16
@@ -44,10 +51,10 @@ endif
 call plug#begin(s:plug_dir)
 
 Plug 'Shougo/deoplete.nvim'
+Plug 'airblade/vim-rooter'
 Plug 'junegunn/fzf', { 'do': './install --bin' }
 Plug 'junegunn/fzf.vim'
 Plug 'chriskempson/base16-vim', { 'do': function('WhenBase16Ready') }
-Plug 'rcisterna/sensession.vim'
 Plug 'tpope/vim-git'
 
 call plug#end()
