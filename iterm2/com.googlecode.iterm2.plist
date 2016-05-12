@@ -7,7 +7,7 @@
 	<key>AllowClipboardAccess</key>
 	<false/>
 	<key>AnimateDimming</key>
-	<false/>
+	<true/>
 	<key>AppleAntiAliasingThreshold</key>
 	<integer>1</integer>
 	<key>AppleScrollAnimationEnabled</key>
@@ -294,7 +294,7 @@
 	<key>DimInactiveSplitPanes</key>
 	<true/>
 	<key>DimOnlyText</key>
-	<false/>
+	<true/>
 	<key>DisableFullscreenTransparency</key>
 	<false/>
 	<key>EnableRendezvous</key>
@@ -406,7 +406,7 @@
 	<key>HideMenuBarInFullscreen</key>
 	<true/>
 	<key>HideScrollbar</key>
-	<false/>
+	<true/>
 	<key>HideTab</key>
 	<true/>
 	<key>HighlightTabLabels</key>
@@ -463,9 +463,9 @@
 	<key>NSTableView Sort Ordering KeyBingingTable</key>
 	<array/>
 	<key>NSWindow Frame Preferences</key>
-	<string>322 148 924 485 0 0 1280 777 </string>
+	<string>100 168 924 485 0 0 1280 777 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>202 63 850 638 0 0 1280 777 </string>
+	<string>14 106 850 638 0 0 1280 777 </string>
 	<key>New Bookmarks</key>
 	<array>
 		<dict>
@@ -1179,7 +1179,7 @@
 			<key>Use Bold Font</key>
 			<true/>
 			<key>Use Bright Bold</key>
-			<true/>
+			<false/>
 			<key>Use Canonical Parser</key>
 			<false/>
 			<key>Use Italic Font</key>
@@ -1194,6 +1194,8 @@
 			<string>/Users/rcisterna</string>
 		</dict>
 	</array>
+	<key>NoSyncNeverRemindPrefsChangesCopy</key>
+	<true/>
 	<key>NoSyncTimeOfLastPromo</key>
 	<real>484751636.10405201</real>
 	<key>NoSyncTimeOfLastPromoDownload</key>
@@ -1248,7 +1250,7 @@
 	<key>PromptOnQuit</key>
 	<true/>
 	<key>QuitWhenAllWindowsClosed</key>
-	<false/>
+	<true/>
 	<key>RightCommand</key>
 	<integer>8</integer>
 	<key>RightOption</key>
@@ -1266,7 +1268,7 @@
 	<key>ShowBookmarkName</key>
 	<false/>
 	<key>ShowPaneTitles</key>
-	<true/>
+	<false/>
 	<key>SmartPlacement</key>
 	<false/>
 	<key>SplitPaneDimmingAmount</key>
