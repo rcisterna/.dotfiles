@@ -54,8 +54,9 @@ Plug 'Shougo/deoplete.nvim'
 Plug 'airblade/vim-rooter'
 Plug 'junegunn/fzf', { 'do': './install --bin' }
 Plug 'junegunn/fzf.vim'
-Plug 'chriskempson/base16-vim', { 'do': function('WhenBase16Ready') }
+Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-git'
+Plug 'chriskempson/base16-vim', { 'do': function('WhenBase16Ready') }
 
 call plug#end()
 
