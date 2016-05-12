@@ -24,7 +24,7 @@ function __prompt()
     local BOLD="\[\e[;1m\]"      # Bold
 
     # Base prompt
-    PS1="\u@\h:\W"
+    PS1="\u@\h:\w"
 
     local dirty
     local branch
