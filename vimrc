@@ -44,6 +44,8 @@ else
   set cursorline                    " Resaltar linea actual
 endif
 "set cursorcolumn                   " Resaltar columna actual
+set splitbelow                      " Ventana split abajo
+set splitright                      " Ventana vsplit derecha
 set so=2                            " Espacio de cursor hasta borde sup/inf
 set number                          " Ver los numeros de línea
 set relativenumber                  " Ver numeros relativos

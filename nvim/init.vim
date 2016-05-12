@@ -68,3 +68,24 @@ endif
 
 source ~/.personal-config/vimrc
 
+" ---------------------
+" Configuraciones modo terminal
+
+" Entrar a buffer de terminal en modo insert, y salir en modo normal
+autocmd BufWinEnter,WinEnter term://* startinsert
+autocmd BufWinLeave,BufLeave term://* stopinsert
+
+" Abrir terminal con tt
+nnoremap <silent> tt :below 10sp term://bash<cr>
+
+" Cambiar de ventana desde terminal de la forma tradicional
+tnoremap <C-w>h <C-\><C-n><C-w>h
+tnoremap <C-w>j <C-\><C-n><C-w>j
+tnoremap <C-w>k <C-\><C-n><C-w>k
+tnoremap <C-w>l <C-\><C-n><C-w>l
+tnoremap <C-w>= <C-\><C-n><C-w>=i
+tnoremap <C-w>_ <C-\><C-n><C-w>_i
+tnoremap <C-w>_ <C-\><C-n><C-w>_i
+tnoremap <C-w>- <C-\><C-n><C-w>-i
+tnoremap <C-w>+ <C-\><C-n><C-w>+i
+tnoremap <silent> <C-w>h <C-\><C-n>:hide<cr>
