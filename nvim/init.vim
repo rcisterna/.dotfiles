@@ -54,6 +54,7 @@ Plug 'Shougo/deoplete.nvim'
 Plug 'airblade/vim-rooter'
 Plug 'junegunn/fzf', { 'do': './install --bin' }
 Plug 'junegunn/fzf.vim'
+Plug 'kassio/neoterm'
 Plug 'tpope/vim-git'
 Plug 'chriskempson/base16-vim', { 'do': function('WhenBase16Ready') }
 
@@ -68,3 +69,16 @@ endif
 
 source ~/.personal-config/vimrc
 
+" ---------------------
+" Configuraciones modo terminal
+
+autocmd BufWinEnter,WinEnter term://* startinsert
+autocmd BufLeave term://* stopinsert
+
+nnoremap <silent> tt :call neoterm#open()<cr>
+
+tnoremap <C-w>h <C-\><C-n><C-w>h
+tnoremap <C-w>j <C-\><C-n><C-w>j
+tnoremap <C-w>k <C-\><C-n><C-w>k
+tnoremap <C-w>l <C-\><C-n><C-w>l
+tnoremap <silent> <C-d> <C-\><C-n>:call neoterm#close()<cr>
