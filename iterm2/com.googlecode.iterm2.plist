@@ -1260,7 +1260,7 @@
 		</dict>
 	</dict>
 	<key>PrefsCustomFolder</key>
-	<string>~/.personal-config/iterm2/</string>
+	<string>~/.dotfiles/iterm2/</string>
 	<key>PromptOnQuit</key>
 	<true/>
 	<key>QuitWhenAllWindowsClosed</key>
