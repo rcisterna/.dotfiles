@@ -1,16 +1,6 @@
 " ---------------------------------------------------------------------------- "
 " CONFIGURACIONES PERSONALES
 
-" Visualizacion
-" Monochrome (no requiere configuracion)
-" https://github.com/joakin/vim-monochrome
-if &term == "linux"
-  colorscheme monochrome
-else
-  set t_Co=256
-endif
-syntax enable                       " Colorear la sintaxis
-
 " General
 if !has('nvim')
   filetype plugin indent on         " Habilitar plugins de filetype
@@ -114,9 +104,8 @@ set sessionoptions+=tabpages        " Guarda todas las paginas tab
 set sessionoptions+=winsize         " Tamano de las ventanas
 
 " Resaltar la columna 80
-set colorcolumn=80
-if !has('nvim')
-  highlight ColorColumn ctermbg=darkred guibg=darkred
+if has('nvim')
+  set colorcolumn=80
 endif
 
 if has("autocmd")
