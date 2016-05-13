@@ -5,34 +5,6 @@ let s:nvim_dir = expand("~/.config/nvim")
 let s:plug_dir = s:nvim_dir . '/plugged'
 
 " ---------------------
-" Deoplete
-
-let g:deoplete#enable_at_startup = 1
-
-" ---------------------
-" FZF
-
-let g:fzf_commits_log_options = '--graph --color=always --format="%C(auto)%h%d %C(blue)%an: %Creset%s %C(magenta)%cr"'
-let g:fzf_layout = { 'down': '~30%' }
-let g:fzf_buffers_jump = 1
-
-nnoremap <C-a> :FZF<cr>
-nnoremap <C-p> :GitFiles<cr>
-nnoremap <C-b> :Buffers<cr>
-nnoremap <C-l> :BLines<cr>
-nnoremap <C-c> :Commits<cr>
-
-" ---------------------
-" base16
-
-let s:base16_readme = expand(s:plug_dir . '/base16-vim/README.md')
-
-function! WhenBase16Ready(info)
-  set background=dark
-  colorscheme base16-ocean
-endfunction
-
-" ---------------------
 " Plug
 
 " Instalacion automática
@@ -55,18 +27,37 @@ Plug 'airblade/vim-rooter'
 Plug 'junegunn/fzf', { 'do': './install --bin' }
 Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-git'
-Plug 'chriskempson/base16-vim', { 'do': function('WhenBase16Ready') }
+Plug 'chriskempson/base16-vim'
 
 call plug#end()
 
-if filereadable(s:base16_readme)
-  call WhenBase16Ready(s:base16_readme)
-endif
+" ---------------------
+" Deoplete
+
+let g:deoplete#enable_at_startup = 1
 
 " ---------------------
-" Configuraciones personales
+" FZF
 
-source ~/.personal-config/vimrc
+let g:fzf_commits_log_options = '--graph --color=always --format="%C(auto)%h%d %C(blue)%an: %Creset%s %C(magenta)%cr"'
+let g:fzf_layout = { 'down': '~30%' }
+let g:fzf_buffers_jump = 1
+
+nnoremap <C-a> :FZF<cr>
+nnoremap <C-p> :GitFiles<cr>
+nnoremap <C-b> :Buffers<cr>
+nnoremap <C-l> :BLines<cr>
+nnoremap <C-c> :Commits<cr>
+
+" ---------------------
+" base16
+
+let s:base16_readme = expand(s:plug_dir . '/base16-vim/README.md')
+
+if filereadable(s:base16_readme)
+  set background=dark
+  colorscheme base16-ocean
+endif
 
 " ---------------------
 " Configuraciones modo terminal
@@ -89,3 +80,8 @@ tnoremap <C-w>_ <C-\><C-n><C-w>_i
 tnoremap <C-w>- <C-\><C-n><C-w>-i
 tnoremap <C-w>+ <C-\><C-n><C-w>+i
 tnoremap <silent> <C-w>h <C-\><C-n>:hide<cr>
+
+" ---------------------
+" Configuraciones personales
+
+source ~/.dotfiles/vimrc
