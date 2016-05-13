@@ -463,14 +463,28 @@
 	<key>NSTableView Sort Ordering KeyBingingTable</key>
 	<array/>
 	<key>NSWindow Frame Preferences</key>
-	<string>100 168 924 485 0 0 1280 777 </string>
+	<string>298 139 924 485 0 0 1280 777 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>14 106 850 638 0 0 1280 777 </string>
+	<string>14 101 850 638 0 0 1280 777 </string>
+	<key>NeverWarnAboutShortLivedSessions_9FFE051F-3DA4-4A6E-A133-836CDA9C6DEB</key>
+	<true/>
 	<key>New Bookmarks</key>
 	<array>
 		<dict>
 			<key>ASCII Anti Aliased</key>
 			<true/>
+			<key>AWDS Pane Directory</key>
+			<string></string>
+			<key>AWDS Pane Option</key>
+			<string>No</string>
+			<key>AWDS Tab Directory</key>
+			<string></string>
+			<key>AWDS Tab Option</key>
+			<string>No</string>
+			<key>AWDS Window Directory</key>
+			<string></string>
+			<key>AWDS Window Option</key>
+			<string>No</string>
 			<key>Allow Title Reporting</key>
 			<false/>
 			<key>Ambiguous Double Width</key>
@@ -1199,7 +1213,7 @@
 	<key>NoSyncTimeOfLastPromo</key>
 	<real>484751636.10405201</real>
 	<key>NoSyncTimeOfLastPromoDownload</key>
-	<real>484751636.104518</real>
+	<real>484838038.93039399</real>
 	<key>OnlyWhenMoreTabs</key>
 	<true/>
 	<key>OpenArrangementAtStartup</key>
@@ -1262,7 +1276,7 @@
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2016-05-12T13:13:37Z</date>
+	<date>2016-05-13T13:13:37Z</date>
 	<key>SavePasteHistory</key>
 	<false/>
 	<key>ShowBookmarkName</key>
@@ -1272,7 +1286,7 @@
 	<key>SmartPlacement</key>
 	<false/>
 	<key>SplitPaneDimmingAmount</key>
-	<real>0.40000000596046448</real>
+	<real>0.40088140964508057</real>
 	<key>SwitchTabModifier</key>
 	<integer>4</integer>
 	<key>SwitchWindowModifier</key>
@@ -1294,7 +1308,7 @@
 	<key>UseLionStyleFullscreen</key>
 	<true/>
 	<key>WindowNumber</key>
-	<true/>
+	<false/>
 	<key>WindowStyle</key>
 	<integer>0</integer>
 	<key>WordCharacters</key>
