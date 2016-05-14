@@ -1,5 +1,17 @@
 export PATH="/usr/local/bin:$PATH"
 
+# Editor por defecto nvim (o vim, o vi)
+if hash nvim 2>/dev/null; then
+	export VISUAL=nvim
+	export EDITOR=nvim
+elif hash vim 2>/dev/null; then
+	export VISUAL=vim
+	export EDITOR=vim
+else
+	export VISUAL=vi
+	export EDITOR=vi
+fi
+
 if [ -f `brew --prefix`/etc/bash_completion ]; then
 	. `brew --prefix`/etc/bash_completion
 fi
