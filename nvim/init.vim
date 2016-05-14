@@ -25,6 +25,7 @@ call plug#begin(s:plug_dir)
 
 Plug 'Shougo/deoplete.nvim'
 Plug 'airblade/vim-rooter'
+Plug 'ludovicchabant/vim-gutentags'
 Plug 'junegunn/fzf', { 'do': './install --bin' }
 Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-git'
