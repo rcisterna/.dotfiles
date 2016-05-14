@@ -44,11 +44,11 @@ let g:fzf_commits_log_options = '--graph --color=always --format="%C(auto)%h%d %
 let g:fzf_layout = { 'down': '~30%' }
 let g:fzf_buffers_jump = 1
 
-nnoremap <C-p> :GitFiles<cr>
 nnoremap <C-f> :FZF<cr>
+nnoremap <C-p> :GitFiles<cr>
 nnoremap <C-b> :Buffers<cr>
-nnoremap <C-l> :BLines<cr>
 nnoremap <C-c> :Commits<cr>
+nnoremap <C-l> :BTags<cr>
 
 " ---------------------
 " base16

@@ -50,6 +50,10 @@ set laststatus=2                    " Siempre ver la linea de status
 set cmdheight=1                     " Altura linea de comandos
 set showmatch                       " Ver corchetes coincidentes
 
+" Ctags
+nmap <C-i> <C-]>
+nmap <C-o> <C-t>
+
 " Wild Options
 set wildchar=<Tab>                  " Disparar wildmenu en linea de comandos
 set wildmenu                        " Autocompletar mejorado en linea de com.
