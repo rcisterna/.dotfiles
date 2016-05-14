@@ -13,6 +13,7 @@ let s:plug_vim = s:nvim_dir . '/autoload/plug.vim'
 if empty(glob(s:plug_vim))
   let s:curl_command = "curl -fLo " . s:plug_vim . " --create-dirs"
   let s:plug_source = "https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"
+  call mkdir(s:plug_dir, "p")
 
   echo "Instalando Plug..."
   silent execute "!" . s:curl_command . " " . s:plug_source
@@ -43,8 +44,8 @@ let g:fzf_commits_log_options = '--graph --color=always --format="%C(auto)%h%d %
 let g:fzf_layout = { 'down': '~30%' }
 let g:fzf_buffers_jump = 1
 
-nnoremap <C-a> :FZF<cr>
 nnoremap <C-p> :GitFiles<cr>
+nnoremap <C-f> :FZF<cr>
 nnoremap <C-b> :Buffers<cr>
 nnoremap <C-l> :BLines<cr>
 nnoremap <C-c> :Commits<cr>
@@ -66,20 +67,23 @@ endif
 autocmd BufWinEnter,WinEnter term://* startinsert
 autocmd BufWinLeave,BufLeave term://* stopinsert
 
-" Abrir terminal con tt
-nnoremap <silent> tt :below 10sp term://bash<cr>
+" Abrir terminal con tt, cerrar con <Esc>
+nnoremap <silent> tt :below 13sp term://bash<cr>
+tnoremap <silent> <Esc> <C-\><C-n>:bdelete!<cr>
 
-" Cambiar de ventana desde terminal de la forma tradicional
+" Cambiar de ventana
 tnoremap <C-w>h <C-\><C-n><C-w>h
 tnoremap <C-w>j <C-\><C-n><C-w>j
 tnoremap <C-w>k <C-\><C-n><C-w>k
 tnoremap <C-w>l <C-\><C-n><C-w>l
+
+" Modificar a tamaños estandar de ventana
 tnoremap <C-w>= <C-\><C-n><C-w>=i
 tnoremap <C-w>_ <C-\><C-n><C-w>_i
-tnoremap <C-w>_ <C-\><C-n><C-w>_i
-tnoremap <C-w>- <C-\><C-n><C-w>-i
-tnoremap <C-w>+ <C-\><C-n><C-w>+i
-tnoremap <silent> <C-w>h <C-\><C-n>:hide<cr>
+
+" Aumentar o disminuir el tamaño de la ventana
+tnoremap <C-w>- <C-\><C-n>3<C-w>-i
+tnoremap <C-w>+ <C-\><C-n>3<C-w>+i
 
 " ---------------------
 " Configuraciones personales
