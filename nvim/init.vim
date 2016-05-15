@@ -5,6 +5,11 @@ let s:nvim_dir = expand("~/.config/nvim")
 let s:plug_dir = s:nvim_dir . '/plugged'
 
 " ---------------------
+" Configuraciones personales
+
+source ~/.dotfiles/vimrc
+
+" ---------------------
 " Plug
 
 " Instalacion automática
@@ -49,7 +54,8 @@ nnoremap <C-f> :FZF<cr>
 nnoremap <C-p> :GitFiles<cr>
 nnoremap <C-b> :Buffers<cr>
 nnoremap <C-c> :Commits<cr>
-nnoremap <C-l> :BTags<cr>
+nnoremap <C-t> :BTags<cr>
+nnoremap <C-l> :BLines<cr>
 
 " ---------------------
 " base16
@@ -86,7 +92,3 @@ tnoremap <C-w>_ <C-\><C-n><C-w>_i
 tnoremap <C-w>- <C-\><C-n>3<C-w>-i
 tnoremap <C-w>+ <C-\><C-n>3<C-w>+i
 
-" ---------------------
-" Configuraciones personales
-
-source ~/.dotfiles/vimrc

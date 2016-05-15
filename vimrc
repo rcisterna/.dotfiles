@@ -51,8 +51,8 @@ set cmdheight=1                     " Altura linea de comandos
 set showmatch                       " Ver corchetes coincidentes
 
 " Ctags
-nmap <C-i> <C-]>
-nmap <C-o> <C-t>
+nnoremap <silent> <C-i> :execute "tag " . expand("<cword>")<cr>
+nnoremap <silent> <C-o> :execute "pop"<cr>
 
 " Wild Options
 set wildchar=<Tab>                  " Disparar wildmenu en linea de comandos
