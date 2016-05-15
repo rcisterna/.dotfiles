@@ -46,23 +46,23 @@ let g:deoplete#enable_at_startup = 1
 " ---------------------
 " FZF
 
-let g:fzf_commits_log_options = '--graph --color=always --format="%C(auto)%h%d %C(blue)%an: %Creset%s %C(magenta)%cr"'
-let g:fzf_layout = { 'down': '~30%' }
-let g:fzf_buffers_jump = 1
+if exists('g:plugs["deoplete.nvim"]')
+  let g:fzf_commits_log_options = '--graph --color=always --format="%C(auto)%h%d %C(blue)%an: %Creset%s %C(magenta)%cr"'
+  let g:fzf_layout = { 'down': '~30%' }
+  let g:fzf_buffers_jump = 1
 
-nnoremap <C-f> :FZF<cr>
-nnoremap <C-p> :GitFiles<cr>
-nnoremap <C-b> :Buffers<cr>
-nnoremap <C-c> :Commits<cr>
-nnoremap <C-t> :BTags<cr>
-nnoremap <C-l> :BLines<cr>
+  nnoremap <C-f> :FZF<cr>
+  nnoremap <C-p> :GitFiles<cr>
+  nnoremap <C-b> :Buffers<cr>
+  nnoremap <C-c> :Commits<cr>
+  nnoremap <C-t> :BTags<cr>
+  nnoremap <C-l> :BLines<cr>
+endif
 
 " ---------------------
 " base16
 
-let s:base16_readme = expand(s:plug_dir . '/base16-vim/README.md')
-
-if filereadable(s:base16_readme)
+if exists('g:plugs["base16-vim"]')
   set background=dark
   colorscheme base16-ocean
 endif
