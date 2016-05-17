@@ -23,6 +23,7 @@ set hlsearch                        " Resaltar busquedas
 set magic                           " Regex son tratados del modo tradicinal
 set hidden                          " Buffer invisible si deja de estar abierto
 let g:netrw_dirhistmax = 0          " No guardar historial en .vim/.netrwhist
+let g:mapleader = "\<Space>"        " Mapear <leader> a <Space>
 
 " Interface
 if has('mouse')
@@ -49,10 +50,6 @@ set noerrorbells                    " Campana visual
 set laststatus=2                    " Siempre ver la linea de status
 set cmdheight=1                     " Altura linea de comandos
 set showmatch                       " Ver corchetes coincidentes
-
-" Ctags
-nnoremap <silent> <C-i> :execute "tag " . expand("<cword>")<cr>
-nnoremap <silent> <C-o> :execute "pop"<cr>
 
 " Wild Options
 set wildchar=<Tab>                  " Disparar wildmenu en linea de comandos
@@ -174,30 +171,14 @@ set statusline+=%l:%c                       " linea:columna
 " hi StatusLineNC ctermbg=black ctermfg=gray guibg=black guifg=gray
 
 " ---------------------------------------------------------------------------- "
-" MEJORAS PERSONALES
+" MAPEOS PERSONALES
 
-" (INSERT) Autocerrar parentesis y comillas
-inoremap [ []<LEFT>
-inoremap ( ()<LEFT>
-inoremap { {}<LEFT>
-inoremap < <><LEFT>
-inoremap ' ''<LEFT>
-inoremap " ""<LEFT>
+" navegacion entre lineas con centrado automático
+nnoremap G Gzz
 
-" Cambio de buffers
-"nnoremap <C-TAB> :bnext<cr>
-"nnoremap <C-S-TAB> :bprev<cr>
+" Ctags
+nnoremap <silent> <C-i> :execute "tag " . expand("<cword>")<cr>
+nnoremap <silent> <C-o> :execute "pop"<cr>
 
 " Usar Q para dar formato al texto
 map Q gq
-
-" CTRL-U in insert mode deletes a lot.  Use CTRL-G u to first break undo,
-" so that you can undo CTRL-U after inserting a line break.
-inoremap <C-U> <C-G>u<C-U>
-
-" Ver las modificaciones del archivo actual (antes de guardar)
-if !exists(":DiffOrig")
-  command DiffOrig vert new
-      \ | set bt=nofile | r ++edit # | 0d_ | diffthis | wincmd p | diffthis
-  noremap <D-d> :DiffOrig<cr>
-endif

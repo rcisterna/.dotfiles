@@ -33,8 +33,11 @@ Plug 'airblade/vim-rooter'
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'junegunn/fzf', { 'do': './install --bin' }
 Plug 'junegunn/fzf.vim'
-Plug 'tpope/vim-git'
 Plug 'chriskempson/base16-vim'
+Plug 'tpope/vim-git'
+Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-surround'
+Plug 'jwalton512/vim-blade'
 
 call plug#end()
 
