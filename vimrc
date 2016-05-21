@@ -31,9 +31,8 @@ if has('mouse')
 endif
 if !has('nvim')
   set antialias                     " Desactiva el suavizado de la fuente
-else
-  set cursorline                    " Resaltar linea actual
 endif
+"set cursorline                     " Resaltar linea actual
 "set cursorcolumn                   " Resaltar columna actual
 set splitbelow                      " Ventana split abajo
 set splitright                      " Ventana vsplit derecha
@@ -162,7 +161,7 @@ set statusline+=%m                          " Solo lectura | modificado
 set statusline+=%=                          " Separador izq/der
 
 set statusline+=[%{&fileformat}]\           " formato del archivo (dos, unix)
-"set statusline+=[%{&fileencoding}]\        " codificacion del archivo
+set statusline+=[%{&fileencoding}]\        " codificacion del archivo
 set statusline+=%y\                         " tipo de archivo (filetype)
 set statusline+=%l:%c                       " linea:columna
 
@@ -173,12 +172,18 @@ set statusline+=%l:%c                       " linea:columna
 " ---------------------------------------------------------------------------- "
 " MAPEOS PERSONALES
 
-" navegacion entre lineas con centrado automático
+" Centrado automático
 nnoremap G Gzz
+nmap n :norm! nzz<cr>
+nmap N :norm! Nzz<cr>
 
 " Ctags
-nnoremap <silent> <C-i> :execute "tag " . expand("<cword>")<cr>
-nnoremap <silent> <C-o> :execute "pop"<cr>
+nnoremap <silent> <leader>i :execute 'tag ' . expand("<cword>")<cr>
+nnoremap <silent> <leader>o :execute 'pop'<cr>
+
+" Linea actual sólo en la ventana activa
+autocmd BufEnter,WinEnter,InsertLeave * setlocal cursorline
+autocmd BufLeave,WinLeave,InsertEnter * setlocal nocursorline
 
 " Usar Q para dar formato al texto
 map Q gq

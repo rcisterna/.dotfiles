@@ -1,7 +1,7 @@
 " ---------------------
 " Variables localizacion archivos
 
-let s:nvim_dir = expand("~/.config/nvim")
+let s:nvim_dir = expand('~/.config/nvim')
 let s:plug_dir = s:nvim_dir . '/plugged'
 
 " ---------------------
@@ -10,18 +10,43 @@ let s:plug_dir = s:nvim_dir . '/plugged'
 source ~/.dotfiles/vimrc
 
 " ---------------------
+" Configuraciones modo terminal
+
+" Entrar a buffer de terminal en modo insert, y salir en modo normal
+autocmd BufWinEnter,WinEnter term://* startinsert
+autocmd BufWinLeave,BufLeave term://* stopinsert
+
+" Abrir terminal con tt, cerrar con <Esc>
+nnoremap <silent> tt :below 13sp term://bash<cr>
+tnoremap <silent> <C-w>q <C-\><C-n>:bdelete!<cr>
+
+" Cambiar de ventana
+tnoremap <C-w>h <C-\><C-n><C-w>h
+tnoremap <C-w>j <C-\><C-n><C-w>j
+tnoremap <C-w>k <C-\><C-n><C-w>k
+tnoremap <C-w>l <C-\><C-n><C-w>l
+
+" Modificar a tamaños estandar de ventana
+tnoremap <C-w>= <C-\><C-n><C-w>=i
+tnoremap <C-w>_ <C-\><C-n><C-w>_i
+
+" Aumentar o disminuir el tamaño de la ventana
+tnoremap <C-w>- <C-\><C-n>3<C-w>-i
+tnoremap <C-w>+ <C-\><C-n>3<C-w>+i
+
+" ---------------------
 " Plug
 
 " Instalacion automática
 let s:plug_vim = s:nvim_dir . '/autoload/plug.vim'
 
 if empty(glob(s:plug_vim))
-  let s:curl_command = "curl -fLo " . s:plug_vim . " --create-dirs"
-  let s:plug_source = "https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"
-  call mkdir(s:plug_dir, "p")
+  let s:curl_command = 'curl -fLo ' . s:plug_vim . ' --create-dirs'
+  let s:plug_source = 'https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+  call mkdir(s:plug_dir, 'p')
 
-  echo "Instalando Plug..."
-  silent execute "!" . s:curl_command . " " . s:plug_source
+  echo 'Instalando Plug...'
+  silent execute '!' . s:curl_command . ' ' . s:plug_source
   autocmd VimEnter * PlugInstall | source $MYVIMRC
 endif
 
@@ -33,7 +58,8 @@ Plug 'airblade/vim-rooter'
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'junegunn/fzf', { 'do': './install --bin' }
 Plug 'junegunn/fzf.vim'
-Plug 'chriskempson/base16-vim'
+"Plug 'chriskempson/base16-vim'
+Plug 'morhetz/gruvbox'
 Plug 'tpope/vim-git'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-surround'
@@ -71,27 +97,11 @@ if exists('g:plugs["base16-vim"]')
 endif
 
 " ---------------------
-" Configuraciones modo terminal
+" Gruvbox
 
-" Entrar a buffer de terminal en modo insert, y salir en modo normal
-autocmd BufWinEnter,WinEnter term://* startinsert
-autocmd BufWinLeave,BufLeave term://* stopinsert
-
-" Abrir terminal con tt, cerrar con <Esc>
-nnoremap <silent> tt :below 13sp term://bash<cr>
-tnoremap <silent> <Esc> <C-\><C-n>:bdelete!<cr>
-
-" Cambiar de ventana
-tnoremap <C-w>h <C-\><C-n><C-w>h
-tnoremap <C-w>j <C-\><C-n><C-w>j
-tnoremap <C-w>k <C-\><C-n><C-w>k
-tnoremap <C-w>l <C-\><C-n><C-w>l
-
-" Modificar a tamaños estandar de ventana
-tnoremap <C-w>= <C-\><C-n><C-w>=i
-tnoremap <C-w>_ <C-\><C-n><C-w>_i
-
-" Aumentar o disminuir el tamaño de la ventana
-tnoremap <C-w>- <C-\><C-n>3<C-w>-i
-tnoremap <C-w>+ <C-\><C-n>3<C-w>+i
+if exists('g:plugs["gruvbox"]')
+  set background=dark
+  let g:gruvbox_italic=1
+  colorscheme gruvbox
+endif
 
