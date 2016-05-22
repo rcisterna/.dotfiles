@@ -13,8 +13,11 @@ source ~/.dotfiles/vimrc
 " Configuraciones modo terminal
 
 " Entrar a buffer de terminal en modo insert, y salir en modo normal
-autocmd BufWinEnter,WinEnter term://* startinsert
-autocmd BufWinLeave,BufLeave term://* stopinsert
+augroup terminalAutoInsert
+  autocmd!
+  autocmd BufWinEnter,WinEnter term://* startinsert
+  autocmd BufWinLeave,BufLeave term://* stopinsert
+augroup END
 
 " Abrir terminal con tt, cerrar con <Esc>
 nnoremap <silent> tt :below 13sp term://bash<cr>
@@ -47,7 +50,10 @@ if empty(glob(s:plug_vim))
 
   echo 'Instalando Plug...'
   silent execute '!' . s:curl_command . ' ' . s:plug_source
-  autocmd VimEnter * PlugInstall | source $MYVIMRC
+  augroup plugAutoInstall
+    autocmd!
+    autocmd VimEnter * PlugInstall | source $MYVIMRC
+  augroup END
 endif
 
 " Configuracion
@@ -70,12 +76,17 @@ call plug#end()
 " ---------------------
 " Deoplete
 
-let g:deoplete#enable_at_startup = 1
+if exists('g:plugs["deoplete.nvim"]')
+  let g:deoplete#enable_at_startup = 1
+  inoremap <silent><expr> <Esc> pumvisible() ? deoplete#mappings#close_popup() : "\<Esc>"
+  inoremap <silent><expr> <Tab> pumvisible() ? "\<C-n>" : deoplete#mappings#manual_complete()
+  inoremap <silent><expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<Tab>"
+endif
 
 " ---------------------
 " FZF
 
-if exists('g:plugs["deoplete.nvim"]')
+if exists('g:plugs["fzf.vim"]')
   let g:fzf_commits_log_options = '--graph --color=always --format="%C(auto)%h%d %C(blue)%an: %Creset%s %C(magenta)%cr"'
   let g:fzf_layout = { 'down': '~30%' }
   let g:fzf_buffers_jump = 1

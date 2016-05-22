@@ -1,36 +1,39 @@
 " ---------------------------------------------------------------------------- "
 " CONFIGURACIONES PERSONALES
 
+let s:using_vim = !has('nvim')
+
 " General
-if !has('nvim')
+if s:using_vim
   filetype plugin indent on         " Habilitar plugins de filetype
   set nocompatible                  " No hacer vi-compatible
   set encoding=utf-8                " Codificacion UTF-8
+  set history=10000                 " Por defecto 20
+  set listchars=tab:> ,trail:-      " Para resaltar los <tab> y <trail>
+  set hlsearch                      " Resaltar busquedas
+  set incsearch                     " Busquedas incrementales
 endif
-set history=700                     " Por defecto 20
 set list                            " Mostrar caracteres especiales
-set listchars=tab:\>\               " Para resaltar los <tab>
 set noexrc                          " No usar .*rc(s) externos
 set nostartofline                   " No ir al primer caracter de la linea
 set nowrap                          " No cortar lineas
 set ignorecase                      " Ignorar case en las busquedas
 set smartcase                       " Considerar case si se buscan mayusculas
-set numberwidth=7                   " 99999 lineas
+set numberwidth=5                   " 9999 lineas
 set nobackup                        " No crear respaldos (archivos~)
 set nowritebackup                   " No sobreescribir respaldos (archivos~)
-set incsearch                       " Busquedas incrementales
-set hlsearch                        " Resaltar busquedas
 set magic                           " Regex son tratados del modo tradicinal
 set hidden                          " Buffer invisible si deja de estar abierto
 let g:netrw_dirhistmax = 0          " No guardar historial en .vim/.netrwhist
 let g:mapleader = "\<Space>"        " Mapear <leader> a <Space>
 
 " Interface
-if has('mouse')
-  set mouse=a                       " Habilitar mouse, si existe
-endif
-if !has('nvim')
+if s:using_vim
+  if has('mouse')
+    set mouse=a                     " Habilitar mouse, si existe
+  endif
   set antialias                     " Desactiva el suavizado de la fuente
+  set laststatus=2                  " Siempre ver la linea de status
 endif
 "set cursorline                     " Resaltar linea actual
 "set cursorcolumn                   " Resaltar columna actual
@@ -38,7 +41,7 @@ set splitbelow                      " Ventana split abajo
 set splitright                      " Ventana vsplit derecha
 set so=2                            " Espacio de cursor hasta borde sup/inf
 set number                          " Ver los numeros de línea
-set relativenumber                  " Ver numeros relativos
+"set relativenumber                 " Ver numeros relativos
 set showcmd                         " Mostrar comandos tecleados
 set showmode                        " Mostar el modo actual de VIM
 set ruler                           " Mostrar posicion del cursor siempre
@@ -46,7 +49,6 @@ set more                            " ---more---
 set title                           " Titulo de la ventana
 set visualbell                      " Campana visual
 set noerrorbells                    " Campana visual
-set laststatus=2                    " Siempre ver la linea de status
 set cmdheight=1                     " Altura linea de comandos
 set showmatch                       " Ver corchetes coincidentes
 
@@ -74,25 +76,23 @@ set wildignore+=.Python,*.py[cod]
 set wildignore+=.DS_Store,._*,.Trashes
 
 " Archivos
+if s:using_vim
+  set autoread                      " Refrescar si hay cambios
+endif
 set autochdir                       " Siempre usar directorio actual
-set autoread                        " Refrescar si hay cambios
 set updatecount=50                  " Actualizar swp luego de 50 caracteres
 set undolevels=1000                 " Tamaño maximo pila deshacer
 
-" Pliegues
-set foldcolumn=0                    " Ancho 0 en la columna de pliegue
-set foldmethod=indent               " Plegar usando indentacion
-set foldnestmax=4                   " Maximo 4 pliegues anidados
-set nofoldenable                    " Todos los pliegues comienzan abiertos
-
 " Tabulacion
+if s:using_vim
+  set autoindent                    " Autoindentar
+  set backspace=indent,eol,start    " Backspace inteligente
+  set smarttab                      " Tabulacion inteligente
+endif
 set tabstop=4                       " Tamaño tabulaciones
 set expandtab                       " Tabs a espacios
-set smarttab                        " Tabulacion inteligente
 set shiftwidth=4                    " Tamaño autoindentacion
 set shiftround                      " Indentacion inteligente
-set autoindent                      " Autoindentar
-set backspace=eol,start,indent      " Backspace inteligente
 set whichwrap+=<,>,h,l
 
 " Sesiones (guardar y restaurar)
@@ -104,50 +104,9 @@ set sessionoptions+=tabpages        " Guarda todas las paginas tab
 set sessionoptions+=winsize         " Tamano de las ventanas
 
 " Resaltar la columna 80
-if has('nvim')
+if !s:using_vim
   set colorcolumn=80
 endif
-
-if has("autocmd")
-
-  augroup vimrcEx
-  au!
-  " When editing a file, always jump to the last known cursor position.
-  " Don't do it when the position is invalid or when inside an event handler
-  " (happens when dropping a file on gvim).
-  " Also don't do it when the mark is in the first line, that is the default
-  " position when opening a file.
-  autocmd BufReadPost *
-    \ if line("'\"") > 1 && line("'\"") <= line("$") |
-    \   exe "normal! g`\"" |
-    \ endif
-  augroup END
-
-  " Opciones especiales de tabulación para tipos de archivo
-  autocmd FileType vim
-    \ setlocal tabstop=2 shiftwidth=2 expandtab
-  autocmd FileType c,cpp,make
-    \ setlocal tabstop=8 shiftwidth=8 noexpandtab
-  autocmd FileType php
-    \ setlocal tabstop=2 shiftwidth=2 expandtab
-  autocmd FileType python
-    \ setlocal tabstop=4 shiftwidth=4 expandtab
-
-  " Cantidad de caracteres por línea soportados en archivos de texto
-  autocmd FileType text,markdown,vim
-    \ setlocal textwidth=80
-
-  " Eliminar espacios en blanco al fin de linea al guardar
-  autocmd BufWritePre * :%s/\s\+$//e
-
-  " Abrir explorador de archivos si no se especifica archivo al inicio
-  " autocmd VimEnter * call Explorador()
-  " autocmd StdinReadPre * let s:std_in=1
-  " function! Explorador()
-  "   if argc() == 0 && !exists("s:std_in") | Explore | end
-  " endfunction
-
-endif " has("autocmd")
 
 " ---------------------------------------------------------------------------- "
 " STATUSLINE
@@ -166,11 +125,11 @@ set statusline+=%y\                         " tipo de archivo (filetype)
 set statusline+=%l:%c                       " linea:columna
 
 " Setear colores para la statusline activa y no-activa
-" hi StatusLine ctermbg=black ctermfg=cyan guibg=black guifg=cyan
-" hi StatusLineNC ctermbg=black ctermfg=gray guibg=black guifg=gray
+hi StatusLine ctermbg=black ctermfg=cyan guibg=black guifg=cyan
+hi StatusLineNC ctermbg=black ctermfg=gray guibg=black guifg=gray
 
 " ---------------------------------------------------------------------------- "
-" MAPEOS PERSONALES
+" MAPEOS
 
 " Centrado automático
 nnoremap G Gzz
@@ -181,9 +140,51 @@ nmap N :norm! Nzz<cr>
 nnoremap <silent> <leader>i :execute 'tag ' . expand("<cword>")<cr>
 nnoremap <silent> <leader>o :execute 'pop'<cr>
 
-" Linea actual sólo en la ventana activa
-autocmd BufEnter,WinEnter,InsertLeave * setlocal cursorline
-autocmd BufLeave,WinLeave,InsertEnter * setlocal nocursorline
-
 " Usar Q para dar formato al texto
 map Q gq
+
+" ---------------------------------------------------------------------------- "
+" AUTOCMD
+
+" Al editar un archivo, siempre ir a la última posición conocida del cursor, a
+" menos que la posición sea inválida, o que el archivo haya sido abierto por un
+" evento (por ejemplo, arrastrar un archivo a gvim).
+augroup setLastCursorPosition
+  autocmd!
+  autocmd BufReadPost *
+    \ if line("'\"") > 1 && line("'\"") <= line("$") |
+    \   execute "normal! g`\"" |
+    \ endif
+augroup END
+
+" Opciones especiales de tabulación para tipos de archivo
+augroup specialTabConfig
+  autocmd!
+  autocmd FileType vim setlocal tabstop=2 shiftwidth=2 expandtab
+  autocmd FileType c,cpp,make setlocal tabstop=8 shiftwidth=8 noexpandtab
+  autocmd FileType php setlocal tabstop=2 shiftwidth=2 expandtab
+  autocmd FileType python setlocal tabstop=4 shiftwidth=4 expandtab
+augroup END
+
+" Cantidad de caracteres por línea soportados en archivos de texto
+augroup wrapText
+  autocmd!
+  autocmd FileType text,markdown,vim setlocal textwidth=80
+augroup END
+
+" Eliminar espacios en blanco al fin de linea al guardar
+augroup deleteTrailAtSave
+  autocmd!
+  autocmd BufWritePre * :%s/\s\+$//e
+augroup END
+
+" Linea actual sólo en la ventana activa
+augroup diffentiateCurrentBuffer
+  autocmd!
+  autocmd InsertLeave * setlocal cursorline
+  autocmd InsertEnter * setlocal nocursorline
+
+  autocmd BufEnter,WinEnter * setlocal cursorline relativenumber
+  autocmd BufLeave,WinLeave * setlocal nocursorline norelativenumber
+augroup END
+
