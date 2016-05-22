@@ -9,7 +9,7 @@ if s:using_vim
   set nocompatible                  " No hacer vi-compatible
   set encoding=utf-8                " Codificacion UTF-8
   set history=10000                 " Por defecto 20
-  set listchars=tab:> ,trail:-      " Para resaltar los <tab> y <trail>
+  set listchars=tab:\>\ ,trail:\-   " Para resaltar los <tab> y <trail>
   set hlsearch                      " Resaltar busquedas
   set incsearch                     " Busquedas incrementales
 endif
