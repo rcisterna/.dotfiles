@@ -59,17 +59,23 @@ endif
 " Configuracion
 call plug#begin(s:plug_dir)
 
-Plug 'Shougo/deoplete.nvim'
-Plug 'airblade/vim-rooter'
-Plug 'ludovicchabant/vim-gutentags'
-Plug 'junegunn/fzf', { 'do': './install --bin' }
-Plug 'junegunn/fzf.vim'
-"Plug 'chriskempson/base16-vim'
-Plug 'morhetz/gruvbox'
-Plug 'tpope/vim-git'
-Plug 'tpope/vim-commentary'
-Plug 'tpope/vim-surround'
-Plug 'jwalton512/vim-blade'
+  " Utilidades
+  Plug 'airblade/vim-rooter'
+  Plug 'ludovicchabant/vim-gutentags'
+  Plug 'tpope/vim-commentary'
+  Plug 'tpope/vim-surround'
+
+  " Autocompletado y busqueda
+  Plug 'Shougo/deoplete.nvim'
+  Plug 'junegunn/fzf', { 'do': './install --bin' } | Plug 'junegunn/fzf.vim'
+
+  " Filetypes
+  Plug 'tpope/vim-git', { 'for' : ['git', 'gitcommit', 'gitconfig', 'gitrebase', 'gitsendemail'] }
+  Plug 'jwalton512/vim-blade', { 'for' : 'blade' }
+
+  " Colorschemes
+  "Plug 'chriskempson/base16-vim'
+  Plug 'morhetz/gruvbox'
 
 call plug#end()
 
@@ -77,10 +83,20 @@ call plug#end()
 " Deoplete
 
 if exists('g:plugs["deoplete.nvim"]')
+  " Cache ctags 50MB
+  " let g:deoplete#tag#cache_limit_size = 52428800
+  " let g:deoplete#sources = { '_' : ['buffer', 'tag'] }
   let g:deoplete#enable_at_startup = 1
   inoremap <silent><expr> <Esc> pumvisible() ? deoplete#mappings#close_popup() : "\<Esc>"
   inoremap <silent><expr> <Tab> pumvisible() ? "\<C-n>" : deoplete#mappings#manual_complete()
   inoremap <silent><expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<Tab>"
+endif
+
+" ---------------------
+" Deoplete
+
+if exists('g:plugs["vim-gutentags"]')
+  let g:gutentags_exclude = ['vendor']
 endif
 
 " ---------------------
