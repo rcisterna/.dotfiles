@@ -32,7 +32,7 @@ if [ -f ~/.bash_aliases ]; then
 fi
 
 # Gruvbox
-if [ -f ~/.config/nvim/plugged/gruvbox/gruvbox_256palette_osx.sh ]; then
-	. ~/.config/nvim/plugged/gruvbox/gruvbox_256palette_osx.sh
-fi
+# if [ -f ~/.config/nvim/plugged/gruvbox/gruvbox_256palette_osx.sh ]; then
+# 	. ~/.config/nvim/plugged/gruvbox/gruvbox_256palette_osx.sh
+# fi
 
