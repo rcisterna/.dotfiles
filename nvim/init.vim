@@ -128,7 +128,8 @@ endif
 
 if exists('g:plugs["gruvbox"]')
   set background=dark
-  let g:gruvbox_contrast_dark='hard'
+  let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+  let g:gruvbox_contrast_dark='medium'
   let g:gruvbox_invert_selection=0
   let g:gruvbox_italic=1
   colorscheme gruvbox
