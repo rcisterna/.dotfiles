@@ -34,5 +34,7 @@ fi
 # Gruvbox
 if [ -f ~/.config/nvim/plugged/gruvbox/gruvbox_256palette_osx.sh ]; then
 	. ~/.config/nvim/plugged/gruvbox/gruvbox_256palette_osx.sh
+elif [ -f ~/.vimrc/plugged/gruvbox/gruvbox_256palette_osx.sh ]; then
+    . ~/.vimrc/plugged/gruvbox/gruvbox_256palette_osx.sh
 fi
 

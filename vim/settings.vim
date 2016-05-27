@@ -1,7 +1,12 @@
+let s:using_vim = !has('nvim')
+let s:vi_dir = s:using_vim ? expand('~/.vim') : expand('~/.config/nvim')
+
+if !isdirectory(s:vi_dir)
+  call mkdir(s:vi_dir, 'p')
+endif
+
 " ---------------------------------------------------------------------------- "
 " CONFIGURACIONES PERSONALES
-
-let s:using_vim = !has('nvim')
 
 " General
 if s:using_vim
@@ -104,9 +109,7 @@ set sessionoptions+=tabpages        " Guarda todas las paginas tab
 set sessionoptions+=winsize         " Tamano de las ventanas
 
 " Resaltar la columna 80
-if !s:using_vim
-  set colorcolumn=80
-endif
+set colorcolumn=80
 
 " ---------------------------------------------------------------------------- "
 " STATUSLINE
@@ -128,63 +131,5 @@ set statusline+=%l:%c                       " linea:columna
 hi StatusLine ctermbg=black ctermfg=cyan guibg=black guifg=cyan
 hi StatusLineNC ctermbg=black ctermfg=gray guibg=black guifg=gray
 
-" ---------------------------------------------------------------------------- "
-" MAPEOS
-
-" Centrado automático
-nnoremap G Gzz
-nmap n :norm! nzz<cr>
-nmap N :norm! Nzz<cr>
-
-" Ctags
-nnoremap <silent> <leader>i :execute 'tag ' . expand("<cword>")<cr>
-nnoremap <silent> <leader>o :execute 'pop'<cr>
-
-" Usar Q para dar formato al texto
-map Q gq
-
-" ---------------------------------------------------------------------------- "
-" AUTOCMD
-
-" Al editar un archivo, siempre ir a la última posición conocida del cursor, a
-" menos que la posición sea inválida, o que el archivo haya sido abierto por un
-" evento (por ejemplo, arrastrar un archivo a gvim).
-augroup setLastCursorPosition
-  autocmd!
-  autocmd BufReadPost *
-    \ if line("'\"") > 1 && line("'\"") <= line("$") |
-    \   execute "normal! g`\"" |
-    \ endif
-augroup END
-
-" Opciones especiales de tabulación para tipos de archivo
-augroup specialTabConfig
-  autocmd!
-  autocmd FileType vim setlocal tabstop=2 shiftwidth=2 expandtab
-  autocmd FileType c,cpp,make setlocal tabstop=8 shiftwidth=8 noexpandtab
-  autocmd FileType php setlocal tabstop=2 shiftwidth=2 expandtab
-  autocmd FileType python setlocal tabstop=4 shiftwidth=4 expandtab
-augroup END
-
-" Cantidad de caracteres por línea soportados en archivos de texto
-augroup wrapText
-  autocmd!
-  autocmd FileType text,markdown,vim setlocal textwidth=80
-augroup END
-
-" Eliminar espacios en blanco al fin de linea al guardar
-augroup deleteTrailAtSave
-  autocmd!
-  autocmd BufWritePre * :%s/\s\+$//e
-augroup END
-
-" Linea actual sólo en la ventana activa
-augroup diffentiateCurrentBuffer
-  autocmd!
-  autocmd InsertLeave * setlocal cursorline
-  autocmd InsertEnter * setlocal nocursorline
-
-  autocmd BufEnter,WinEnter * setlocal cursorline relativenumber
-  autocmd BufLeave,WinLeave * setlocal nocursorline norelativenumber
-augroup END
-
+" Omnifunc
+set omnifunc=syntaxcomplete#Complete
