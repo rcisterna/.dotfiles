@@ -577,7 +577,7 @@
 	<key>HighlightTabLabels</key>
 	<true/>
 	<key>HotKeyBookmark</key>
-	<string>9FFE051F-3DA4-4A6E-A133-836CDA9C6DEB</string>
+	<string>3C66D711-6430-4076-9201-68D570E7604E</string>
 	<key>HotKeyTogglesWindow</key>
 	<false/>
 	<key>Hotkey</key>
@@ -630,7 +630,9 @@
 	<key>NSWindow Frame Preferences</key>
 	<string>269 110 924 485 0 0 1280 777 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>131 73 570 451 0 0 1280 777 </string>
+	<string>169 81 850 566 0 0 1280 777 </string>
+	<key>NeverWarnAboutShortLivedSessions_3C66D711-6430-4076-9201-68D570E7604E</key>
+	<true/>
 	<key>NeverWarnAboutShortLivedSessions_9FFE051F-3DA4-4A6E-A133-836CDA9C6DEB</key>
 	<true/>
 	<key>NeverWarnAboutShortLivedSessions_D12E3540-E7FD-4724-831E-C50415B7EA8A</key>
@@ -879,7 +881,7 @@
 			<key>Disable Window Resizing</key>
 			<true/>
 			<key>Flashing Bell</key>
-			<true/>
+			<false/>
 			<key>Foreground Color</key>
 			<dict>
 				<key>Blue Component</key>
@@ -1377,6 +1379,8 @@
 			<string>/Users/rcisterna</string>
 		</dict>
 	</array>
+	<key>NoSyncNeverRemindPrefsChangesCopy</key>
+	<true/>
 	<key>NoSyncTimeOfLastPromo</key>
 	<real>486066334.24919701</real>
 	<key>NoSyncTimeOfLastPromoDownload</key>
