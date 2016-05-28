@@ -12,6 +12,7 @@ else
 	export EDITOR=vi
 fi
 
+# Bash completion
 if [ -f `brew --prefix`/etc/bash_completion ]; then
 	. `brew --prefix`/etc/bash_completion
 fi
@@ -22,16 +23,18 @@ if [ -d "/Applications/VMware Fusion.app/Contents/Library" ]; then
 fi
 
 # Git prompt
-if [ -f ~/.bash_prompt ]; then
-	. ~/.bash_prompt
+if [ -f ~/.dotfiles/bash/prompt.sh ]; then
+	. ~/.dotfiles/bash/prompt.sh
 fi
 
 # Archivo de alias local
-if [ -f ~/.bash_aliases ]; then
-	. ~/.bash_aliases
+if [[ $OSTYPE == darwin* ]] && [ -f ~/.dotfiles/bash/mac_aliases.sh ]; then
+	. ~/.dotfiles/bash/mac_aliases.sh
+elif [ -f ~/.dotfiles/bash/aliases.sh ]; then
+	. ~/.dotfiles/bash/aliases.sh
 fi
 
-# Gruvbox
+# Gruvbox correccion de colores
 if [ -f ~/.config/nvim/plugged/gruvbox/gruvbox_256palette_osx.sh ]; then
 	. ~/.config/nvim/plugged/gruvbox/gruvbox_256palette_osx.sh
 elif [ -f ~/.vimrc/plugged/gruvbox/gruvbox_256palette_osx.sh ]; then
