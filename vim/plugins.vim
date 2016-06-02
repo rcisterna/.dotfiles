@@ -1,5 +1,5 @@
 let s:using_vim = !has('nvim')
-let s:using_256 = 0
+let s:using_256 = 1
 
 " ---------------------------------------------------------------------------- "
 " Variables localizacion archivos
