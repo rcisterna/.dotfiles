@@ -15,6 +15,17 @@ nnoremap <silent> <leader>o :execute 'pop'<cr>
 " Usar Q para dar formato al texto
 map Q gq
 
+function! OpenMarked()
+  if &filetype == 'markdown'
+    silent execute '!open -a "Marked 2.app" "%:p"'
+  else
+    echo 'El archivo no es de tipo markdown'
+  endif
+endfunction
+
+" Abrir archivos markdown con Marked 2
+nnoremap <leader>m :call OpenMarked()<CR>
+
 " ---------------------------------------------------------------------------- "
 " MODO TERMINAL
 

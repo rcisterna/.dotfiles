@@ -22,6 +22,7 @@ augroup specialTabConfig
   autocmd FileType php setlocal tabstop=2 shiftwidth=2 expandtab
   autocmd FileType python setlocal tabstop=4 shiftwidth=4 expandtab
   autocmd FileType cs setlocal tabstop=4 shiftwidth=4 noexpandtab
+  autocmd FileType markdown setlocal tabstop=4 shiftwidth=4 noexpandtab
 augroup END
 
 " Cantidad de caracteres por línea soportados en archivos de texto
