@@ -67,13 +67,9 @@ endif
 
 if exists('g:plugs["neocomplete.vim"]')
   let g:neocomplete#enable_at_startup = 1
-  " Use smartcase.
   let g:neocomplete#enable_smart_case = 1
-  " Set minimum syntax keyword length.
-  let g:neocomplete#sources#syntax#min_keyword_length = 3
-  inoremap <silent><expr> <Esc> pumvisible() ? neocomplete#mappings#close_popup() : "\<Esc>"
-  inoremap <silent><expr> <Tab> pumvisible() ? "\<C-n>" : neocomplete#mappings#manual_complete()
-  inoremap <silent><expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<Tab>"
+  inoremap <silent><expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+  inoremap <silent><expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<C-D>"
 endif
 
 " ---------------------------------------------------------------------------- "
@@ -84,9 +80,8 @@ if exists('g:plugs["deoplete.nvim"]')
   " let g:deoplete#tag#cache_limit_size = 52428800
   " let g:deoplete#sources = { '_' : ['buffer', 'tag'] }
   let g:deoplete#enable_at_startup = 1
-  inoremap <silent><expr> <Esc> pumvisible() ? deoplete#mappings#close_popup() : "\<Esc>"
-  inoremap <silent><expr> <Tab> pumvisible() ? "\<C-n>" : deoplete#mappings#manual_complete()
-  inoremap <silent><expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<Tab>"
+  inoremap <silent><expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+  inoremap <silent><expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<C-D>"
 endif
 
 " ---------------------------------------------------------------------------- "
