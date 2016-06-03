@@ -24,7 +24,7 @@ function! OpenMarked()
 endfunction
 
 " Abrir archivos markdown con Marked 2
-nnoremap <leader>m :call OpenMarked()<CR>
+nnoremap <silent><leader>m :call OpenMarked()<CR>
 
 " ---------------------------------------------------------------------------- "
 " MODO TERMINAL
