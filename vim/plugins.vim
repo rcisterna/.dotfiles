@@ -42,7 +42,7 @@ call plug#begin(s:plug_dir)
     Plug 'Shougo/unite.vim' | Plug 'Shougo/unite-outline'
   else
     Plug 'Shougo/deoplete.nvim'
-    Plug 'junegunn/fzf', { 'do': './install --bin' } | Plug 'junegunn/fzf.vim'
+    Plug 'junegunn/fzf', { 'do': './install --bin' } | Plug 'junegunn/fzf.vim' | Plug 'fszymanski/fzf-gitignore.nvim'
   endif
 
   " Filetypes
@@ -127,6 +127,7 @@ endif
 
 if exists('g:plugs["gruvbox"]')
   if s:using_256
+    " set termguicolors
     let $NVIM_TUI_ENABLE_TRUE_COLOR=1
     let g:gruvbox_termcolors=256
   else
