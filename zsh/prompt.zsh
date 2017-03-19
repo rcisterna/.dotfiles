@@ -1,32 +1,36 @@
-#!/bin/bash
-PROMPT="%n@%m:%~%# "
+#!/bin/zsh
+setopt prompt_subst
+
+local dots='.................................................................................................... '
+local current_dir='%F{white}at%f %F{blue}%0~%f '
+local insert='%F{yellow}❯❯ %f'
+local nl=$'\n'
 
 function __prompt()
 {
-    # Base prompt
-    PROMPT="%n@%m:%~"
-
     local dirty
     local branch
+    local branch_status
+    local short_hash
 
     # Look for Git status
     if git status &>/dev/null; then
         if git status -uno -s | grep -q . ; then
             dirty=1
         fi
-        branch=$(git branch --color=never | sed -ne 's/* //p')
+        branch='%F{white}on $(git branch --color=never | sed -ne "s/* //p")%f '
+        short_hash=$(git log -1 --format='%h')
     fi
 
     if [[ ! -z "$branch" ]]; then
-        local status_color
         if [[ -z "$dirty" ]] ; then
-            status_color=$fg[green]
+            branch_status='%F{white}(%F{green}*%F{white})%f'
         else
-            status_color=$fg[red]
+            branch_status='%F{white}(%F{red}*%F{white})%f'
         fi
-        PROMPT="$PROMPT($status_color$branch$reset_color)"
     fi
-    PROMPT="$PROMPT%# "
+    PROMPT="$dots$short_hash$nl$current_dir$branch$branch_status$nl$insert"
 }
+PROMPT2="%F{yellow}◀ %f"
 
-#precmd () { __prompt }
+precmd () { __prompt }
