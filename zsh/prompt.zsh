@@ -1,35 +1,26 @@
 #!/bin/zsh
 setopt prompt_subst
 
-local dots='.................................................................................................... '
-local current_dir='%F{white}at%f %F{blue}%0~%f '
+local dots='%F{white}........................................................................ %f'
+local current_dir='%F{white}at %F{blue}%0~%f '
 local insert='%F{yellow}❯❯ %f'
 local nl=$'\n'
 
 function __prompt()
 {
-    local dirty
     local branch
-    local branch_status
     local short_hash
 
     # Look for Git status
     if git status &>/dev/null; then
+        branch="%F{white}on $(git branch --color=never | sed -ne 's/* //p')%f"
         if git status -uno -s | grep -q . ; then
-            dirty=1
+            branch="$branch%F{white}*%f"
         fi
-        branch='%F{white}on $(git branch --color=never | sed -ne "s/* //p")%f '
-        short_hash=$(git log -1 --format='%h')
+        short_hash="%F{gray}$(git log -1 --format='%h')%f"
     fi
 
-    if [[ ! -z "$branch" ]]; then
-        if [[ -z "$dirty" ]] ; then
-            branch_status='%F{white}(%F{green}*%F{white})%f'
-        else
-            branch_status='%F{white}(%F{red}*%F{white})%f'
-        fi
-    fi
-    PROMPT="$dots$short_hash$nl$current_dir$branch$branch_status$nl$insert"
+    PROMPT="$dots$short_hash$nl$current_dir$branch$nl$insert"
 }
 PROMPT2="%F{yellow}◀ %f"
 
