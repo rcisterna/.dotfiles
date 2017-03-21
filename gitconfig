@@ -24,3 +24,5 @@
     cmd = "nvim -f -d -c \"wincmd J\" \"$MERGED\" \"$LOCAL\" \"$REMOTE\""
 [pull]
 	ff = true
+[status]
+	short = true
