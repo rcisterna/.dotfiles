@@ -1,6 +1,16 @@
 alias ls="ls -GFh"
 alias grep="grep --color=auto"
 
+# Git aliases
+alias gl="git log --graph --pretty=format:'%C(auto)%h %C(cyan)%ad %C(auto)(%an) %s' --date=iso"
+alias gll="git log"
+alias gs="git status --short"
+alias gsl="git status"
+alias gd="git diff"
+alias gdc="git diff --cached"
+alias gc="git commit -m"
+alias gca="git commit -am"
+
 function brew_listdeps()
 {
     if brew list > /dev/null; then
