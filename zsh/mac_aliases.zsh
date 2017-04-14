@@ -6,6 +6,7 @@ alias gl="git log --graph --pretty=format:'%C(auto)%h %C(cyan)%ad %C(auto)(%an) 
 alias gll="git log"
 alias gs="git status --short"
 alias gsl="git status"
+alias ga="git add"
 alias gd="git diff"
 alias gdc="git diff --cached"
 alias gc="git commit -m"
