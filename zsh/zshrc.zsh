@@ -45,7 +45,7 @@ if [ -d "/Applications/VMware Fusion.app/Contents/Library" ]; then
 	export PATH=$PATH:"/Applications/VMware Fusion.app/Contents/Library"
 fi
 
-# Git prompt
+# Prompt
 if [ -f ~/.dotfiles/zsh/prompt.zsh ]; then
 	source ~/.dotfiles/zsh/prompt.zsh
 fi
