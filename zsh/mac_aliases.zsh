@@ -1,4 +1,5 @@
 alias ls="ls -GFh"
+alias tree="tree --dirsfirst -hpCL 2"
 alias grep="grep --color=auto"
 
 # Git aliases
