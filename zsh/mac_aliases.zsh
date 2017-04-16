@@ -11,11 +11,11 @@ alias ga="git add"
 alias gd="git diff"
 alias gdc="git diff --cached"
 alias gc="git commit -m"
-alias gca="git commit -am"
+alias gca="git commit --amend"
 alias gf="git fetch"
 alias gm="git merge"
 alias gpull="git pull"
-alias gpush="git push"
+alias gp="git push"
 
 function brew_listdeps()
 {
