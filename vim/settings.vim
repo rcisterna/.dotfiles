@@ -17,6 +17,8 @@ if s:using_vim
   set listchars=tab:\>\ ,trail:\-   " Para resaltar los <tab> y <trail>
   set hlsearch                      " Resaltar busquedas
   set incsearch                     " Busquedas incrementales
+else
+  set inccommand=split
 endif
 set list                            " Mostrar caracteres especiales
 set noexrc                          " No usar .*rc(s) externos
