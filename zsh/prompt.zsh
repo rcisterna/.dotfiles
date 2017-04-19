@@ -51,5 +51,6 @@ function __prompt()
     PROMPT="$dot_start$dynamic_dots$dot_ts$datetime$dot_end$nl$current$branch$dirty$behind$ahead$nl$insert"
 }
 PROMPT2="%F{yellow}◀ %f"
+SPROMPT="%F{yellow}◀ %f Correct %F{red}%R%f to %F{green}%r%f [nyae]? "
 
 precmd () { __prompt }
