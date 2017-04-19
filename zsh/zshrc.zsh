@@ -57,6 +57,11 @@ elif [ -f ~/.dotfiles/zsh/aliases.zsh ]; then
 	source ~/.dotfiles/zsh/aliases.zsh
 fi
 
+# Archivo de alias de git
+if [ -f ~/.dotfiles/zsh/git_aliases.zsh ]; then
+	source ~/.dotfiles/zsh/git_aliases.zsh
+fi
+
 # Gruvbox correccion de colores
 # if [ -f ~/.config/nvim/plugged/gruvbox/gruvbox_256palette_osx.sh ]; then
 # 	. ~/.config/nvim/plugged/gruvbox/gruvbox_256palette_osx.sh

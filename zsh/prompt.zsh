@@ -3,10 +3,8 @@ setopt prompt_subst
 
 local dot_start='━╾'
 local dot_ts='╼┥'
-local dot_end='┝╸'
-local sep='─'
-local user=""
-local host="%f"
+local dot_end='┝╾'
+local sep='╌'
 local current='%F{cyan}%n%f at %F{magenta}%m%f in %F{blue}%0~%f '
 local insert='%F{yellow}❯❯ %f'
 local nl=$'\n'
