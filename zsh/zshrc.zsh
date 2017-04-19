@@ -1,10 +1,16 @@
 export PATH=/usr/local/bin:$PATH
 
+# Carga los colores automaticamente
+autoload -U colors compinit
+colors
+compinit
+
 # Historial
 export HISTSIZE=10000
 export SAVEHIST=$HISTSIZE
 export HISTFILE="$HOME/.zsh_history"
 
+# Opciones
 setopt BANG_HIST # Treat the '!' character specially during expansion.
 # setopt EXTENDED_HISTORY # Write the history file in the ":start:elapsed;command" format.
 # setopt INC_APPEND_HISTORY # Write to the history file immediately, not when the shell exits.
@@ -18,15 +24,13 @@ setopt HIST_SAVE_NO_DUPS # Don't write duplicate entries in the history file.
 setopt HIST_REDUCE_BLANKS # Remove superfluous blanks before recording entry.
 setopt HIST_VERIFY # Don't execute immediately upon history expansion.
 setopt HIST_BEEP # Beep when accessing nonexistent history.<Paste>
+setopt AUTO_CD # Allow directory change without using cd command
+setopt CORRECT # Corrects commmands misspellings
 
 # Cargar autocompletado
 fpath=(/usr/local/share/zsh-completions $fpath)
 zstyle ':completion:*' special-dirs true
-
-# Carga los colores automaticamente
-autoload -U colors compinit
-colors
-compinit
+zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
 
 # Editor por defecto nvim (o vim, o vi)
 if hash nvim 2>/dev/null; then
