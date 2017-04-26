@@ -30,8 +30,9 @@ endif
 call plug#begin(s:plug_dir)
 
   " Utilidades
-  Plug 'airblade/vim-rooter'
+  " Plug 'airblade/vim-rooter'
   Plug 'ludovicchabant/vim-gutentags'
+  Plug 'jiangmiao/auto-pairs'
   Plug 'tpope/vim-commentary'
   Plug 'tpope/vim-surround'
 
@@ -79,9 +80,10 @@ endif
 " Deoplete
 
 if exists('g:plugs["deoplete.nvim"]')
-  " Cache ctags 50MB
-  " let g:deoplete#tag#cache_limit_size = 52428800
-  " let g:deoplete#sources = { '_' : ['buffer', 'tag'] }
+  " Cache ctags 30MB
+  let g:deoplete#tag#cache_limit_size = 31457280
+  let g:deoplete#sources = {}
+  let g:deoplete#sources._ = ['buffer', 'tag']
   let g:deoplete#enable_at_startup = 1
   inoremap <silent><expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
   inoremap <silent><expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<C-D>"
