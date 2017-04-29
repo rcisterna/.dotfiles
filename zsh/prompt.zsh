@@ -38,12 +38,12 @@ function __prompt()
 
         behind="$(echo $git_rev | tr -d -c '>' | awk '{print length;}')"
         if [[ ! -z "${behind// }" ]]; then
-            behind=" %F{red}↓$behind%f"
+            behind=" %F{red}⇣$behind%f"
         fi
 
         ahead="$(echo $git_rev | tr -d -c '<' | awk '{print length;}')"
         if [[ ! -z "${ahead// }" ]]; then
-            ahead=" %F{green}↑$ahead%f"
+            ahead=" %F{green}⇡$ahead%f"
         fi
 
     fi
