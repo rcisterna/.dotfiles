@@ -60,10 +60,18 @@ call plug#begin(s:plug_dir)
 call plug#end()
 
 " ---------------------------------------------------------------------------- "
+" Autopairs
+
+if exists('g:plugs["auto-pairs"]')
+  let g:AutoPairsFlyMode = 1
+endif
+
+" ---------------------------------------------------------------------------- "
 " Gutentags
 
 if exists('g:plugs["vim-gutentags"]')
-  let g:gutentags_ctags_exclude = ['vendor']
+  " Exclude 'vendor' directory
+  " let g:gutentags_ctags_exclude = ['vendor']
 endif
 
 " ---------------------------------------------------------------------------- "
@@ -80,10 +88,10 @@ endif
 " Deoplete
 
 if exists('g:plugs["deoplete.nvim"]')
-  " Cache ctags 30MB
-  let g:deoplete#tag#cache_limit_size = 31457280
-  let g:deoplete#sources = {}
-  let g:deoplete#sources._ = ['buffer', 'tag']
+  " Cache ctags 100MB
+  let g:deoplete#tag#cache_limit_size = 104857600
+  " let g:deoplete#sources = {}
+  " let g:deoplete#sources._ = ['buffer', 'tag']
   let g:deoplete#enable_at_startup = 1
   inoremap <silent><expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
   inoremap <silent><expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<C-D>"
