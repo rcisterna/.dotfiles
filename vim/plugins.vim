@@ -32,7 +32,10 @@ call plug#begin(s:plug_dir)
   " Utilidades
   " Plug 'airblade/vim-rooter'
   Plug 'ludovicchabant/vim-gutentags'
+
+  " Cerrado automático de paréntesis, tags, comentarios, y facil intercambio
   Plug 'jiangmiao/auto-pairs'
+  Plug 'alvan/vim-closetag'
   Plug 'tpope/vim-commentary'
   Plug 'tpope/vim-surround'
 
@@ -47,8 +50,9 @@ call plug#begin(s:plug_dir)
   endif
 
   " Filetypes
-  Plug 'tpope/vim-git', { 'for' : ['git', 'gitcommit', 'gitconfig', 'gitrebase', 'gitsendemail'] }
-  Plug 'jwalton512/vim-blade', { 'for' : 'blade' }
+  " Plug 'tpope/vim-git', { 'for' : ['git', 'gitcommit', 'gitconfig', 'gitrebase', 'gitsendemail'] }
+  " Plug 'jwalton512/vim-blade', { 'for' : 'blade' }
+  Plug 'sheerun/vim-polyglot'
 
   " Colorschemes
   "Plug 'chriskempson/base16-vim'
@@ -67,12 +71,20 @@ if exists('g:plugs["auto-pairs"]')
 endif
 
 " ---------------------------------------------------------------------------- "
+" Closetags
+
+if exists('g:plugs["vim-closetag"]')
+	let g:closetag_filenames = "*.blade.php,*.html,*.xhtml,*.phtml"
+endif
+
+" ---------------------------------------------------------------------------- "
 " Gutentags
 
 if exists('g:plugs["vim-gutentags"]')
   " Exclude 'vendor' directory
   " let g:gutentags_ctags_exclude = ['vendor']
 endif
+" alvan/vim-closetag
 
 " ---------------------------------------------------------------------------- "
 " Neocomplete
@@ -80,8 +92,10 @@ endif
 if exists('g:plugs["neocomplete.vim"]')
   let g:neocomplete#enable_at_startup = 1
   let g:neocomplete#enable_smart_case = 1
-  inoremap <silent><expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
-  inoremap <silent><expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<C-D>"
+  imap <leader>n <C-n>
+  imap <leader>p <C-p>
+  " inoremap <silent><expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+  " inoremap <silent><expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<C-D>"
 endif
 
 " ---------------------------------------------------------------------------- "
@@ -93,8 +107,10 @@ if exists('g:plugs["deoplete.nvim"]')
   " let g:deoplete#sources = {}
   " let g:deoplete#sources._ = ['buffer', 'tag']
   let g:deoplete#enable_at_startup = 1
-  inoremap <silent><expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
-  inoremap <silent><expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<C-D>"
+  imap <leader>n <C-n>
+  imap <leader>p <C-p>
+  " inoremap <silent><expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+  " inoremap <silent><expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<C-D>"
 endif
 
 " ---------------------------------------------------------------------------- "
@@ -102,10 +118,10 @@ endif
 
 if exists('g:plugs["unite.vim"]')
   call unite#filters#matcher_default#use(['matcher_fuzzy'])
-  nnoremap <C-f> :<C-u>Unite -start-insert file_rec/async:!<CR>
-  nnoremap <C-p> :<C-u>Unite -start-insert file_rec/git<CR>
-  nnoremap <C-b> :<C-u>Unite -start-insert buffer<CR>
-  nnoremap <C-t> :<C-u>Unite -start-insert outline<CR>
+  nnoremap <leader>f :<C-u>Unite -start-insert file_rec/async:!<CR>
+  nnoremap <leader>p :<C-u>Unite -start-insert file_rec/git<CR>
+  nnoremap <leader>b :<C-u>Unite -start-insert buffer<CR>
+  nnoremap <leader>t :<C-u>Unite -start-insert outline<CR>
 endif
 
 " ---------------------------------------------------------------------------- "
@@ -116,12 +132,11 @@ if exists('g:plugs["fzf.vim"]')
   let g:fzf_layout = { 'down': '~30%' }
   let g:fzf_buffers_jump = 1
 
-  nnoremap <C-f> :FZF<CR>
-  nnoremap <C-p> :GitFiles<CR>
-  nnoremap <C-b> :Buffers<CR>
-  nnoremap <C-c> :Commits<CR>
-  nnoremap <C-t> :BTags<CR>
-  nnoremap <C-l> :BLines<CR>
+  nnoremap <leader>f :FZF<CR>
+  nnoremap <leader>p :GitFiles<CR>
+  nnoremap <leader>b :Buffers<CR>
+  nnoremap <leader>t :BTags<CR>
+  nnoremap <leader>c :BLines<CR>
 endif
 
 " ---------------------------------------------------------------------------- "

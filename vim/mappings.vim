@@ -26,6 +26,18 @@ endfunction
 " Abrir archivos markdown con Marked 2
 nnoremap <silent><leader>m :call OpenMarked()<CR>
 
+" Movimiento entre ventanas natural
+nnoremap <leader>h <C-w>h
+nnoremap <leader>j <C-w>j
+nnoremap <leader>k <C-w>k
+nnoremap <leader>l <C-w>l
+
+" Movimieno de ventanas
+nnoremap <leader>H <C-w>H
+nnoremap <leader>J <C-w>J
+nnoremap <leader>K <C-w>K
+nnoremap <leader>L <C-w>L
+
 " ---------------------------------------------------------------------------- "
 " MODO TERMINAL
 
