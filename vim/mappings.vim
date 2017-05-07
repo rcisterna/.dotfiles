@@ -38,6 +38,11 @@ nnoremap <leader>J <C-w>J
 nnoremap <leader>K <C-w>K
 nnoremap <leader>L <C-w>L
 
+" Cambio de tamaño de ventanas
+nnoremap <leader>= <C-w>=
+nnoremap <leader>_ <C-w>_
+nnoremap <leader>\| <C-w>\|
+
 " ---------------------------------------------------------------------------- "
 " MODO TERMINAL
 
