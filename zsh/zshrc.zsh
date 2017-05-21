@@ -27,10 +27,24 @@ setopt HIST_BEEP # Beep when accessing nonexistent history.<Paste>
 setopt AUTO_CD # Allow directory change without using cd command
 setopt CORRECT # Corrects commmands misspellings
 
+
+# Setear el titulo de una pestaña
+DISABLE_AUTO_TITLE="true"
+tt () {
+    echo -ne "\e]1;$@\a"
+}
+
 # Cargar autocompletado
 fpath=(/usr/local/share/zsh-completions $fpath)
 zstyle ':completion:*' special-dirs true
 zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
+zstyle ':completion:*' use-cache on
+zstyle ':completion:*' cache-path ~/.zsh/cache
+zstyle ':completion:*:functions' ignored-patterns '_*'
+zstyle ':completion:*' completer _complete _match _approximate
+zstyle ':completion:*:match:*' original only
+zstyle -e ':completion:*:approximate:*' max-errors 'reply=($((($#PREFIX+$#SUFFIX)/3))numeric)'
+# zstyle ':completion:*:approximate:*' max-errors 1 numeric
 
 # Editor por defecto nvim (o vim, o vi)
 if hash nvim 2>/dev/null; then
@@ -59,11 +73,6 @@ if [[ $OSTYPE == darwin* ]] && [ -f ~/.dotfiles/zsh/mac_aliases.zsh ]; then
 	source ~/.dotfiles/zsh/mac_aliases.zsh
 elif [ -f ~/.dotfiles/zsh/aliases.zsh ]; then
 	source ~/.dotfiles/zsh/aliases.zsh
-fi
-
-# Archivo de alias de git
-if [ -f ~/.dotfiles/zsh/git_aliases.zsh ]; then
-	source ~/.dotfiles/zsh/git_aliases.zsh
 fi
 
 # Gruvbox correccion de colores
