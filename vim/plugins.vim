@@ -30,8 +30,7 @@ endif
 call plug#begin(s:plug_dir)
 
   " Utilidades
-  " Plug 'airblade/vim-rooter'
-  Plug 'ludovicchabant/vim-gutentags'
+  " Plug 'ludovicchabant/vim-gutentags'
 
   " Cerrado automático de paréntesis, tags, comentarios, y facil intercambio
   Plug 'jiangmiao/auto-pairs'
@@ -39,27 +38,27 @@ call plug#begin(s:plug_dir)
   Plug 'tpope/vim-commentary'
   Plug 'tpope/vim-surround'
 
-  " Autocompletado y busqueda
+  " Autocompletado, linters y busqueda
+  Plug 'neomake/neomake'
   if s:using_vim
     Plug 'Shougo/neocomplete.vim'
-    Plug 'Shougo/vimproc.vim', { 'do': 'make' }
+    Plug 'Shougo/vimproc.vim', {'do': 'make'}
     Plug 'Shougo/unite.vim' | Plug 'Shougo/unite-outline'
   else
+    Plug 'junegunn/fzf', {'do': './install --bin'} | Plug 'junegunn/fzf.vim'
     Plug 'Shougo/deoplete.nvim'
-    Plug 'junegunn/fzf', { 'do': './install --bin' } | Plug 'junegunn/fzf.vim'
+    " Deoplete para rust
+    let rust_dir = g:plug_home . '/rust/'
+    let rust_repo_action = isdirectory(rust_dir) ? 'git -C ' . rust_dir . ' pull' : 'git clone --depth=1 https://github.com/rust-lang/rust.git ' . rust_dir
+    Plug 'phildawes/racer', {'for': 'rust', 'do': rust_repo_action . ' & cargo build --release'} | Plug 'sebastianmarkow/deoplete-rust', {'for': 'rust'}
   endif
 
   " Filetypes
-  " Plug 'tpope/vim-git', { 'for' : ['git', 'gitcommit', 'gitconfig', 'gitrebase', 'gitsendemail'] }
-  " Plug 'jwalton512/vim-blade', { 'for' : 'blade' }
   Plug 'sheerun/vim-polyglot'
 
   " Colorschemes
   "Plug 'chriskempson/base16-vim'
   Plug 'morhetz/gruvbox'
-
-  " Efectos
-  " Plug 'junegunn/limelight.vim'
 
 call plug#end()
 
@@ -84,7 +83,13 @@ if exists('g:plugs["vim-gutentags"]')
   " Exclude 'vendor' directory
   " let g:gutentags_ctags_exclude = ['vendor']
 endif
-" alvan/vim-closetag
+
+" ---------------------------------------------------------------------------- "
+" Closetags
+
+if exists('g:plugs["neomake"]')
+  autocmd! BufWritePost * Neomake
+endif
 
 " ---------------------------------------------------------------------------- "
 " Neocomplete
@@ -103,14 +108,20 @@ endif
 
 if exists('g:plugs["deoplete.nvim"]')
   " Cache ctags 100MB
-  let g:deoplete#tag#cache_limit_size = 104857600
-  " let g:deoplete#sources = {}
+  " let g:deoplete#tag#cache_limit_size = 104857600
+  let g:deoplete#sources = {}
   " let g:deoplete#sources._ = ['buffer', 'tag']
   let g:deoplete#enable_at_startup = 1
-  imap <leader>n <C-n>
-  imap <leader>p <C-p>
-  " inoremap <silent><expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
-  " inoremap <silent><expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<C-D>"
+  inoremap <silent><expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+  inoremap <silent><expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<C-D>"
+endif
+
+" ---------------------------------------------------------------------------- "
+" Rust for Deoplete
+
+if exists('g:plugs["deoplete-rust"]')
+  let g:deoplete#sources#rust#racer_binary = g:plug_home . '/racer/target/release/racer'
+  let g:deoplete#sources#rust#rust_source_path = g:plug_home . '/rust/src'
 endif
 
 " ---------------------------------------------------------------------------- "
@@ -168,36 +179,36 @@ if exists('g:plugs["gruvbox"]')
   set background=dark
   colorscheme gruvbox
 
-  " dark0 + gray
-  let g:terminal_color_0 = "#282828"
-  let g:terminal_color_8 = "#928374"
+  " " dark0 + gray
+  " let g:terminal_color_0 = "#282828"
+  " let g:terminal_color_8 = "#928374"
 
-  " neurtral_red + bright_red
-  let g:terminal_color_1 = "#cc241d"
-  let g:terminal_color_9 = "#fb4934"
+  " " neurtral_red + bright_red
+  " let g:terminal_color_1 = "#cc241d"
+  " let g:terminal_color_9 = "#fb4934"
 
-  " neutral_green + bright_green
-  let g:terminal_color_2 = "#98971a"
-  let g:terminal_color_10 = "#b8bb26"
+  " " neutral_green + bright_green
+  " let g:terminal_color_2 = "#98971a"
+  " let g:terminal_color_10 = "#b8bb26"
 
-  " neutral_yellow + bright_yellow
-  let g:terminal_color_3 = "#d79921"
-  let g:terminal_color_11 = "#fabd2f"
+  " " neutral_yellow + bright_yellow
+  " let g:terminal_color_3 = "#d79921"
+  " let g:terminal_color_11 = "#fabd2f"
 
-  " neutral_blue + bright_blue
-  let g:terminal_color_4 = "#458588"
-  let g:terminal_color_12 = "#83a598"
+  " " neutral_blue + bright_blue
+  " let g:terminal_color_4 = "#458588"
+  " let g:terminal_color_12 = "#83a598"
 
-  " neutral_purple + bright_purple
-  let g:terminal_color_5 = "#b16286"
-  let g:terminal_color_13 = "#d3869b"
+  " " neutral_purple + bright_purple
+  " let g:terminal_color_5 = "#b16286"
+  " let g:terminal_color_13 = "#d3869b"
 
-  " neutral_aqua + faded_aqua
-  let g:terminal_color_6 = "#689d6a"
-  let g:terminal_color_14 = "#8ec07c"
+  " " neutral_aqua + faded_aqua
+  " let g:terminal_color_6 = "#689d6a"
+  " let g:terminal_color_14 = "#8ec07c"
 
-  " light4 + light1
-  let g:terminal_color_7 = "#a89984"
-  let g:terminal_color_15 = "#ebdbb2"
+  " " light4 + light1
+  " let g:terminal_color_7 = "#a89984"
+  " let g:terminal_color_15 = "#ebdbb2"
 endif
 
