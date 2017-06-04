@@ -58,6 +58,9 @@ else
 	export EDITOR=vi
 fi
 
+# Rust src
+# export RUST_SRC_PATH=~/.config/nvim/plugged/rust/src
+
 # VMware Fusion
 if [ -d "/Applications/VMware Fusion.app/Contents/Library" ]; then
 	export PATH=$PATH:"/Applications/VMware Fusion.app/Contents/Library"

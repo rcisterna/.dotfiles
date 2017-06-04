@@ -39,7 +39,6 @@ call plug#begin(s:plug_dir)
   Plug 'tpope/vim-surround'
 
   " Autocompletado, linters y busqueda
-  Plug 'neomake/neomake'
   if s:using_vim
     Plug 'Shougo/neocomplete.vim'
     Plug 'Shougo/vimproc.vim', {'do': 'make'}
@@ -48,9 +47,10 @@ call plug#begin(s:plug_dir)
     Plug 'junegunn/fzf', {'do': './install --bin'} | Plug 'junegunn/fzf.vim'
     Plug 'Shougo/deoplete.nvim'
     " Deoplete para rust
-    let rust_dir = g:plug_home . '/rust/'
-    let rust_repo_action = isdirectory(rust_dir) ? 'git -C ' . rust_dir . ' pull' : 'git clone --depth=1 https://github.com/rust-lang/rust.git ' . rust_dir
-    Plug 'phildawes/racer', {'for': 'rust', 'do': rust_repo_action . ' & cargo build --release'} | Plug 'sebastianmarkow/deoplete-rust', {'for': 'rust'}
+    " let rust_dir = g:plug_home . '/rust/'
+    " let rust_repo_action = isdirectory(rust_dir) ? 'git -C ' . rust_dir . ' pull' : 'git clone --depth=1 https://github.com/rust-lang/rust.git ' . rust_dir
+    " Plug 'phildawes/racer', {'do': 'cargo build --release & ' . rust_repo_action} | Plug 'sebastianmarkow/deoplete-rust'
+    Plug 'sebastianmarkow/deoplete-rust'
   endif
 
   " Filetypes
@@ -85,13 +85,6 @@ if exists('g:plugs["vim-gutentags"]')
 endif
 
 " ---------------------------------------------------------------------------- "
-" Closetags
-
-if exists('g:plugs["neomake"]')
-  autocmd! BufWritePost * Neomake
-endif
-
-" ---------------------------------------------------------------------------- "
 " Neocomplete
 
 if exists('g:plugs["neocomplete.vim"]')
@@ -120,8 +113,8 @@ endif
 " Rust for Deoplete
 
 if exists('g:plugs["deoplete-rust"]')
-  let g:deoplete#sources#rust#racer_binary = g:plug_home . '/racer/target/release/racer'
-  let g:deoplete#sources#rust#rust_source_path = g:plug_home . '/rust/src'
+  let g:deoplete#sources#rust#racer_binary = '/usr/local/bin/racer'
+  let g:deoplete#sources#rust#rust_source_path = '/usr/local/Cellar/rust/1.18.0/share/rust/rust_src'
 endif
 
 " ---------------------------------------------------------------------------- "
