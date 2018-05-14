@@ -59,7 +59,7 @@ alias ls="ls --color=auto --si --group-directories-first"
 # Git aliases
 local commit_format="%C(auto)%h %C(cyan)%ad %C(auto)(%an) %s"
 local date_format="iso"
-alias g="tt GIT && git"
+alias g="git"
 alias ga="g add"
 alias gb="g branch"
 alias gba="g branch -a"
