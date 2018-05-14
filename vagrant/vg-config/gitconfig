@@ -19,7 +19,7 @@
 	editor = nvim
 	eol = lf
 [difftool "nvimdiff"]
-    cmd = "nvim -d \"$LOCAL\" \"$REMOTE\""
+	cmd = "nvim -d \"$LOCAL\" \"$REMOTE\""
 [mergetool "nvimmerge"]
 	cmd = "nvim -f -d -c \"wincmd J\" \"$MERGED\" \"$LOCAL\" \"$REMOTE\""
 [pull]
