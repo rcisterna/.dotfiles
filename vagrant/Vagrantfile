@@ -23,6 +23,8 @@ Vagrant.configure("2") do |config|
     mkdir -p /home/vagrant/.config/nvim
     cp /vagrant/vg-config/init.vim /home/vagrant/.config/nvim/init.vim
 
+    cp /vagrant/vg-config/gitconfig /home/vagrant/.gitconfig
+
     chown -R vagrant:vagrant /home/vagrant
   SHELL
 end
