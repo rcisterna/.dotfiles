@@ -1,0 +1,23 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+Vagrant.configure("2") do |config|
+  config.vm.box = "generic/debian9"
+  config.vm.synced_folder ".", "/vagrant"
+
+  config.vm.provision "shell", inline: <<-SHELL
+    apt update
+    apt upgrade
+
+    apt install -y zsh
+    for user in root vagrant; do usermod --shell /bin/zsh "$user"; done
+    cp /vagrant/vg-config/zshrc.zsh /home/vagrant/.zshrc
+    cp /vagrant/vg-config/zshrc.zsh /root/.zshrc
+
+    apt install -y neovim
+    mkdir -p /home/vagrant/.config/nvim
+    cp /vagrant/vg-config/init.vim /home/vagrant/.config/nvim/init.vim
+
+    chown -R vagrant:vagrant /home/vagrant
+  SHELL
+end
