@@ -1,4 +1,6 @@
 export PATH=/usr/local/bin:$PATH
+export LANG=en_US.UTF-8
+export LC_ALL=en_US.UTF-8
 
 # Carga los colores automaticamente
 autoload -U colors compinit
@@ -76,6 +78,11 @@ if [[ $OSTYPE == darwin* ]] && [ -f ~/.dotfiles/zsh/mac_aliases.zsh ]; then
 	source ~/.dotfiles/zsh/mac_aliases.zsh
 elif [ -f ~/.dotfiles/zsh/aliases.zsh ]; then
 	source ~/.dotfiles/zsh/aliases.zsh
+fi
+
+# Homebrew Python[3] binaries links to python, pip, etc. 
+if [ -d "/usr/local/opt/python/libexec/bin" ]; then
+	export PATH="/usr/local/opt/python/libexec/bin":$PATH
 fi
 
 # Gruvbox correccion de colores
