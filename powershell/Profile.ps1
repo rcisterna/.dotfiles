@@ -1,5 +1,14 @@
 ## Ubicar todos los scripts en $Home\[My ]Documents\WindowsPowerShell
 
+## Imitación comando touch unix
+function touch {
+    Param([Parameter(Mandatory=$true)] [string]$Path)
+
+    if (Test-Path -LiteralPath $Path) { (Get-Item -Path $Path).LastWriteTime = Get-Date }
+    else { New-Item -Type File -Path $Path }
+}
+
+## Agregar "activate" para conda envs
 if (Get-Command conda -errorAction SilentlyContinue)
 {
     function conda-activate-env { Invoke-Expression "$PSScriptRoot\activate.ps1 $args" }
