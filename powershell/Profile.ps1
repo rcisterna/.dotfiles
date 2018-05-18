@@ -74,3 +74,6 @@ New-Alias -Name gt -Value git-tag
 
 function git-rebase { git rebase --interactive --autostash $args }
 New-Alias -Name grb -Value git-rebase
+
+function git-remote { git remote --verbose $args }
+New-Alias -Name grem -Value git-remote
