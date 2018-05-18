@@ -7,7 +7,7 @@ if (Get-Command conda -errorAction SilentlyContinue)
 }
 
 ## Alias para Git
-$commit_format="%C(auto)%h %C(cyan)%ad %C(auto)(%an) %s"
+$commit_format="%C(auto)%h %C(cyan)%ad %C(auto)%ae (%an) %s"
 $date_format="iso"
 
 New-Alias -Name g -Value git
