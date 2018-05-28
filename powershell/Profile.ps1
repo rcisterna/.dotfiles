@@ -69,7 +69,7 @@ New-Alias -Name gr -Value git-reset
 function git-rm { g rm $args }
 New-Alias -Name grm -Value git-rm
 
-function git-status { g status --short $args }
+function git-status { g status --short --branch $args }
 New-Alias -Name gs -Value git-status
 
 function git-show { g show --stat --pretty=format:$commit_format --date=$date_format $args }
