@@ -19,6 +19,11 @@ function __prompt()
     local ahead
     local behind
 
+    local current_env=''
+    if (( ${+VIRTUAL_ENV} )); then
+        current_env='%F{red}$(basename $VIRTUAL_ENV)%f '
+    fi
+
     datetime=" %D{%d-%m-%G} "
     let dots_count=${COLUMNS}-18 # dot_start(2) + dot_ts(2) + datetime(12) + dot_end(2)
     while [[ $dots_count -gt 0 ]]; do
@@ -48,7 +53,7 @@ function __prompt()
 
     fi
 
-    PROMPT="$dot_start$dynamic_dots$dot_ts$datetime$dot_end$nl$current$branch$dirty$behind$ahead$nl$insert"
+    PROMPT="$dot_start$dynamic_dots$dot_ts$datetime$dot_end$nl$current$branch$dirty$behind$ahead$nl$current_env$insert"
 }
 PROMPT2="%F{yellow}◀ %f"
 SPROMPT="%F{yellow}◀ %f Correct %F{red}%R%f to %F{green}%r%f [nyae]? "
