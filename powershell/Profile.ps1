@@ -8,6 +8,7 @@ function touch {
     else { New-Item -Type File -Path $Path }
 }
 
+Set-PSReadlineKeyHandler -Key Tab -Function Complete
 New-Alias -Name grep -Value Select-String
 New-ALias -Name open -Value start
 
