@@ -11,13 +11,6 @@ function touch {
 New-Alias -Name grep -Value Select-String
 New-ALias -Name open -Value start
 
-## Agregar "activate" para conda envs
-if (Get-Command conda -errorAction SilentlyContinue)
-{
-    function conda-activate-env { Invoke-Expression "$PSScriptRoot\activate.ps1 $args" }
-    New-Alias activate conda-activate-env
-}
-
 ## Alias para Git
 $commit_format="%C(auto)%h %C(cyan)%ad %C(auto)%ae (%an) %s"
 $date_format="iso"
