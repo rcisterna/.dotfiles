@@ -1,14 +1,30 @@
 ## Ubicar todos los scripts en $Home\[My ]Documents\WindowsPowerShell
 
+## Ubicación por defecto en D:
+Set-Location D:\
+
+Set-PSReadlineKeyHandler -Key Tab -Function Complete
+
 ## Unix like
-function touch {
+function touch
+{
     Param([Parameter(Mandatory=$true)] [string]$Path)
 
     if (Test-Path -LiteralPath $Path) { (Get-Item -Path $Path).LastWriteTime = Get-Date }
     else { New-Item -Type File -Path $Path }
 }
 
-Set-PSReadlineKeyHandler -Key Tab -Function Complete
+del alias:curl -Force
+function curl
+{
+    Param([Parameter(Mandatory=$true)] [System.Uri]$Url)
+
+    $CurrentProgressPreference = $ProgressPreference
+    $ProgressPreference = 'SilentlyContinue'
+    Invoke-WebRequest -Uri $Url.OriginalString -OutFile $Url.Segments[-1]
+    $ProgressPreference = $CurrentProgressPreference
+}
+
 New-Alias -Name grep -Value Select-String
 New-ALias -Name open -Value start
 
@@ -46,6 +62,9 @@ New-Alias -Name gf -Value git-fetch
 del alias:gl -Force
 function git-log { g log --graph --pretty=format:$commit_format --date=$date_format $args }
 New-Alias -Name gl -Value git-log
+
+function git-log-diff-branches { g log --graph --pretty=format:$commit_format --date=relative $args }
+New-Alias -Name glb -Value git-log-diff-branches
 
 del alias:gm -Force
 function git-merge { g merge $args }
