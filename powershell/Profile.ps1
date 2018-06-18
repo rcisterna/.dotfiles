@@ -25,6 +25,7 @@ function curl
     $ProgressPreference = $CurrentProgressPreference
 }
 
+New-Alias -Name which -Value Get-Command
 New-Alias -Name grep -Value Select-String
 New-ALias -Name open -Value start
 
