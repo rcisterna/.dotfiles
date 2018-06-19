@@ -48,6 +48,9 @@ del alias:gc -Force
 function git-commit { g commit $args }
 New-Alias -Name gc -Value git-commit
 
+function git-commit-amend { g commit --amend --no-edit $args }
+New-Alias -Name gca -Value git-commit-amend
+
 function git-checkout { g checkout $args }
 New-Alias -Name gch -Value git-checkout
 
