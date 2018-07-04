@@ -5,6 +5,25 @@ Set-Location D:\
 
 Set-PSReadlineKeyHandler -Key Tab -Function Complete
 
+## Prompt
+function prompt
+{
+    $black = "$([char]27)[30m"
+    $red = "$([char]27)[31m"
+    $green = "$([char]27)[32m"
+    $yellow = "$([char]27)[33m"
+    $blue = "$([char]27)[34m"
+    $magenta = "$([char]27)[35m"
+    $cyan = "$([char]27)[36m"
+    $white = "$([char]27)[37m"
+    $default = "$([char]27)[39m"
+
+    $first = ""
+    $middle = "$cyan$env:USERNAME$default at $magenta$(($env:COMPUTERNAME).ToLower())$default in $blue$(Get-Location)$default"
+    $last = "$yellow>>$default "
+    return "$first`n$middle`n$last"
+}
+
 ## Unix like
 function touch
 {
