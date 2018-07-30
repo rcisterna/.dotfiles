@@ -48,9 +48,12 @@ New-Alias -Name which -Value Get-Command
 New-Alias -Name grep -Value Select-String
 New-ALias -Name open -Value start
 
+## Utilidades
+function clean-dir { Get-ChildItem .\ -Include $args -Recurse | foreach ($_) {Remove-Item $_.FullName} }
+
 ## Alias para Git
-$commit_format="%C(auto)%h %C(cyan)%ad %C(auto)%ae (%an) %s"
-$date_format="iso"
+$commit_format="%C(auto)%h %C(cyan)%<(15)%ad%C(auto)%ae%d %s"
+$date_format="relative"
 
 New-Alias -Name g -Value git
 
