@@ -52,8 +52,8 @@ New-ALias -Name open -Value start
 function clean-dir { Get-ChildItem .\ -Include $args -Recurse | foreach ($_) {Remove-Item $_.FullName} }
 
 ## Alias para Git
-$commit_format="%C(auto)%h %C(cyan)%<(15)%ad%C(auto)%ae%d %s"
-$date_format="relative"
+$commit_format="%C(auto)%h %C(cyan)%ad%C(auto) %ae %s%d"
+$date_format="short"
 
 New-Alias -Name g -Value git
 
