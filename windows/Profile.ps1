@@ -8,18 +8,69 @@ Set-PSReadlineKeyHandler -Key Tab -Function Complete
 ## Prompt
 function prompt
 {
-    $black = "$([char]27)[30m"
-    $red = "$([char]27)[31m"
-    $green = "$([char]27)[32m"
-    $yellow = "$([char]27)[33m"
-    $blue = "$([char]27)[34m"
-    $magenta = "$([char]27)[35m"
-    $cyan = "$([char]27)[36m"
-    $white = "$([char]27)[37m"
-    $default = "$([char]27)[39m"
+    $black = "$([char]27)[0;30m"
+    $red = "$([char]27)[0;31m"
+    $green = "$([char]27)[0;32m"
+    $yellow = "$([char]27)[0;33m"
+    $blue = "$([char]27)[0;34m"
+    $magenta = "$([char]27)[0;35m"
+    $cyan = "$([char]27)[0;36m"
+    $white = "$([char]27)[0;37m"
+    $default = "$([char]27)[0;39m"
+
+    $bblack = "$([char]27)[1;30m"
+    $bred = "$([char]27)[1;31m"
+    $bgreen = "$([char]27)[1;32m"
+    $byellow = "$([char]27)[1;33m"
+    $bblue = "$([char]27)[1;34m"
+    $bmagenta = "$([char]27)[1;35m"
+    $bcyan = "$([char]27)[1;36m"
+    $bwhite = "$([char]27)[1;37m"
+
+    $current = "$cyan$env:USERNAME$default at $magenta$(($env:COMPUTERNAME).ToLower())$default in $blue$(Get-Location)$default "
+    $branch = ""
+    $dirty = ""
+    $ahead = ""
+    $behind = ""
+
+    if (git status 2> $null)
+    {
+        $gline =  "$(git branch -vv | where {$_ -Match '\* '})"
+        $match = [regex]::Match($gline, '\* (\w+).+\[(\w+)/(\w+).+\].+')
+
+        if ($match.Success)
+        {
+            $branch = $match.Captures.Groups[1].Value
+            $remote = $match.Captures.Groups[2].Value
+            $upstream = $match.Captures.Groups[3].Value
+
+            $git_rev="$(git rev-list --left-right $branch...$remote/$upstream)"
+
+            $dirty = [regex]::Match("$(git status -suno)", '\w .+')
+            if ($dirty.Success) { $dirty=" $byellow*$default" }
+            else { $dirty = "" }
+
+            $behind = ($git_rev | where {$_ -Match '>.+'} | Measure-Object).Count
+            if ($behind -gt 0) { $behind = " $bred-$behind$default" } else { $behind = "" }
+
+            $ahead = ($git_rev | where {$_ -Match '<.+'} | Measure-Object).Count
+            if ($ahead -gt 0) { $ahead=" $bgreen+$ahead$default" }
+            else { $ahead = "" }
+        }
+        else
+        {
+            $match = [regex]::Match($gline, '\* (\w+).+')
+            $branch = $match.Captures.Groups[1].Value
+
+            $dirty = [regex]::Match("$(git status -suno)", '\w .+')
+            if ($dirty.Success) { $dirty=" $byellow*$default" }
+            else { $dirty = "" }
+        }
+        $branch="on $bblack$branch$default"
+    }
 
     $first = ""
-    $middle = "$cyan$env:USERNAME$default at $magenta$(($env:COMPUTERNAME).ToLower())$default in $blue$(Get-Location)$default"
+    $middle = "$current$branch$dirty$behind$ahead"
     $last = "$yellow>>$default "
     return "$first`n$middle`n$last"
 }
@@ -46,6 +97,8 @@ function curl
 
 New-Alias -Name which -Value Get-Command
 New-Alias -Name grep -Value Select-String
+# Grep: gb -vv | where {$_ -Match '\* '}
+# Sed:  gb --color=never | % {$_ -Replace '\*\ ', ''}
 New-ALias -Name open -Value start
 
 ## Utilidades
@@ -60,7 +113,7 @@ New-Alias -Name g -Value git
 function git-add { g add $args }
 New-Alias -Name ga -Value git-add
 
-function git-branch { if (!$args) { g branch --all --verbose } else { g branch $args }  }
+function git-branch { if (!$args) { g branch --all --verbose --verbose } else { g branch $args }  }
 New-Alias -Name gb -Value git-branch
 
 function git-blame { g blame --date=short $args }
