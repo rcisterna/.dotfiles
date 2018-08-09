@@ -44,18 +44,19 @@ function prompt
             $remote = $match.Captures.Groups[2].Value
             $upstream = $match.Captures.Groups[3].Value
 
-            $git_rev="$(git rev-list --left-right $branch...$remote/$upstream)"
-
             $dirty = [regex]::Match("$(git status -suno)", '\w .+')
             if ($dirty.Success) { $dirty=" $byellow*$default" }
             else { $dirty = "" }
 
-            $behind = ($git_rev | where {$_ -Match '>.+'} | Measure-Object).Count
-            if ($behind -gt 0) { $behind = " $bred-$behind$default" } else { $behind = "" }
+            $gst = git status --short --branch | where {$_ -match '## '}
 
-            $ahead = ($git_rev | where {$_ -Match '<.+'} | Measure-Object).Count
-            if ($ahead -gt 0) { $ahead=" $bgreen+$ahead$default" }
-            else { $ahead = "" }
+            $stmatch = [regex]::Match($gst, '.*behind (\d+).*')
+            if ($stmatch.Success) {$stcount = $stmatch.Captures.Groups[1].Value} else {$stcount = 0}
+            if ($stcount -gt 0) { $behind = " $bred-$stcount$default" }
+
+            $stmatch = [regex]::Match($gst, '.*ahead (\d+).*')
+            if ($stmatch.Success) {$stcount = $stmatch.Captures.Groups[1].Value} else {$stcount = 0}
+            if ($stcount -gt 0) { $ahead=" $bgreen+$stcount$default" }
         }
         else
         {
@@ -109,6 +110,9 @@ $commit_format="%C(auto)%h %C(cyan)%ad%C(auto) %ae %s%d"
 $date_format="short"
 
 New-Alias -Name g -Value git
+
+function git-clone { g clone $args }
+New-Alias -Name gcl -Value git-clone
 
 function git-add { g add $args }
 New-Alias -Name ga -Value git-add
