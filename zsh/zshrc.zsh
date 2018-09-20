@@ -1,4 +1,3 @@
-export PATH=/usr/local/bin:$PATH
 export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
 
@@ -84,6 +83,20 @@ fi
 if [ -d "/usr/local/opt/python/libexec/bin" ]; then
 	export PATH="/usr/local/opt/python/libexec/bin":$PATH
 fi
+
+# pyenv init
+if command -v pyenv 1>/dev/null 2>&1; then
+	eval "$(pyenv init -)"
+fi
+
+if hash brew 2>/dev/null; then
+	export PATH=/usr/local/bin:$PATH
+fi
+
+if [[ ~/.local/bin/pipsi ]]; then
+	export PATH=~/.local/bin:$PATH
+fi
+
 
 # Gruvbox correccion de colores
 # if [ -f ~/.config/nvim/plugged/gruvbox/gruvbox_256palette_osx.sh ]; then
