@@ -684,9 +684,9 @@
 	<key>NSWindow Frame SUUpdateAlert</key>
 	<string>330 289 620 392 0 0 1280 778 </string>
 	<key>NSWindow Frame SharedPreferences</key>
-	<string>269 273 928 394 0 0 1280 778 </string>
+	<string>269 234 918 512 0 0 1280 778 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>285 98 850 531 0 0 1280 778 </string>
+	<string>285 98 850 531 0 0 1280 800 </string>
 	<key>NSWindow Frame iTerm Window 1</key>
 	<string>152 8 850 531 0 0 1280 778 </string>
 	<key>NeverWarnAboutShortLivedSessions_3C66D711-6430-4076-9201-68D570E7604E</key>
@@ -1570,6 +1570,8 @@
 	<false/>
 	<key>PasteFromClipboard</key>
 	<false/>
+	<key>PasteTabToStringTabStopSize</key>
+	<integer>4</integer>
 	<key>PointerActions</key>
 	<dict>
 		<key>Button,1,1,,</key>
@@ -1624,7 +1626,7 @@
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2018-05-20T23:26:27Z</date>
+	<date>2018-09-08T14:18:23Z</date>
 	<key>SUSendProfileInfo</key>
 	<false/>
 	<key>SavePasteHistory</key>
@@ -1684,7 +1686,7 @@
 	<key>findRegex_iTerm</key>
 	<false/>
 	<key>iTerm Version</key>
-	<string>3.1.6</string>
+	<string>3.1.7</string>
 	<key>kCPKSelectionViewPreferredModeKey</key>
 	<integer>7</integer>
 	<key>kCPKSelectionViewShowHSBTextFieldsKey</key>
