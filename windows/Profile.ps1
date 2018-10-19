@@ -102,6 +102,48 @@ New-Alias -Name grep -Value Select-String
 # Sed:  gb --color=never | % {$_ -Replace '\*\ ', ''}
 New-ALias -Name open -Value start
 
+function manual-virtualenv
+{
+    if (!$args) { $args = 3 }
+    $param = [string]$args
+    while ($param.StartsWith('-')) { $param = $param.Substring(1) }
+
+    if ($param -eq 'rm')
+    {
+        if (Test-Path -Path '.venv')
+        {
+            echo "Eliminando virtual environment..."
+            rm -r .venv
+        }
+        else
+        {
+            echo "No existe virtual environment."
+        }
+        return
+    }
+
+    if (Test-Path -Path '.venv')
+    {
+        echo "Eliminando virtual environment actual..."
+        rm -r .venv
+    }
+    switch ($param)
+    {
+        "2"
+        {
+            echo "Creando virtual environment con Python 2..."
+            virtualenv .venv > $null
+        }
+        "3"
+        {
+            echo "Creando virtual environment con Python 3..."
+            python -m venv .venv
+        }
+        default { echo "Parámetro no soportado ($args)" }
+    }
+}
+New-ALias -Name venv -Value manual-virtualenv
+
 ## Utilidades
 function clean-dir { Get-ChildItem .\ -Include $args -Recurse | foreach ($_) {Remove-Item $_.FullName} }
 
