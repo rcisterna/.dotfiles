@@ -1,8 +1,5 @@
 ## Ubicar todos los scripts en $Home\[My ]Documents\WindowsPowerShell
 
-## Ubicación por defecto en D:
-Set-Location D:\
-
 Set-PSReadlineKeyHandler -Key Tab -Function Complete
 
 ## Prompt
@@ -173,15 +170,18 @@ function git-commit-amend { g commit --amend --no-edit $args }
 New-Alias -Name gca -Value git-commit-amend
 
 function git-checkout { g checkout $args }
-New-Alias -Name gch -Value git-checkout
+New-Alias -Name gcheck -Value git-checkout
 
-function git-cherry { g cherry-pick $args }
-New-Alias -Name gchp -Value git-cherry
+function git-cherry { g cherry --abbrev --verbose $args }
+New-Alias -Name gcherry -Value git-cherry
+
+function git-cherry-pick { g cherry-pick $args }
+New-Alias -Name gchpick -Value git-cherry-pick
 
 function git-diff { g diff --patience $args }
 New-Alias -Name gd -Value git-diff
 
-function git-fetch { g fetch $args }
+function git-fetch { if (!$args) { g fetch --all --prune } else { g fetch $args }  }
 New-Alias -Name gf -Value git-fetch
 
 del alias:gl -Force
@@ -213,7 +213,7 @@ New-Alias -Name gs -Value git-status
 function git-show { g show --stat --pretty=format:$commit_format --date=$date_format $args }
 New-Alias -Name gsh -Value git-show
 
-function git-stash { g stash $args }
+function git-stash { if (!$args) { g stash --include-untracked } else { g stash $args } }
 New-Alias -Name gst -Value git-stash
 
 function git-tag { g tag $args }
