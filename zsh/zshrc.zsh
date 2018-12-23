@@ -93,7 +93,7 @@ if hash brew 2>/dev/null; then
 	export PATH=/usr/local/bin:$PATH
 fi
 
-if [[ ~/.local/bin/pipsi ]]; then
+if [ -d ~/.local/bin/ ]; then
 	export PATH=~/.local/bin:$PATH
 fi
 
