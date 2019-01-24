@@ -147,6 +147,7 @@ function clean-dir { Get-ChildItem .\ -Include $args -Recurse | foreach ($_) {Re
 ## Alias para Git
 $commit_format="%C(auto)%h %C(cyan)%ad%C(auto) %ae %s%d"
 $date_format="short"
+$date_detail_format="format:%a %Y-%m-%d %H:%M"
 
 New-Alias -Name g -Value git
 
@@ -188,6 +189,12 @@ del alias:gl -Force
 function git-log { g log --graph --pretty=format:$commit_format --date=$date_format $args }
 New-Alias -Name gl -Value git-log
 
+function git-log-date { g log --graph --pretty=format:$commit_format --date=$date_detail_format --after="$args 00:00" --before="$args 23:59" }
+New-Alias -Name gldate -Value git-log-date
+
+function git-log-between { g log --graph --pretty=format:$commit_format --date=$date_detail_format --after="$($args[0]) 00:00" --before="$($args[1]) 23:59" }
+New-Alias -Name glbetween -Value git-log-between
+
 function git-log-diff-branches { g log --graph --pretty=format:$commit_format --date=relative $args }
 New-Alias -Name glb -Value git-log-diff-branches
 
@@ -210,7 +217,7 @@ New-Alias -Name grm -Value git-rm
 function git-status { g status --short --branch $args }
 New-Alias -Name gs -Value git-status
 
-function git-show { g show --stat --pretty=format:$commit_format --date=$date_format $args }
+function git-show { g show --stat --pretty=format:$commit_format --date=$date_detail_format $args }
 New-Alias -Name gsh -Value git-show
 
 function git-stash { if (!$args) { g stash --include-untracked } else { g stash $args } }
