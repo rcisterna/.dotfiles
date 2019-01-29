@@ -1,18 +1,33 @@
 #!/bin/zsh
 setopt prompt_subst
 
+# Use syntax highlighting
+if [ -f /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]; then
+	source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+fi
+
+# Use history substring search
+if [ -f /usr/share/zsh/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh ]; then
+	source /usr/share/zsh/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh
+fi
+
+## bind UP and DOWN arrow keys to history substring search
+# zmodload zsh/terminfo
+# bindkey "$terminfo[kcuu1]" history-substring-search-up
+# bindkey "$terminfo[kcud1]" history-substring-search-down
+# bindkey '^[[A' history-substring-search-up			
+# bindkey '^[[B' history-substring-search-down
+
 local dot_start='━╾'
 local dot_ts='╼┥'
 local dot_end='┝╾'
 local sep='╌'
 local current='%F{cyan}%n%f at %F{magenta}%m%f in %F{blue}%0~%f '
-local insert='%F{yellow}❯❯ %f'
+# local insert='%F{yellow}❯❯ %f'
 local nl=$'\n'
 
 function __prompt()
 {
-    local dynamic_dots
-    local datetime
     local branch
     local dirty
     local git_rev
@@ -23,14 +38,6 @@ function __prompt()
     if (( ${+VIRTUAL_ENV} )); then
         current_env='%F{red}$(basename $VIRTUAL_ENV)%f '
     fi
-
-    datetime=" %D{%d-%m-%G} "
-    let dots_count=${COLUMNS}-18 # dot_start(2) + dot_ts(2) + datetime(12) + dot_end(2)
-    while [[ $dots_count -gt 0 ]]; do
-        dynamic_dots="${dynamic_dots}$sep"
-        let dots_count=${dots_count}-1
-    done
-    dynamic_dots="${dynamic_dots}"
 
     # Look for Git status
     if git status &>/dev/null; then
@@ -52,10 +59,20 @@ function __prompt()
         fi
 
     fi
-
-    PROMPT="$dot_start$dynamic_dots$dot_ts$datetime$dot_end$nl$current$branch$dirty$behind$ahead$nl$current_env$insert"
+    
+	local insert='%b>%F{yellow}>%B%(?.%{$fg[yellow]%}.%{$fg[red]%})>%f%b '
+    PROMPT="$nl$current$branch$dirty$behind$ahead$nl$current_env$insert"
 }
-PROMPT2="%F{yellow}◀ %f"
-SPROMPT="%F{yellow}◀ %f Correct %F{red}%R%f to %F{green}%r%f [nyae]? "
-
 precmd () { __prompt }
+
+RPROMPT='%{$fg[red]%} %(?..error: %?)%f'
+PROMPT2="%B%F{yellow}$PROMPT2%b%f"
+SPROMPT="%F{yellow}%F{grey}>>%B%F{red}>%b%f %f Correct %F{red}%R%f to %F{green}%r%f [nyae]? "
+
+# Use autosuggestion
+if [ -f /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh ]; then
+	source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+	ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=50
+	ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=8'
+fi
+

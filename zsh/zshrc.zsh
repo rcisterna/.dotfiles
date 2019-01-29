@@ -1,32 +1,67 @@
-export LANG=en_US.UTF-8
-export LC_ALL=en_US.UTF-8
-
-# Carga los colores automaticamente
-autoload -U colors compinit
-colors
-compinit
-
 # Historial
 export HISTSIZE=10000
 export SAVEHIST=$HISTSIZE
 export HISTFILE="$HOME/.zsh_history"
+WORDCHARS=${WORDCHARS//\/[&.;]}
+
+# Color man pages
+export LESS_TERMCAP_mb=$'\E[01;32m'
+export LESS_TERMCAP_md=$'\E[01;32m'
+export LESS_TERMCAP_me=$'\E[0m'
+export LESS_TERMCAP_se=$'\E[0m'
+export LESS_TERMCAP_so=$'\E[01;47;34m'
+export LESS_TERMCAP_ue=$'\E[0m'
+export LESS_TERMCAP_us=$'\E[01;36m'
+export LESS=-r
+
+## Keybindings section
+bindkey -e
+bindkey '^[[7~' beginning-of-line                               # Home key
+bindkey '^[[H' beginning-of-line                                # Home key
+if [[ "${terminfo[khome]}" != "" ]]; then
+  bindkey "${terminfo[khome]}" beginning-of-line                # [Home] - Go to beginning of line
+fi
+bindkey '^[[8~' end-of-line                                     # End key
+bindkey '^[[F' end-of-line                                     # End key
+if [[ "${terminfo[kend]}" != "" ]]; then
+  bindkey "${terminfo[kend]}" end-of-line                       # [End] - Go to end of line
+fi
+bindkey '^[[2~' overwrite-mode                                  # Insert key
+bindkey '^[[3~' delete-char                                     # Delete key
+bindkey '^[[C'  forward-char                                    # Right key
+bindkey '^[[D'  backward-char                                   # Left key
+bindkey '^[[5~' history-beginning-search-backward               # Page up key
+bindkey '^[[6~' history-beginning-search-forward                # Page down key
+
+# Navigate words with ctrl+arrow keys
+bindkey '^[Oc' forward-word                                     #
+bindkey '^[Od' backward-word                                    #
+bindkey '^[[1;5D' backward-word                                 #
+bindkey '^[[1;5C' forward-word                                  #
+bindkey '^H' backward-kill-word                                 # delete previous word with ctrl+backspace
+bindkey '^[[Z' undo                                             # Shift+tab undo last action
 
 # Opciones
-setopt BANG_HIST # Treat the '!' character specially during expansion.
-# setopt EXTENDED_HISTORY # Write the history file in the ":start:elapsed;command" format.
-# setopt INC_APPEND_HISTORY # Write to the history file immediately, not when the shell exits.
-setopt SHARE_HISTORY # Share history between all sessions.
-setopt HIST_EXPIRE_DUPS_FIRST # Expire duplicate entries first when trimming history.
-setopt HIST_IGNORE_DUPS # Don't record an entry that was just recorded again.
-setopt HIST_IGNORE_ALL_DUPS # Delete old recorded entry if new entry is a duplicate.
-setopt HIST_FIND_NO_DUPS # Do not display a line previously found.
-setopt HIST_IGNORE_SPACE # Don't record an entry starting with a space.
-setopt HIST_SAVE_NO_DUPS # Don't write duplicate entries in the history file.
-setopt HIST_REDUCE_BLANKS # Remove superfluous blanks before recording entry.
-setopt HIST_VERIFY # Don't execute immediately upon history expansion.
-setopt HIST_BEEP # Beep when accessing nonexistent history.<Paste>
-setopt AUTO_CD # Allow directory change without using cd command
-setopt CORRECT # Corrects commmands misspellings
+setopt banghist  # Treat the '!' character specially during expansion.
+# setopt EXTENDED_HISTORY  # Write the history file in the ":start:elapsed;command" format.
+# setopt INC_APPEND_HISTORY  # Write to the history file immediately, not when the shell exits.
+setopt sharehistory  # Share history between all sessions.
+setopt histexpiredupsfirst  # Expire duplicate entries first when trimming history.
+setopt histignoredups  # Don't record an entry that was just recorded again.
+setopt histignorealldups  # Delete old recorded entry if new entry is a duplicate.
+setopt histfindnodups  # Do not display a line previously found.
+setopt histignorespace  # Don't record an entry starting with a space.
+setopt histsavenodups  # Don't write duplicate entries in the history file.
+setopt histreduceblanks  # Remove superfluous blanks before recording entry.
+setopt histverify  # Don't execute immediately upon history expansion.
+setopt histbeep  # Beep when accessing nonexistent history.
+setopt autocd  # Allow directory change without using cd command
+setopt correct  # Corrects commmands misspellings
+setopt extendedglob  # Extended globbing. Allows using regular expressions with *
+setopt nocaseglob  # Case insensitive globbing
+setopt rcexpandparam  # Array expension with parameters
+setopt numericglobsort  # Sort filenames numerically when it makes sense
+setopt appendhistory  # Immediately append history instead of overwriting
 
 
 # Setear el titulo de una pestaña
@@ -39,13 +74,27 @@ tt () {
 fpath=(/usr/local/share/zsh-completions $fpath)
 zstyle ':completion:*' special-dirs true
 zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
-zstyle ':completion:*' use-cache on
-zstyle ':completion:*' cache-path ~/.zsh/cache
+zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
+zstyle ':completion:*' rehash true
 zstyle ':completion:*:functions' ignored-patterns '_*'
 zstyle ':completion:*' completer _complete _match _approximate
 zstyle ':completion:*:match:*' original only
 zstyle -e ':completion:*:approximate:*' max-errors 'reply=($((($#PREFIX+$#SUFFIX)/3))numeric)'
 # zstyle ':completion:*:approximate:*' max-errors 1 numeric
+
+# Acelerar autocompletado
+zstyle ':completion:*' accept-exact '*(N)'
+zstyle ':completion:*' use-cache on
+zstyle ':completion:*' cache-path ~/.zsh/cache
+
+
+# export LANG=en_US.UTF-8
+# export LC_ALL=en_US.UTF-8
+
+# Carga los colores automaticamente
+autoload -U compinit colors zcalc
+compinit -d
+colors
 
 # Editor por defecto nvim (o vim, o vi)
 if hash nvim 2>/dev/null; then
@@ -72,16 +121,16 @@ if [ -f ~/.dotfiles/zsh/prompt.zsh ]; then
 	source ~/.dotfiles/zsh/prompt.zsh
 fi
 
+# Alias git
+if [ -f ~/.dotfiles/zsh/git.zsh ]; then
+	source ~/.dotfiles/zsh/git.zsh
+fi
+
 # Archivo de alias local
 if [[ $OSTYPE == darwin* ]] && [ -f ~/.dotfiles/zsh/mac_aliases.zsh ]; then
 	source ~/.dotfiles/zsh/mac_aliases.zsh
 elif [ -f ~/.dotfiles/zsh/aliases.zsh ]; then
 	source ~/.dotfiles/zsh/aliases.zsh
-fi
-
-# Homebrew Python[3] binaries links to python, pip, etc. 
-if [ -d "/usr/local/opt/python/libexec/bin" ]; then
-	export PATH="/usr/local/opt/python/libexec/bin":$PATH
 fi
 
 # pyenv init
@@ -97,13 +146,6 @@ if [ -d ~/.local/bin/ ]; then
 	export PATH=~/.local/bin:$PATH
 fi
 
-
-# Gruvbox correccion de colores
-# if [ -f ~/.config/nvim/plugged/gruvbox/gruvbox_256palette_osx.sh ]; then
-# 	. ~/.config/nvim/plugged/gruvbox/gruvbox_256palette_osx.sh
-# elif [ -f ~/.vimrc/plugged/gruvbox/gruvbox_256palette_osx.sh ]; then
-#     . ~/.vimrc/plugged/gruvbox/gruvbox_256palette_osx.sh
-# fi
-
 # Gitignore.io
 function gi() { curl -L -s https://www.gitignore.io/api/$@ ;}
+
