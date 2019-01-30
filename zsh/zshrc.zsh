@@ -98,14 +98,14 @@ colors
 
 # Editor por defecto nvim (o vim, o vi)
 if hash nvim 2>/dev/null; then
-	export VISUAL=nvim
-	export EDITOR=nvim
+    export VISUAL=nvim
+    export EDITOR=nvim
 elif hash vim 2>/dev/null; then
-	export VISUAL=vim
-	export EDITOR=vim
+    export VISUAL=vim
+    export EDITOR=vim
 else
-	export VISUAL=vi
-	export EDITOR=vi
+    export VISUAL=vi
+    export EDITOR=vi
 fi
 
 # Rust src
@@ -113,37 +113,52 @@ fi
 
 # VMware Fusion
 if [ -d "/Applications/VMware Fusion.app/Contents/Library" ]; then
-	export PATH=$PATH:"/Applications/VMware Fusion.app/Contents/Library"
+    export PATH=$PATH:"/Applications/VMware Fusion.app/Contents/Library"
 fi
 
 # Prompt
 if [ -f ~/.dotfiles/zsh/prompt.zsh ]; then
-	source ~/.dotfiles/zsh/prompt.zsh
+    source ~/.dotfiles/zsh/prompt.zsh
 fi
 
 # Alias git
 if [ -f ~/.dotfiles/zsh/git.zsh ]; then
-	source ~/.dotfiles/zsh/git.zsh
+    source ~/.dotfiles/zsh/git.zsh
 fi
 
 # Archivo de alias local
 if [[ $OSTYPE == darwin* ]] && [ -f ~/.dotfiles/zsh/mac_aliases.zsh ]; then
-	source ~/.dotfiles/zsh/mac_aliases.zsh
+    source ~/.dotfiles/zsh/mac_aliases.zsh
 elif [ -f ~/.dotfiles/zsh/aliases.zsh ]; then
-	source ~/.dotfiles/zsh/aliases.zsh
+    source ~/.dotfiles/zsh/aliases.zsh
 fi
 
 # pyenv init
 if command -v pyenv 1>/dev/null 2>&1; then
-	eval "$(pyenv init -)"
+    eval "$(pyenv init -)"
 fi
 
 if hash brew 2>/dev/null; then
-	export PATH=/usr/local/bin:$PATH
+    export PATH=/usr/local/bin:$PATH
 fi
 
 if [ -d ~/.local/bin/ ]; then
-	export PATH=~/.local/bin:$PATH
+    export PATH=~/.local/bin:$PATH
+fi
+
+# pyenv
+if [ -d ~/.pyenv/ ]; then
+    export PYENV_ROOT="$HOME/.pyenv"
+    export PATH="$PYENV_ROOT/bin:$PATH"
+    if command -v pyenv 1>/dev/null 2>&1; then
+        eval "$(pyenv init -)"
+    fi
+fi
+
+# poetry
+if [ -d ~/.pyenv/ ]; then
+    fpath+=~/.zfunc
+    export PATH="$HOME/.poetry/bin:$PATH"
 fi
 
 # Gitignore.io
