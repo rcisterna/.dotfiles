@@ -138,15 +138,17 @@ if command -v pyenv 1>/dev/null 2>&1; then
     eval "$(pyenv init -)"
 fi
 
+# Homebrew
 if hash brew 2>/dev/null; then
     export PATH=/usr/local/bin:$PATH
 fi
 
+# Local
 if [ -d ~/.local/bin/ ]; then
     export PATH=~/.local/bin:$PATH
 fi
 
-# pyenv
+# Pyenv
 if [ -d ~/.pyenv/ ]; then
     export PYENV_ROOT="$HOME/.pyenv"
     export PATH="$PYENV_ROOT/bin:$PATH"
@@ -155,7 +157,7 @@ if [ -d ~/.pyenv/ ]; then
     fi
 fi
 
-# poetry
+# Poetry
 if [ -d ~/.pyenv/ ]; then
     fpath+=~/.zfunc
     export PATH="$HOME/.poetry/bin:$PATH"
