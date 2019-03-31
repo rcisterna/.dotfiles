@@ -158,11 +158,14 @@ if [ -d ~/.pyenv/ ]; then
 fi
 
 # Poetry
-if [ -d ~/.pyenv/ ]; then
+if [ -d ~/.poetry/bin/ ]; then
     fpath+=~/.zfunc
     export PATH="$HOME/.poetry/bin:$PATH"
 fi
 
 # Gitignore.io
 function gi() { curl -L -s https://www.gitignore.io/api/$@ ;}
+
+# added by pipsi (https://github.com/mitsuhiko/pipsi)
+export PATH="/Users/rcisterna/.local/bin:$PATH"
 
