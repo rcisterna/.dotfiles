@@ -57,7 +57,7 @@ setopt histverify  # Don't execute immediately upon history expansion.
 setopt histbeep  # Beep when accessing nonexistent history.
 setopt autocd  # Allow directory change without using cd command
 setopt correct  # Corrects commmands misspellings
-setopt extendedglob  # Extended globbing. Allows using regular expressions with *
+#setopt extendedglob  # Extended globbing. Allows using regular expressions with *
 setopt nocaseglob  # Case insensitive globbing
 setopt rcexpandparam  # Array expension with parameters
 setopt numericglobsort  # Sort filenames numerically when it makes sense

@@ -1,5 +1,5 @@
 # Git aliases
-local commit_format="%C(auto)%h %C(cyan)%ad %C(auto)%ae (%an) %s"
+local commit_format="%C(auto)%h %C(cyan)%ad %C(auto)%ae (%an) %s%d"
 local date_format="iso"
 
 alias g="git"

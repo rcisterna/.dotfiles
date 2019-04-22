@@ -1,5 +1,5 @@
 # Aliases generales
-alias ls="ls --human-readable --group-directories-first --color=auto"
+alias ls="ls --human-readable --group-directories-first --indicator-style=slash --color=auto"
 alias cp="cp --interactive"
 alias df='df --human-readable'
 alias free='free --mebi'
