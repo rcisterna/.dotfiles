@@ -18,10 +18,10 @@ fi
 # bindkey '^[[A' history-substring-search-up
 # bindkey '^[[B' history-substring-search-down
 
-local dot_start='━╾'
-local dot_ts='╼┥'
-local dot_end='┝╾'
-local sep='╌'
+# local dot_start='━╾'
+# local dot_ts='╼┥'
+# local dot_end='┝╾'
+# local sep='╌'
 local current='%B%F{cyan}%n%b%f at %B%F{magenta}%m%b%f in %B%F{blue}%0~%b%f '
 # local insert='%F{yellow}❯❯ %f'
 local nl=$'\n'
@@ -44,7 +44,7 @@ function __prompt()
     # Look for Git status
     if git status &>/dev/null; then
         branches="$(git branch --color=never)"
-        branch_n=$([ -z $branches ] && echo "no-branches-in-repo-yet" || echo $branches | sed -ne 's/* //p')
+        branch_n=$([ -z $branches ] && echo "[missing]" || echo $branches | sed -ne 's/* //p')
         branch="on %F{white}$branch_n%f"
 
         if git status -uno -s | grep -q . ; then
