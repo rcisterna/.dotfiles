@@ -22,54 +22,54 @@ fi
 # local dot_ts='╼┥'
 # local dot_end='┝╾'
 # local sep='╌'
-local current='%B%F{cyan}%n%b%f at %B%F{magenta}%m%b%f in %B%F{blue}%0~%b%f '
+local current="%B%F{cyan}%n%b%f at %B%F{magenta}%m%b%f in %B%F{blue}%0~%b%f"
 # local insert='%F{yellow}❯❯ %f'
 local nl=$'\n'
 
 function __prompt()
 {
-    local branches
-    local branch_n
     local branch
+    local remote
     local dirty
     local git_rev
     local ahead
     local behind
 
-    local current_env=''
+    local current_env=""
     if (( ${+VIRTUAL_ENV} )); then
-        current_env='%B%F{white}($(basename $VIRTUAL_ENV))%b%f '
+        current_env=" %B%F{white}($(basename $VIRTUAL_ENV))%f%b"
     fi
 
     # Look for Git status
     if git status &>/dev/null; then
-        branches="$(git branch --color=never)"
-        branch_n=$([ -z $branches ] && echo "[missing]" || echo $branches | sed -ne 's/* //p')
-        branch="on %F{white}$branch_n%f"
+        branch="$(git rev-parse --abbrev-ref --symbolic-full-name @ 2> /dev/null)"
+        if [ $? -ne 0 ]; then branch="[missing]"; fi
+        remote="$(git rev-parse --abbrev-ref --symbolic-full-name @{u} 2> /dev/null)"
+        if [ $? -eq 0 ]; then remote=" (${remote})"; fi
+        branch=" on %F{white}${branch}${remote}%f"
 
-        if git status -uno -s | grep -q . ; then
+        if [ -n "$(git status --porcelain 2> /dev/null)" ]; then
             dirty=" %F{white}●%f"
         fi
 
         git_rev="$(git rev-list --left-right @...@{u} 2>/dev/null)"
-
         if [ $? -eq 0 ]; then
             behind="$(echo $git_rev | tr -d -c '>' | awk '{print length;}')"
             if [[ ! -z "${behind// }" ]]; then
-                behind=" %F{red}⇣$behind%f"
+                behind=" %F{red}⇣${behind}%f"
             fi
 
             ahead="$(echo $git_rev | tr -d -c '<' | awk '{print length;}')"
             if [[ ! -z "${ahead// }" ]]; then
-                ahead=" %F{green}⇡$ahead%f"
+                ahead=" %F{green}⇡${ahead}%f"
             fi
         fi
 
     fi
 
-    local insert='%b>%F{yellow}>%B%(?.%{$fg[yellow]%}.%{$fg[red]%})>%f%b '
-    PROMPT="$nl$current$branch$dirty$behind$ahead$nl$current_env$insert"
-    SPROMPT="$current_env%F{yellow}%F{grey}>>%B%F{red}>%b%f %f Correct %B%F{red}%R%b%f to %B%F{green}%r%b%f [nyae]? "
+    local insert="%b>%F{yellow}>%B%(?.%F{yellow}.%F{red})>%f%b${current_env}"
+    PROMPT="${nl}${current}${branch}${dirty}${behind}${ahead}${nl}${insert} "
+    SPROMPT="${insert} Correct %B%F{red}%R%b%f to %B%F{green}%r%b%f [nyae]? "
 }
 precmd () { __prompt }
 
