@@ -25,6 +25,11 @@ fi
 local current="%B%F{cyan}%n%b%f at %B%F{magenta}%m%b%f in %B%F{blue}%0~%b%f"
 # local insert='%F{yellow}❯❯ %f'
 local nl=$'\n'
+local insert="%b>%F{yellow}>%B%(?.%F{yellow}.%F{red})>%f%b"
+local venv
+if (( ${+VIRTUAL_ENV} )); then
+    venv="%B%F{yellow}($(basename $VIRTUAL_ENV))%f%b "
+fi
 
 function __prompt()
 {
@@ -34,11 +39,6 @@ function __prompt()
     local git_rev
     local ahead
     local behind
-
-    local current_env=""
-    if (( ${+VIRTUAL_ENV} )); then
-        current_env=" %B%F{white}($(basename $VIRTUAL_ENV))%f%b"
-    fi
 
     # Look for Git status
     if git status &>/dev/null; then
@@ -67,14 +67,15 @@ function __prompt()
 
     fi
 
-    local insert="%b>%F{yellow}>%B%(?.%F{yellow}.%F{red})>%f%b${current_env}"
-    PROMPT="${nl}${current}${branch}${dirty}${behind}${ahead}${nl}${insert} "
+    PS1="${nl}${current}${branch}${dirty}${behind}${ahead}${nl}${venv}${insert} "
     SPROMPT="${insert} Correct %B%F{red}%R%b%f to %B%F{green}%r%b%f [nyae]? "
 }
 precmd () { __prompt }
 
-RPROMPT='%B%F{red} %(?..E:%?)%b%f'
-PROMPT2="%B%F{yellow}$PROMPT2%b%f"
+RPS1='%B%F{red} %(?..E:%?)%b%f'
+PS2="${venv}%B%F{yellow}[%_]%f%b ${insert} "
+PS3="${venv}%B%F{yellow}?#%f%b ${insert} "
+PS4="${venv}%B%F{yellow}+%f%b ${insert} "
 
 # Use autosuggestion
 if [ -f /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh ]; then
