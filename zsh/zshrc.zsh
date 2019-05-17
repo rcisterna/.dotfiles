@@ -148,6 +148,7 @@ fi
 # Homebrew
 if hash brew 2>/dev/null; then
     export PATH=/usr/local/bin:$PATH
+    export HOMEBREW_GITHUB_API_TOKEN=0ec51c0910a5f44f6ffd40ecb1901c51d8ebb35b
 fi
 
 # Local
