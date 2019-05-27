@@ -45,7 +45,7 @@ function __prompt()
         branch="$(git rev-parse --abbrev-ref --symbolic-full-name @ 2> /dev/null)"
         if [ $? -ne 0 ]; then branch="[missing]"; fi
         remote="$(git rev-parse --abbrev-ref --symbolic-full-name @{u} 2> /dev/null)"
-        if [ $? -eq 0 ]; then remote=" (${remote})"; fi
+        if [ $? -eq 0 ]; then remote=" (${remote})"; else remote="" fi
         branch=" on %F{white}${branch}${remote}%f"
 
         if [ -n "$(git status --porcelain 2> /dev/null)" ]; then
