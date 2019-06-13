@@ -27,9 +27,6 @@ local current="%B%F{cyan}%n%b%f at %B%F{magenta}%m%b%f in %B%F{blue}%0~%b%f"
 local nl=$'\n'
 local insert="%b>%F{yellow}>%B%(?.%F{yellow}.%F{red})>%f%b"
 local venv
-if (( ${+VIRTUAL_ENV} )); then
-    venv="%B%F{yellow}($(basename $VIRTUAL_ENV))%f%b "
-fi
 
 function __prompt()
 {
@@ -39,6 +36,23 @@ function __prompt()
     local git_rev
     local ahead
     local behind
+    local poetry_path=$(poetry config settings.virtualenvs.path 2> /dev/null)
+    poetry_path=${poetry_path//\"}
+
+    # Look for virtualenv
+    if [ ! -z ${VIRTUAL_ENV} ]; then
+        venv="%B%F{yellow}("
+        if [[ "${poetry_path}" == "$(dirname ${VIRTUAL_ENV})"* ]]; then
+            venv="${venv}poetry:$(basename ${VIRTUAL_ENV})"
+        elif [[ "${PWD}" == "$(dirname ${VIRTUAL_ENV})"* || "$(dirname ${VIRTUAL_ENV})" == "${PWD}"* ]]; then
+            venv="${venv}$(realpath --relative-to=${PWD} ${VIRTUAL_ENV})"
+        else
+            venv="${venv}${VIRTUAL_ENV}"
+        fi
+        venv="${venv})%f%b "
+    else
+        venv=""
+    fi
 
     # Look for Git status
     if git status &>/dev/null; then
