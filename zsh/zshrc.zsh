@@ -91,6 +91,13 @@ zstyle ':completion:*' cache-path ~/.zsh/cache
 # export LANG=en_US.UTF-8
 # export LC_ALL=en_US.UTF-8
 
+# Poetry autocompletion
+# Debe ser previo a compinit
+if [ -d ~/.poetry/bin/ ]; then
+    fpath+=~/.zfunc
+    export PATH="$HOME/.poetry/bin:$PATH"
+fi
+
 # Carga los colores automaticamente
 autoload -U compinit colors zcalc
 compinit -d
@@ -155,12 +162,6 @@ if [ -d ~/.pyenv/ ]; then
     if command -v pyenv 1>/dev/null 2>&1; then
         eval "$(pyenv init -)"
     fi
-fi
-
-# Poetry
-if [ -d ~/.poetry/bin/ ]; then
-    fpath+=~/.zfunc
-    export PATH="$HOME/.poetry/bin:$PATH"
 fi
 
 # Gitignore.io
