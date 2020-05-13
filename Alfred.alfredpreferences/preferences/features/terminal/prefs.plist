@@ -21,5 +21,7 @@
 		activate
 	end tell
 end alfred_script</string>
+	<key>prefix</key>
+	<integer>2</integer>
 </dict>
 </plist>
