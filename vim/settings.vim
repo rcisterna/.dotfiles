@@ -9,6 +9,7 @@ endif
 " CONFIGURACIONES PERSONALES
 
 " General
+syntax on
 if s:using_vim
   filetype plugin indent on         " Habilitar plugins de filetype
   set nocompatible                  " No hacer vi-compatible
@@ -49,7 +50,7 @@ set splitright                      " Ventana vsplit derecha
 set scrolloff=2                     " Espacio de cursor hasta borde sup/inf
 set scrolljump=5                    " Avance pagina al llegar al borde sup/inf
 set number                          " Ver los numeros de línea
-"set relativenumber                 " Ver numeros relativos
+set relativenumber                  " Ver numeros relativos
 set showcmd                         " Mostrar comandos tecleados
 set showmode                        " Mostar el modo actual de VIM
 set ruler                           " Mostrar posicion del cursor siempre
@@ -112,7 +113,7 @@ set sessionoptions+=tabpages        " Guarda todas las paginas tab
 set sessionoptions+=winsize         " Tamano de las ventanas
 
 " Resaltar la columna 80
-set colorcolumn=80
+" set colorcolumn=80
 
 " ---------------------------------------------------------------------------- "
 " STATUSLINE
