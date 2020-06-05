@@ -100,7 +100,7 @@ fi
 
 # Carga los colores automaticamente
 autoload -U compinit colors zcalc
-compinit -d
+compinit -id
 colors
 
 # Editor por defecto nvim (o vim, o vi)
@@ -147,8 +147,13 @@ fi
 
 # Homebrew
 if hash brew 2>/dev/null; then
-    export PATH=/usr/local/bin:$PATH
-    export HOMEBREW_GITHUB_API_TOKEN=0ec51c0910a5f44f6ffd40ecb1901c51d8ebb35b
+    export PATH="/usr/local/sbin:/usr/local/bin:$PATH"
+    export HOMEBREW_GITHUB_API_TOKEN=aa170b5b99d0b2e54cbf1a9a6740639f2fc87587
+fi
+
+# Homebrew's java
+if [ -d /usr/local/opt/openjdk/bin/ ]; then
+    export PATH="/usr/local/opt/openjdk/bin:$PATH"
 fi
 
 # Local
@@ -168,6 +173,19 @@ fi
 # Gitignore.io
 function gi() { curl -L -s https://www.gitignore.io/api/$@ ;}
 
-# added by pipsi (https://github.com/mitsuhiko/pipsi)
-export PATH="/Users/rcisterna/.local/bin:$PATH"
+# Funciones de prioridades
+function priorset {
+    readonly app=${1:?"Especifique aplicación."}
+    sudo renice -20 $(ps -A | grep "$app"$ | awk '{print $1}')
+}
+
+function priorget {
+    readonly app=${1:?"Especifique aplicación."}
+    ps -Al | grep "$app"$ | awk '{print $7}'
+}
+
+# Binarios locales en PATH
+if [ -d ~/bin/ ]; then
+    export PATH="$HOME/bin:$PATH"
+fi
 
