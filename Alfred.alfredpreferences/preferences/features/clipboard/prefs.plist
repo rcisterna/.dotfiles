@@ -5,14 +5,12 @@
 	<key>hotkey</key>
 	<dict>
 		<key>key</key>
-		<integer>-1</integer>
+		<integer>9</integer>
 		<key>mod</key>
-		<integer>1048576</integer>
+		<integer>1572864</integer>
 		<key>string</key>
-		<string>double tap</string>
+		<string>V</string>
 	</dict>
-	<key>snippetsAtTop</key>
-	<false/>
 	<key>snippetsWhenSearching</key>
 	<false/>
 </dict>

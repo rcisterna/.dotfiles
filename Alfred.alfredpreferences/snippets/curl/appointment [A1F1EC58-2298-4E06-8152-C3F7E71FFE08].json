@@ -1,0 +1,8 @@
+{
+  "alfredsnippet" : {
+    "snippet" : "curl -X POST 'http:\/\/localhost:3000\/dev\/appointments' -H 'Content-Type: application\/json' -d '{\"patientName\": \"Ricardo Cisterna\", \"patientMail\": \"ricardo.cisterna@continuum.cl\", \"patientPhone\": \"+56912345678\", \"patientAge\": 30, \"doctorSpecialty\": \"Otorrinolaringología\", \"date\": \"2020-09-14T19:00:00Z\", \"doctorName\": \"Dr. Manuel Ortiz\", \"doctorMail\": \"mortiz@alemana.cl\"}'",
+    "uid" : "A1F1EC58-2298-4E06-8152-C3F7E71FFE08",
+    "name" : "appointment",
+    "keyword" : "appointment"
+  }
+}
