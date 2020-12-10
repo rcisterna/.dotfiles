@@ -29,4 +29,5 @@ alias gst="g stash --include-untracked"
 alias gt="g tag"
 alias grb="g rebase --interactive --autostash"
 alias grem="g remote --verbose"
+alias gg="for branch in $(git branch -vv | grep ': gone]' | awk '{print $1}'); do git branch -D $branch; done"
 
