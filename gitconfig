@@ -1,15 +1,16 @@
 [user]
 	name = Ricardo Cisterna
-	email = r.cisternasantos@gmail.com
+	email = ricardo.cisterna@continuum.cl
 [color]
 	ui = auto
 [help]
 	autocorrect = 10
 [merge]
-	ff = false
+#	ff = false
 [core]
 	autocrlf = input
 	editor = vim
 	excludesfile = ~/.gitignore
 [pull]
 	ff = true
+
