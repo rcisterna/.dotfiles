@@ -50,7 +50,7 @@ call plug#begin(s:plug_dir)
   Plug 'morhetz/gruvbox'
 
   " Intellisense
-  Plug 'neoclide/coc.nvim', {'branch': 'release'}
+  " Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 call plug#end()
 
