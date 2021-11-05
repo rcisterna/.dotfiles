@@ -6,5 +6,11 @@
 	<array>
 		<string>features.websearch.google.fallback</string>
 	</array>
+	<key>fallbacksMode</key>
+	<integer>1</integer>
+	<key>showContacts</key>
+	<false/>
+	<key>showFolders</key>
+	<true/>
 </dict>
 </plist>
