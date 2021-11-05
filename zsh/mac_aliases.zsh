@@ -2,7 +2,17 @@
 alias ls="ls -GFh"
 alias tree="tree --dirsfirst -hpCL 2"
 alias grep="grep --color=auto"
-alias vg="tt VAGRANT && vagrant"
+alias marked="open -a 'Marked 2'"
+alias brew_installed="brew leaves | xargs brew deps --installed --for-each | sed 's/^.*:/$(tput setaf 4)&$(tput sgr0)/'"
+
+if command -v nvim 1>/dev/null 2>&1; then
+    alias vi="nvim"
+    alias vim="nvim"
+fi
+
+if command -v docker-compose 1>/dev/null 2>&1; then
+    alias dcomp="docker-compose"
+fi
 
 # Lista de dependencias para Homebrew
 function brew_listdeps()

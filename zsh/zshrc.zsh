@@ -71,7 +71,7 @@ tt () {
 }
 
 # Cargar autocompletado
-fpath=(/usr/local/share/zsh-completions $fpath)
+fpath+=/usr/local/share/zsh-completions
 zstyle ':completion:*' special-dirs true
 zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
@@ -99,9 +99,15 @@ if [ -d ~/.poetry/bin/ ]; then
 fi
 
 # Carga los colores automaticamente
-autoload -U compinit colors zcalc
+autoload -U compinit colors zcalc promptinit
 compinit -id
 colors
+
+# Carga spaceship prompt
+promptinit
+prompt spaceship
+export SPACESHIP_TIME_SHOW=true
+export SPACESHIP_TIME_FORMAT=%D{%a\ %d-%m\ %H:%M}
 
 # Editor por defecto nvim (o vim, o vi)
 if hash nvim 2>/dev/null; then
@@ -115,18 +121,10 @@ else
     export EDITOR=vi
 fi
 
-# Rust src
-# export RUST_SRC_PATH=~/.config/nvim/plugged/rust/src
-
-# VMware Fusion
-if [ -d "/Applications/VMware Fusion.app/Contents/Library" ]; then
-    export PATH=$PATH:"/Applications/VMware Fusion.app/Contents/Library"
-fi
-
 # Prompt
-if [ -f ~/.dotfiles/zsh/prompt.zsh ]; then
-    source ~/.dotfiles/zsh/prompt.zsh
-fi
+# if [ -f ~/.dotfiles/zsh/prompt.zsh ]; then
+#     source ~/.dotfiles/zsh/prompt.zsh
+# fi
 
 # Alias git
 if [ -f ~/.dotfiles/zsh/git.zsh ]; then
@@ -140,15 +138,15 @@ elif [ -f ~/.dotfiles/zsh/aliases.zsh ]; then
     source ~/.dotfiles/zsh/aliases.zsh
 fi
 
-# pyenv init
-if command -v pyenv 1>/dev/null 2>&1; then
-    eval "$(pyenv init -)"
-fi
-
 # Homebrew
 if hash brew 2>/dev/null; then
     export PATH="/usr/local/sbin:/usr/local/bin:$PATH"
     export HOMEBREW_GITHUB_API_TOKEN=aa170b5b99d0b2e54cbf1a9a6740639f2fc87587
+
+    # for pyenv
+    export LDFLAGS="-L$(xcrun --show-sdk-path)/usr/lib -L$(brew --prefix zlib)/lib -L$(brew --prefix bzip2)/lib"
+    export CPPFLAGS="-L$(xcrun --show-sdk-path)/usr/include -I$(brew --prefix zlib)/include -I$(brew --prefix bzip2)/include"
+
 fi
 
 # Homebrew's java
@@ -165,10 +163,14 @@ fi
 if [ -d ~/.pyenv/ ]; then
     export PYENV_ROOT="$HOME/.pyenv"
     export PATH="$PYENV_ROOT/bin:$PATH"
-    if command -v pyenv 1>/dev/null 2>&1; then
-        eval "$(pyenv init -)"
-    fi
+    eval "$(pyenv init --path)"
+    # if command -v pyenv 1>/dev/null 2>&1; then
+    #     eval "$(pyenv init -)"
+    # fi
 fi
+
+# heroku autocomplete setup
+HEROKU_AC_ZSH_SETUP_PATH=/Users/rcisterna/Library/Caches/heroku/autocomplete/zsh_setup && test -f $HEROKU_AC_ZSH_SETUP_PATH && source $HEROKU_AC_ZSH_SETUP_PATH;
 
 # Gitignore.io
 function gi() { curl -L -s https://www.gitignore.io/api/$@ ;}
@@ -184,8 +186,40 @@ function priorget {
     ps -Al | grep "$app"$ | awk '{print $7}'
 }
 
+function clearport {
+    readonly port=${1:?"Especifique puerto."}
+    readonly pid=$(sudo lsof -i :$port | awk 'NR==2 {print $2}')
+    sudo kill -9 $pid
+}
+
+function checkport {
+    readonly port=${1:?"Especifique puerto."}
+    sudo lsof -i :$port
+}
+
 # Binarios locales en PATH
 if [ -d ~/bin/ ]; then
     export PATH="$HOME/bin:$PATH"
 fi
+
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/Users/rcisterna/opt/anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/Users/rcisterna/opt/anaconda3/etc/profile.d/conda.sh" ]; then
+        . "/Users/rcisterna/opt/anaconda3/etc/profile.d/conda.sh"
+    else
+        export PATH="/Users/rcisterna/opt/anaconda3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
+
+# NVM (node version manager)
+export NVM_DIR="$HOME/.nvm"
+[ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
+[ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] && . "/usr/local/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
 

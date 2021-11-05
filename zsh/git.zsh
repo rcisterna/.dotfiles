@@ -2,7 +2,7 @@
 local commit_format="%C(auto)%h %C(cyan)%ad %C(green)%ae %C(auto)%s%d"
 local date_format="format:%d-%m\ %H:%M"
 
-# alias g="git --no-pager"
+alias g="git --no-pager"
 alias g="git"
 alias gclone="g clone"
 alias ga="g add"
@@ -29,5 +29,9 @@ alias gst="g stash --include-untracked"
 alias gt="g tag"
 alias grb="g rebase --interactive --autostash"
 alias grem="g remote --verbose"
-alias gg="for branch in $(git branch -vv | grep ': gone]' | awk '{print $1}'); do git branch -D $branch; done"
+# alias gg="for branch in $(git branch -vv | grep ': gone]' | awk '{print $1}'); do git branch -D $branch; done"
+
+function gbclean {
+    for branch in $(git branch -vv | grep ': gone]' | awk '{print $1}'); do git branch -D $branch; done
+}
 
