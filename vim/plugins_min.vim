@@ -35,6 +35,12 @@ call plug#begin(s:plug_dir)
   " Colorschemes
   Plug 'morhetz/gruvbox'
 
+  " Open files
+  Plug 'junegunn/fzf.vim'
+
+  " Intellisense
+  Plug 'neoclide/coc.nvim', {'branch': 'release'}
+
 call plug#end()
 
 " ---------------------------------------------------------------------------- "

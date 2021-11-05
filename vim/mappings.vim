@@ -43,32 +43,3 @@ nnoremap <leader>= <C-w>=
 nnoremap <leader>_ <C-w>_
 nnoremap <leader>\| <C-w>\|
 
-" ---------------------------------------------------------------------------- "
-" MODO TERMINAL
-
-if !s:using_vim
-  " Entrar a buffer de terminal en modo insert, y salir en modo normal
-  augroup terminalAutoInsert
-    autocmd!
-    autocmd BufWinEnter,WinEnter term://* startinsert
-    autocmd BufWinLeave,BufLeave term://* stopinsert
-  augroup END
-
-  " Abrir terminal con tt, cerrar con <Esc>
-  nnoremap <silent> tt :below 13sp term://bash<cr>
-  tnoremap <silent> <C-w>q <C-\><C-n>:bdelete!<cr>
-
-  " Cambiar de ventana
-  tnoremap <C-w>h <C-\><C-n><C-w>h
-  tnoremap <C-w>j <C-\><C-n><C-w>j
-  tnoremap <C-w>k <C-\><C-n><C-w>k
-  tnoremap <C-w>l <C-\><C-n><C-w>l
-
-  " Modificar a tamaños estandar de ventana
-  tnoremap <C-w>= <C-\><C-n><C-w>=i
-  tnoremap <C-w>_ <C-\><C-n><C-w>_i
-
-  " Aumentar o disminuir el tamaño de la ventana
-  tnoremap <C-w>- <C-\><C-n>3<C-w>-i
-  tnoremap <C-w>+ <C-\><C-n>3<C-w>+i
-endif

@@ -19,6 +19,7 @@ if s:using_vim
   set hlsearch                      " Resaltar busquedas
   set incsearch                     " Busquedas incrementales
 else
+  set pyxversion=3                  " Python version to 3
   set inccommand=split
 endif
 set list                            " Mostrar caracteres especiales
