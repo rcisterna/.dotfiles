@@ -141,7 +141,7 @@ fi
 # Homebrew
 if hash brew 2>/dev/null; then
     export PATH="/usr/local/sbin:/usr/local/bin:$PATH"
-    export HOMEBREW_GITHUB_API_TOKEN=aa170b5b99d0b2e54cbf1a9a6740639f2fc87587
+    export HOMEBREW_GITHUB_API_TOKEN=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
 
     # for pyenv
     export LDFLAGS="-L$(xcrun --show-sdk-path)/usr/lib -L$(brew --prefix zlib)/lib -L$(brew --prefix bzip2)/lib"
