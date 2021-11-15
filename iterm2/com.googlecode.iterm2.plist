@@ -1601,7 +1601,10 @@
 	<key>TripleClickSelectsFullWrappedLines</key>
 	<false/>
 	<key>URLHandlersByGuid</key>
-	<dict/>
+	<dict>
+		<key>ssh</key>
+		<string>3C66D711-6430-4076-9201-68D570E7604E</string>
+	</dict>
 	<key>UseBorder</key>
 	<false/>
 	<key>UseCompactLabel</key>
