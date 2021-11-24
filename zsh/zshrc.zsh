@@ -209,6 +209,11 @@ if [ -d ~/bin/ ]; then
     export PATH="$HOME/bin:$PATH"
 fi
 
+# GPG ioctl error fix
+if hash gpg 2>/dev/null; then
+    export GPG_TTY=$(tty)
+fi
+
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
