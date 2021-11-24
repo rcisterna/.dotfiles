@@ -175,6 +175,13 @@ HEROKU_AC_ZSH_SETUP_PATH=/Users/rcisterna/Library/Caches/heroku/autocomplete/zsh
 # Gitignore.io
 function gi() { curl -L -s https://www.gitignore.io/api/$@ ;}
 
+# Funcion para recuperar Bundle ID
+function bundleid {
+    readonly app=${1:?"Especifique ruta a aplicación."}
+    # lsappinfo info -only bundleid $app
+    mdls -name kMDItemCFBundleIdentifier -r $app
+}
+
 # Funciones de prioridades
 function priorset {
     readonly app=${1:?"Especifique aplicación."}
