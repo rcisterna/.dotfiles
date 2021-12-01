@@ -47,7 +47,8 @@ call plug#begin(s:plug_dir)
   Plug 'sheerun/vim-polyglot'
 
   " Colorschemes
-  Plug 'morhetz/gruvbox'
+  " Plug 'morhetz/gruvbox'
+  Plug 'arcticicestudio/nord-vim'
 
   " Intellisense
   " Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -108,5 +109,12 @@ if exists('g:plugs["gruvbox"]')
   let g:gruvbox_invert_selection=0
   set background=dark
   colorscheme gruvbox
+endif
+
+" ---------------------------------------------------------------------------- "
+" Nord
+
+if exists('g:plugs["nord-vim"]')
+  colorscheme nord
 endif
 
