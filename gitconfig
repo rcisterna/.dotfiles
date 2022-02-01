@@ -1,6 +1,6 @@
 [user]
 	name = Ricardo Cisterna
-	email = ricardo.cisterna@continuum.cl
+	email = ricardo.cisterna@cornershopapp.com
 [color]
 	ui = auto
 [help]
@@ -14,3 +14,7 @@
 [pull]
 	ff = true
 
+[commit]
+	gpgsign = true
+[gpg]
+	program = /usr/local/bin/gpg
