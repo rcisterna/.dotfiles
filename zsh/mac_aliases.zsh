@@ -14,6 +14,12 @@ if command -v docker-compose 1>/dev/null 2>&1; then
     alias dcomp="docker-compose"
 fi
 
+if hash isort 2>/dev/null; then
+    alias isort_mod="git diff --name-only | grep .py | xargs isort"
+    alias isort_stg="git diff --staged --name-only | grep .py | xargs isort"
+    alias isort_cmt="git diff --name-only devel | grep .py | xargs isort"
+fi
+
 # Lista de dependencias para Homebrew
 function brew_listdeps()
 {
