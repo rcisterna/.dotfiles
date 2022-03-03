@@ -17,7 +17,7 @@ fi
 if hash isort 2>/dev/null; then
     alias isort_mod="git diff --name-only | grep .py | xargs isort"
     alias isort_stg="git diff --staged --name-only | grep .py | xargs isort"
-    alias isort_cmt="git diff --name-only devel | grep .py | xargs isort"
+    alias isort_cmt="git diff --name-only $(git rev-parse --abbrev-ref HEAD) $(git merge-base $(git rev-parse --abbrev-ref HEAD) devel) | grep .py | xargs isort"
 fi
 
 # Lista de dependencias para Homebrew
