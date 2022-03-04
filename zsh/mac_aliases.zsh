@@ -14,10 +14,18 @@ if command -v docker-compose 1>/dev/null 2>&1; then
     alias dcomp="docker-compose"
 fi
 
+# isort alias & functions
 if hash isort 2>/dev/null; then
     alias isort_mod="git diff --name-only | grep .py | xargs isort"
     alias isort_stg="git diff --staged --name-only | grep .py | xargs isort"
-    alias isort_cmt="git diff --name-only $(git rev-parse --abbrev-ref HEAD) $(git merge-base $(git rev-parse --abbrev-ref HEAD) devel) | grep .py | xargs isort"
+    function isort_cmt()
+    {
+        if git rev-parse --is-inside-work-tree > /dev/null 2>&1; then
+            local branch
+            branch="$(git rev-parse --abbrev-ref HEAD)"
+            git diff --name-only $branch $(git merge-base $branch devel) | grep .py | xargs isort
+        fi
+    }
 fi
 
 # Lista de dependencias para Homebrew
