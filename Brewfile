@@ -12,12 +12,11 @@ brew "pinentry-mac"
 # $ defaults delete org.gpgtools.common DisableKeychain
 
 # Python utilities
-brew "pre-commit"
+brew "pyenv"
 brew "black"
 brew "isort"
 
 # ZSH plugins
-brew "spaceship"
 brew "zsh-autosuggestions"
 brew "spaceship"
 
