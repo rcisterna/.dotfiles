@@ -5,20 +5,20 @@
       "subtext" : {
         "size" : 12,
         "colorSelected" : "#D8DEE9FF",
-        "font" : "System Light",
+        "font" : "Fira Code Retina",
         "color" : "#D8DEE999"
       },
       "shortcut" : {
         "size" : 12,
         "colorSelected" : "#D8DEE9FF",
-        "font" : "System Light",
+        "font" : "Fira Code Retina",
         "color" : "#D8DEE9FF"
       },
       "backgroundSelected" : "#4C566AFF",
       "text" : {
         "size" : 18,
         "colorSelected" : "#88C0D0FF",
-        "font" : "System",
+        "font" : "Fira Code Retina",
         "color" : "#D8DEE9DD"
       },
       "iconPaddingHorizontal" : 12,
@@ -33,7 +33,7 @@
       "text" : {
         "size" : 34,
         "colorSelected" : "#B46EADFF",
-        "font" : "System",
+        "font" : "Fira Code Retina",
         "color" : "#E1E1E2FF"
       },
       "background" : "#2E3440FF",
@@ -42,8 +42,8 @@
     },
     "window" : {
       "color" : "#2E3440FF",
-      "paddingHorizontal" : 0,
-      "width" : 819,
+      "paddingHorizontal" : 8,
+      "width" : 850,
       "borderPadding" : 1,
       "borderColor" : "#88C0D0FF",
       "blur" : 40,
