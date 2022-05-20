@@ -11,6 +11,10 @@ brew "pinentry-mac"
 # To re-enable storing OpenPGP passwords in macOS keychain
 # $ defaults delete org.gpgtools.common DisableKeychain
 
+# Fonts
+tap "homebrew/cask-fonts"
+cask "font-fira-code"
+
 # Python utilities
 brew "pyenv"
 brew "black"
