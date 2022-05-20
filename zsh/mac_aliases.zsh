@@ -21,9 +21,15 @@ if hash isort 2>/dev/null; then
     function isort_cmt()
     {
         if git rev-parse --is-inside-work-tree > /dev/null 2>&1; then
-            local branch
-            branch="$(git rev-parse --abbrev-ref HEAD)"
-            git diff --name-only $branch $(git merge-base $branch devel) | grep .py | xargs isort
+            local current_b="$(git rev-parse --abbrev-ref HEAD)"
+            local base_b
+            if [ "$1" != "" ]
+            then
+                base_b="$1"
+            else
+                base_b="master"
+            fi
+            git diff --name-only $current_b $(git merge-base $current_b $base_b) | grep .py | xargs isort
         fi
     }
 fi
