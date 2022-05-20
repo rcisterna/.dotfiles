@@ -5,11 +5,6 @@
 	ui = auto
 [help]
 	autocorrect = 10
-[diff]
-	tool = Kaleidoscope
-[merge]
-	tool = Kaleidoscope
-#	ff = false
 [core]
 	autocrlf = input
 	editor = vim
@@ -20,12 +15,3 @@
 #	gpgsign = true
 [gpg]
 	program = /usr/local/bin/gpg
-[difftool "Kaleidoscope"]
-	cmd = ksdiff --partial-changeset --relative-path \"$MERGED\" -- \"$LOCAL\" \"$REMOTE\"
-[difftool]
-	prompt = false
-[mergetool "Kaleidoscope"]
-	cmd = ksdiff --merge --output \"$MERGED\" --base \"$BASE\" -- \"$LOCAL\" --snapshot \"$REMOTE\" --snapshot
-	trustExitCode = true
-[mergetool]
-	prompt = false
