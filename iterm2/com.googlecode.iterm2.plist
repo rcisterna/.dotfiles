@@ -1996,9 +1996,9 @@
 	<key>TabViewType</key>
 	<integer>0</integer>
 	<key>TerminalMargin</key>
-	<integer>25</integer>
+	<integer>20</integer>
 	<key>TerminalVMargin</key>
-	<integer>25</integer>
+	<integer>20</integer>
 	<key>ThreeFingerEmulates</key>
 	<false/>
 	<key>TmuxDashboardLimit</key>
