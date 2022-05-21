@@ -2,7 +2,6 @@
 xcode-select --install
 
 # Get homebrew installation directory
-local HOMEBREW_DIR
 if [[ $(uname -p) == "arm" ]]; then
     HOMEBREW_DIR="/opt/homebrew/bin/brew"
 else
@@ -34,5 +33,16 @@ fi
 if ! test -d ~/bin; then
     mkdir ~/bin
     chflags hidden ~/bin
+fi
+
+# Create neovim config
+NVIM_INIT_FILE="${HOME}/.config/nvim/init.vim"
+if ! test -f $NVIM_INIT_FILE; then
+    mkdir -p ~/.config/nvim
+    touch $NVIM_INIT_FILE
+    echo "source $HOME/.dotfiles/vim/settings.vim" >> $NVIM_INIT_FILE
+    echo "source $HOME/.dotfiles/vim/plugins.vim" >> $NVIM_INIT_FILE
+    echo "source $HOME/.dotfiles/vim/mappings.vim" >> $NVIM_INIT_FILE
+    echo "source $HOME/.dotfiles/vim/autocmd.vim" >> $NVIM_INIT_FILE
 fi
 
