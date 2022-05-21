@@ -28,3 +28,6 @@ brew "spaceship"
 brew "tree"
 brew "neovim"
 
+# Others
+cask "alfred"
+
