@@ -31,4 +31,6 @@ brew "neovim"
 # Others
 cask "alfred"
 cask "jetbrains-toolbox"
+cask "sublime-text"
+cask "sublime-merge"
 
