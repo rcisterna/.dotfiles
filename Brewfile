@@ -30,4 +30,5 @@ brew "neovim"
 
 # Others
 cask "alfred"
+cask "jetbrains-toolbox"
 
