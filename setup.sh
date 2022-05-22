@@ -39,11 +39,7 @@ fi
 NVIM_INIT_FILE="${HOME}/.config/nvim/init.vim"
 if ! test -f $NVIM_INIT_FILE; then
     mkdir -p ~/.config/nvim
-    touch $NVIM_INIT_FILE
-    echo "source $HOME/.dotfiles/vim/settings.vim" >> $NVIM_INIT_FILE
-    echo "source $HOME/.dotfiles/vim/plugins.vim" >> $NVIM_INIT_FILE
-    echo "source $HOME/.dotfiles/vim/mappings.vim" >> $NVIM_INIT_FILE
-    echo "source $HOME/.dotfiles/vim/autocmd.vim" >> $NVIM_INIT_FILE
+    ln -s ~/.dotfiles/vim/init.vim $NVIM_INIT_FILE
 fi
 
 # Symlink bat config
