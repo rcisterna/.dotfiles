@@ -52,3 +52,12 @@ if ! test -f $BAT_CONFIG_FILE; then
     mkdir -p ~/.config/bat
     ln -s ~/.dotfiles/bat.conf $BAT_CONFIG_FILE
 fi
+
+# Make Sublime Text the default text editor if it's not already
+if ! defaults read com.apple.LaunchServices/com.apple.launchservices.secure LSHandlers | grep -q "sublimetext"; then
+    SUBL_APP_DIR="/Applications/Sublime Text.app"
+    if test -d "${SUBL_APP_DIR}"; then
+        SUBL_BUNDLE_ID=$(defaults read "${SUBL_APP_DIR}/Contents/Info.plist" CFBundleIdentifier)
+        defaults write com.apple.LaunchServices/com.apple.launchservices.secure LSHandlers -array-add "{LSHandlerContentType=public.plain-text;LSHandlerRoleAll=${SUBL_BUNDLE_ID};}"
+    fi
+fi
