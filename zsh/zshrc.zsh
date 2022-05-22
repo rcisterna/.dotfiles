@@ -105,7 +105,6 @@ fi
 ########## Autocompletion Configurations
 
 # Enable autocomplete
-fpath+=("/opt/homebrew/share/zsh/site-functions")
 zstyle ':completion:*' special-dirs true
 zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
