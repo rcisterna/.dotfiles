@@ -1,3 +1,5 @@
+########## ZSH Configurations
+
 # Historial
 export HISTSIZE=10000
 export SAVEHIST=$HISTSIZE
@@ -53,15 +55,8 @@ setopt rcexpandparam  # Array expension with parameters
 setopt numericglobsort  # Sort filenames numerically when it makes sense
 setopt appendhistory  # Immediately append history instead of overwriting
 
-
-# Autoset tab title
-DISABLE_AUTO_TITLE="true"
-tt () {
-    echo -ne "\e]1;$@\a"
-}
-
 # Enable autocomplete
-fpath+=/usr/local/share/zsh-completions
+fpath+=(/usr/local/share/zsh-completions)
 zstyle ':completion:*' special-dirs true
 zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
@@ -77,15 +72,58 @@ zstyle ':completion:*' accept-exact '*(N)'
 zstyle ':completion:*' use-cache on
 zstyle ':completion:*' cache-path ~/.zsh/cache
 
+########## PATH & FPATH Modifications
 
-# export LANG=en_US.UTF-8
-# export LC_ALL=en_US.UTF-8
+# Homebrew M1 directories
+if [[ -d "/opt/homebrew/bin" ]]; then
+    path+=(/opt/homebrew/bin)
+fi
+
+if [[ -d "/opt/homebrew/share/zsh/site-functions" ]]; then
+    fpath+=(/opt/homebrew/share/zsh/site-functions)
+fi
+
+# Homebrew classis directories
+if [[ -d "/usr/local/sbin" ]]; then
+    path=("/usr/local/sbin" $path)
+
+    # for pyenv
+    # export LDFLAGS="-L$(xcrun --show-sdk-path)/usr/lib -L$(brew --prefix zlib)/lib -L$(brew --prefix bzip2)/lib"
+    # export CPPFLAGS="-L$(xcrun --show-sdk-path)/usr/include -I$(brew --prefix zlib)/include -I$(brew --prefix bzip2)/include"
+fi
+
+if [[ -d "/usr/local/bin" ]]; then
+    path=("/usr/local/bin" $path)
+fi
+
+# Load homebrew's java
+if [[ -d "/usr/local/opt/openjdk/bin/" ]]; then
+    path=("/usr/local/opt/openjdk/bin" $path)
+fi
+
+# Add executable paths
+if [[ -d "$HOME/.local/bin/" ]]; then
+    path+=("$HOME/.local/bin/")
+fi
+
+if [[ -d "$HOME/bin/" ]]; then
+    path+=("$HOME/bin/")
+fi
+
+# Load pyenv
+if [[ -d "$HOME/.pyenv" ]] && command -v pyenv &> /dev/null; then
+    export PYENV_ROOT="$HOME/.pyenv"
+    path=("$PYENV_ROOT/bin" $path)
+    eval "$(pyenv init --path)"
+fi
 
 # Poetry autocompletion (must be prior to compinit)
-if [ -d ~/.poetry/bin/ ]; then
-    fpath+=~/.zfunc
-    export PATH="$HOME/.poetry/bin:$PATH"
+if [[ -d "$HOME/.poetry/bin/" ]]; then
+    fpath+=($HOME/.zfunc)
+    path=("$HOME/.poetry/bin" $path)
 fi
+
+########## Autoload Configurations
 
 # Autoload
 autoload -U compinit colors zcalc promptinit
@@ -100,11 +138,17 @@ prompt spaceship
 export SPACESHIP_TIME_SHOW=true
 export SPACESHIP_TIME_FORMAT=%D{%a\ %d-%m\ %H:%M}
 
+########## Environment Variables Configurations
+if command -v brew &> /dev/null; then
+    export HOMEBREW_GITHUB_API_TOKEN=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
+    export HOMEBREW_PREFIX="$(brew --prefix)"
+fi
+
 # Default editor to nvim (or vim, or vi)
-if hash nvim 2>/dev/null; then
+if command -v nvim &> /dev/null; then
     export VISUAL=nvim
     export EDITOR=nvim
-elif hash vim 2>/dev/null; then
+elif command vim &> /dev/null; then
     export VISUAL=vim
     export EDITOR=vim
 else
@@ -117,60 +161,48 @@ if command -v bat &> /dev/null; then
     export PAGER=bat
 fi
 
+# GPG ioctl error fix
+if command -v gpg &> /dev/null; then
+    export GPG_TTY=$(tty)
+fi
+
+########## Load Other Configuration Files
+
+# ZSH Autosuggestions
+if [[ -f "${HOMEBREW_PREFIX}/share/zsh-autosuggestions/zsh-autosuggestions.zsh" ]]; then
+    source ${HOMEBREW_PREFIX}/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+fi
+
+# ZSH Syntax Highlighting
+if [[ -f "${HOMEBREW_PREFIX}/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ]]; then
+    source ${HOMEBREW_PREFIX}/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+fi
+
 # Prompt
-# if [ -f ~/.dotfiles/zsh/prompt.zsh ]; then
-#     source ~/.dotfiles/zsh/prompt.zsh
+# if [[ -f "$HOME/.dotfiles/zsh/prompt.zsh" ]]; then
+#     source $HOME/.dotfiles/zsh/prompt.zsh
 # fi
 
 # Load git aliases
-if [ -f ~/.dotfiles/zsh/git.zsh ]; then
-    source ~/.dotfiles/zsh/git.zsh
+if [[ -f "$HOME/.dotfiles/zsh/git.zsh" ]]; then
+    source $HOME/.dotfiles/zsh/git.zsh
 fi
 
 # Load local aliases file
-if [[ $OSTYPE == darwin* ]] && [ -f ~/.dotfiles/zsh/mac_aliases.zsh ]; then
-    source ~/.dotfiles/zsh/mac_aliases.zsh
-elif [ -f ~/.dotfiles/zsh/aliases.zsh ]; then
-    source ~/.dotfiles/zsh/aliases.zsh
+if [[ $OSTYPE == darwin* ]] && [[ -f "$HOME/.dotfiles/zsh/mac_aliases.zsh" ]]; then
+    source $HOME/.dotfiles/zsh/mac_aliases.zsh
+elif [[ -f "$HOME/.dotfiles/zsh/aliases.zsh" ]]; then
+    source $HOME/.dotfiles/zsh/aliases.zsh
 fi
 
-# Homebrew
-if hash brew 2>/dev/null; then
-    export PATH="/usr/local/sbin:/usr/local/bin:$PATH"
-    export HOMEBREW_GITHUB_API_TOKEN=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
+########## Helper functions
 
-    # for pyenv
-    export LDFLAGS="-L$(xcrun --show-sdk-path)/usr/lib -L$(brew --prefix zlib)/lib -L$(brew --prefix bzip2)/lib"
-    export CPPFLAGS="-L$(xcrun --show-sdk-path)/usr/include -I$(brew --prefix zlib)/include -I$(brew --prefix bzip2)/include"
-
-fi
-
-# Load homebrew's java
-if [ -d /usr/local/opt/openjdk/bin/ ]; then
-    export PATH="/usr/local/opt/openjdk/bin:$PATH"
-fi
-
-# Add executable paths
-if [ -d ~/.local/bin/ ]; then
-    export PATH=~/.local/bin:$PATH
-fi
-
-if [ -d ~/bin/ ]; then
-    export PATH="$HOME/bin:$PATH"
-fi
-
-# Load pyenv
-if [ -d ~/.pyenv/ ]; then
-    export PYENV_ROOT="$HOME/.pyenv"
-    export PATH="$PYENV_ROOT/bin:$PATH"
-    eval "$(pyenv init --path)"
-    # if command -v pyenv 1>/dev/null 2>&1; then
-    #     eval "$(pyenv init -)"
-    # fi
-fi
-
-# Heroku autocomplete setup
-HEROKU_AC_ZSH_SETUP_PATH=/Users/rcisterna/Library/Caches/heroku/autocomplete/zsh_setup && test -f $HEROKU_AC_ZSH_SETUP_PATH && source $HEROKU_AC_ZSH_SETUP_PATH;
+# Set tab title
+DISABLE_AUTO_TITLE="true"
+tt () {
+    readonly title=${1:?"Especifique título."}
+    echo -ne "\e]1;$title\a"
+}
 
 # Gitignore.io
 function gi() { curl -L -s https://www.gitignore.io/api/$@ ;}
@@ -178,12 +210,10 @@ function gi() { curl -L -s https://www.gitignore.io/api/$@ ;}
 # Function to get Bundle ID
 function bundleid {
     readonly app=${1:?"Especifique ruta a aplicación."}
-    # lsappinfo info -only bundleid $app
-    # mdls -name kMDItemCFBundleIdentifier -r $app
     defaults read $app/Contents/Info.plist CFBundleIdentifier
 }
 
-# Utilities
+# Priority functions
 function priorset {
     readonly app=${1:?"Especifique aplicación."}
     sudo renice -20 $(ps -A | grep "$app"$ | awk '{print $1}')
@@ -194,6 +224,7 @@ function priorget {
     ps -Al | grep "$app"$ | awk '{print $7}'
 }
 
+# Port functions
 function clearport {
     readonly port=${1:?"Especifique puerto."}
     readonly pid=$(sudo lsof -i :$port | awk 'NR==2 {print $2}')
@@ -204,39 +235,3 @@ function checkport {
     readonly port=${1:?"Especifique puerto."}
     sudo lsof -i :$port
 }
-
-# GPG ioctl error fix
-if hash gpg 2>/dev/null; then
-    export GPG_TTY=$(tty)
-fi
-
-
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/Users/rcisterna/opt/anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "/Users/rcisterna/opt/anaconda3/etc/profile.d/conda.sh" ]; then
-        . "/Users/rcisterna/opt/anaconda3/etc/profile.d/conda.sh"
-    else
-        export PATH="/Users/rcisterna/opt/anaconda3/bin:$PATH"
-    fi
-fi
-unset __conda_setup
-# <<< conda initialize <<<
-
-# NVM (node version manager)
-export NVM_DIR="$HOME/.nvm"
-[ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
-[ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] && . "/usr/local/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
-
-# ZSH Autosuggestions
-if [ -f /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh ]; then
-    source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-fi
-
-# ZSH Syntax Highlighting
-if [ -f /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]; then
-    source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-fi
