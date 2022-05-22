@@ -55,50 +55,29 @@ setopt rcexpandparam  # Array expension with parameters
 setopt numericglobsort  # Sort filenames numerically when it makes sense
 setopt appendhistory  # Immediately append history instead of overwriting
 
-# Enable autocomplete
-fpath+=(/usr/local/share/zsh-completions)
-zstyle ':completion:*' special-dirs true
-zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
-zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
-zstyle ':completion:*' rehash true
-zstyle ':completion:*:functions' ignored-patterns '_*'
-zstyle ':completion:*' completer _complete _match _approximate
-zstyle ':completion:*:match:*' original only
-zstyle -e ':completion:*:approximate:*' max-errors 'reply=($((($#PREFIX+$#SUFFIX)/3))numeric)'
-# zstyle ':completion:*:approximate:*' max-errors 1 numeric
-
-# Speed up autocompletion
-zstyle ':completion:*' accept-exact '*(N)'
-zstyle ':completion:*' use-cache on
-zstyle ':completion:*' cache-path ~/.zsh/cache
-
 ########## PATH & FPATH Modifications
 
 # Homebrew M1 directories
 if [[ -d "/opt/homebrew/bin" ]]; then
-    path+=(/opt/homebrew/bin)
+    path=("/opt/homebrew/bin" $path)
 fi
 
-if [[ -d "/opt/homebrew/share/zsh/site-functions" ]]; then
-    fpath+=(/opt/homebrew/share/zsh/site-functions)
+if [[ -d "/opt/homebrew/sbin" ]]; then
+    path=("/opt/homebrew/sbin" $path)
 fi
 
 # Homebrew classis directories
 if [[ -d "/usr/local/sbin" ]]; then
     path=("/usr/local/sbin" $path)
-
-    # for pyenv
-    # export LDFLAGS="-L$(xcrun --show-sdk-path)/usr/lib -L$(brew --prefix zlib)/lib -L$(brew --prefix bzip2)/lib"
-    # export CPPFLAGS="-L$(xcrun --show-sdk-path)/usr/include -I$(brew --prefix zlib)/include -I$(brew --prefix bzip2)/include"
 fi
 
 if [[ -d "/usr/local/bin" ]]; then
     path=("/usr/local/bin" $path)
 fi
 
-# Load homebrew's java
-if [[ -d "/usr/local/opt/openjdk/bin/" ]]; then
-    path=("/usr/local/opt/openjdk/bin" $path)
+# Homebrew zsh site-functions
+if command -v brew &> /dev/null && [[ -d "$(brew --prefix)/share/zsh/site-functions" ]]; then
+    fpath+=("$(brew --prefix)/share/zsh/site-functions")
 fi
 
 # Add executable paths
@@ -122,6 +101,25 @@ if [[ -d "$HOME/.poetry/bin/" ]]; then
     fpath+=($HOME/.zfunc)
     path=("$HOME/.poetry/bin" $path)
 fi
+
+########## Autocompletion Configurations
+
+# Enable autocomplete
+fpath+=("/opt/homebrew/share/zsh/site-functions")
+zstyle ':completion:*' special-dirs true
+zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
+zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
+zstyle ':completion:*' rehash true
+zstyle ':completion:*:functions' ignored-patterns '_*'
+zstyle ':completion:*' completer _complete _match _approximate
+zstyle ':completion:*:match:*' original only
+zstyle -e ':completion:*:approximate:*' max-errors 'reply=($((($#PREFIX+$#SUFFIX)/3))numeric)'
+# zstyle ':completion:*:approximate:*' max-errors 1 numeric
+
+# Speed up autocompletion
+zstyle ':completion:*' accept-exact '*(N)'
+zstyle ':completion:*' use-cache on
+zstyle ':completion:*' cache-path ~/.zsh/cache
 
 ########## Autoload Configurations
 
