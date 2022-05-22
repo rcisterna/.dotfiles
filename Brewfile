@@ -27,6 +27,7 @@ brew "spaceship"
 # Shell utilities
 brew "tree"
 brew "neovim"
+brew "bat"
 
 # Others
 cask "alfred"

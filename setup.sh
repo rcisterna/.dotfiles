@@ -46,3 +46,9 @@ if ! test -f $NVIM_INIT_FILE; then
     echo "source $HOME/.dotfiles/vim/autocmd.vim" >> $NVIM_INIT_FILE
 fi
 
+# Symlink bat config
+BAT_CONFIG_FILE="${HOME}/.config/bat/config"
+if ! test -f $BAT_CONFIG_FILE; then
+    mkdir -p ~/.config/bat
+    ln -s ~/.dotfiles/bat.conf $BAT_CONFIG_FILE
+fi
