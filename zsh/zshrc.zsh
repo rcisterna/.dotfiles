@@ -179,7 +179,8 @@ function gi() { curl -L -s https://www.gitignore.io/api/$@ ;}
 function bundleid {
     readonly app=${1:?"Especifique ruta a aplicación."}
     # lsappinfo info -only bundleid $app
-    mdls -name kMDItemCFBundleIdentifier -r $app
+    # mdls -name kMDItemCFBundleIdentifier -r $app
+    defaults read $app/Contents/Info.plist CFBundleIdentifier
 }
 
 # Funciones de prioridades
