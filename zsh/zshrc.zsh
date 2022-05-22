@@ -22,7 +22,7 @@ if [[ "${terminfo[khome]}" != "" ]]; then
   bindkey "${terminfo[khome]}" beginning-of-line                # [Home] - Go to beginning of line
 fi
 bindkey '^[[8~' end-of-line                                     # End key
-bindkey '^[[F' end-of-line                                     # End key
+bindkey '^[[F' end-of-line                                      # End key
 if [[ "${terminfo[kend]}" != "" ]]; then
   bindkey "${terminfo[kend]}" end-of-line                       # [End] - Go to end of line
 fi
@@ -41,7 +41,7 @@ bindkey '^[[1;5C' forward-word                                  #
 bindkey '^H' backward-kill-word                                 # delete previous word with ctrl+backspace
 bindkey '^[[Z' undo                                             # Shift+tab undo last action
 
-# Opciones
+# Options
 setopt banghist  # Treat the '!' character specially during expansion.
 # setopt EXTENDED_HISTORY  # Write the history file in the ":start:elapsed;command" format.
 # setopt INC_APPEND_HISTORY  # Write to the history file immediately, not when the shell exits.
@@ -64,13 +64,13 @@ setopt numericglobsort  # Sort filenames numerically when it makes sense
 setopt appendhistory  # Immediately append history instead of overwriting
 
 
-# Setear el titulo de una pestaña
+# Autoset tab title
 DISABLE_AUTO_TITLE="true"
 tt () {
     echo -ne "\e]1;$@\a"
 }
 
-# Cargar autocompletado
+# Enable autocomplete
 fpath+=/usr/local/share/zsh-completions
 zstyle ':completion:*' special-dirs true
 zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
@@ -82,7 +82,7 @@ zstyle ':completion:*:match:*' original only
 zstyle -e ':completion:*:approximate:*' max-errors 'reply=($((($#PREFIX+$#SUFFIX)/3))numeric)'
 # zstyle ':completion:*:approximate:*' max-errors 1 numeric
 
-# Acelerar autocompletado
+# Speed up autocompletion
 zstyle ':completion:*' accept-exact '*(N)'
 zstyle ':completion:*' use-cache on
 zstyle ':completion:*' cache-path ~/.zsh/cache
@@ -91,25 +91,26 @@ zstyle ':completion:*' cache-path ~/.zsh/cache
 # export LANG=en_US.UTF-8
 # export LC_ALL=en_US.UTF-8
 
-# Poetry autocompletion
-# Debe ser previo a compinit
+# Poetry autocompletion (must be prior to compinit)
 if [ -d ~/.poetry/bin/ ]; then
     fpath+=~/.zfunc
     export PATH="$HOME/.poetry/bin:$PATH"
 fi
 
-# Carga los colores automaticamente
+# Autoload
 autoload -U compinit colors zcalc promptinit
+
+# Load colors
 compinit -id
 colors
 
-# Carga spaceship prompt
+# Load spaceship prompt
 promptinit
 prompt spaceship
 export SPACESHIP_TIME_SHOW=true
 export SPACESHIP_TIME_FORMAT=%D{%a\ %d-%m\ %H:%M}
 
-# Editor por defecto nvim (o vim, o vi)
+# Default editor to nvim (or vim, or vi)
 if hash nvim 2>/dev/null; then
     export VISUAL=nvim
     export EDITOR=nvim
@@ -126,12 +127,12 @@ fi
 #     source ~/.dotfiles/zsh/prompt.zsh
 # fi
 
-# Alias git
+# Load git aliases
 if [ -f ~/.dotfiles/zsh/git.zsh ]; then
     source ~/.dotfiles/zsh/git.zsh
 fi
 
-# Archivo de alias local
+# Load local aliases file
 if [[ $OSTYPE == darwin* ]] && [ -f ~/.dotfiles/zsh/mac_aliases.zsh ]; then
     source ~/.dotfiles/zsh/mac_aliases.zsh
 elif [ -f ~/.dotfiles/zsh/aliases.zsh ]; then
@@ -149,17 +150,21 @@ if hash brew 2>/dev/null; then
 
 fi
 
-# Homebrew's java
+# Load homebrew's java
 if [ -d /usr/local/opt/openjdk/bin/ ]; then
     export PATH="/usr/local/opt/openjdk/bin:$PATH"
 fi
 
-# Local
+# Add executable paths
 if [ -d ~/.local/bin/ ]; then
     export PATH=~/.local/bin:$PATH
 fi
 
-# Pyenv
+if [ -d ~/bin/ ]; then
+    export PATH="$HOME/bin:$PATH"
+fi
+
+# Load pyenv
 if [ -d ~/.pyenv/ ]; then
     export PYENV_ROOT="$HOME/.pyenv"
     export PATH="$PYENV_ROOT/bin:$PATH"
@@ -169,13 +174,13 @@ if [ -d ~/.pyenv/ ]; then
     # fi
 fi
 
-# heroku autocomplete setup
+# Heroku autocomplete setup
 HEROKU_AC_ZSH_SETUP_PATH=/Users/rcisterna/Library/Caches/heroku/autocomplete/zsh_setup && test -f $HEROKU_AC_ZSH_SETUP_PATH && source $HEROKU_AC_ZSH_SETUP_PATH;
 
 # Gitignore.io
 function gi() { curl -L -s https://www.gitignore.io/api/$@ ;}
 
-# Funcion para recuperar Bundle ID
+# Function to get Bundle ID
 function bundleid {
     readonly app=${1:?"Especifique ruta a aplicación."}
     # lsappinfo info -only bundleid $app
@@ -183,7 +188,7 @@ function bundleid {
     defaults read $app/Contents/Info.plist CFBundleIdentifier
 }
 
-# Funciones de prioridades
+# Utilities
 function priorset {
     readonly app=${1:?"Especifique aplicación."}
     sudo renice -20 $(ps -A | grep "$app"$ | awk '{print $1}')
@@ -204,11 +209,6 @@ function checkport {
     readonly port=${1:?"Especifique puerto."}
     sudo lsof -i :$port
 }
-
-# Binarios locales en PATH
-if [ -d ~/bin/ ]; then
-    export PATH="$HOME/bin:$PATH"
-fi
 
 # GPG ioctl error fix
 if hash gpg 2>/dev/null; then
@@ -245,4 +245,3 @@ fi
 if [ -f /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]; then
     source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 fi
-
