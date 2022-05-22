@@ -4,16 +4,6 @@ export SAVEHIST=$HISTSIZE
 export HISTFILE="$HOME/.zsh_history"
 WORDCHARS=${WORDCHARS//\/[&.;]}
 
-# Color man pages
-export LESS_TERMCAP_mb=$'\E[01;32m'
-export LESS_TERMCAP_md=$'\E[01;32m'
-export LESS_TERMCAP_me=$'\E[0m'
-export LESS_TERMCAP_se=$'\E[0m'
-export LESS_TERMCAP_so=$'\E[01;47;34m'
-export LESS_TERMCAP_ue=$'\E[0m'
-export LESS_TERMCAP_us=$'\E[01;36m'
-export LESS=-r
-
 ## Keybindings section
 bindkey -e
 bindkey '^[[7~' beginning-of-line                               # Home key
@@ -120,6 +110,11 @@ elif hash vim 2>/dev/null; then
 else
     export VISUAL=vi
     export EDITOR=vi
+fi
+
+# Default pager to bat
+if command -v bat &> /dev/null; then
+    export PAGER=bat
 fi
 
 # Prompt
