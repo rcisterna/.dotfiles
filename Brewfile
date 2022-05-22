@@ -21,6 +21,7 @@ brew "black"
 brew "isort"
 
 # ZSH plugins
+brew "zsh-syntax-highlighting"
 brew "zsh-autosuggestions"
 brew "spaceship"
 
