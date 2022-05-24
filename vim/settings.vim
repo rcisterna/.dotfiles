@@ -116,6 +116,10 @@ set sessionoptions+=winsize         " Tamano de las ventanas
 " Resaltar la columna 80
 " set colorcolumn=80
 
+" Git commit
+au FileType gitcommit setlocal textwidth=80
+au FileType gitcommit setlocal colorcolumn=72
+
 " ---------------------------------------------------------------------------- "
 " STATUSLINE
 
