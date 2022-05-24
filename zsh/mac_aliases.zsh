@@ -3,6 +3,7 @@ alias ls="ls -GFh"
 alias tree="tree --dirsfirst -hpCL 2"
 alias grep="grep --color=auto"
 alias marked="open -a 'Marked 2'"
+alias cat="bat"
 alias brew_installed="brew leaves | xargs brew deps --installed --for-each | sed 's/^.*:/$(tput setaf 4)&$(tput sgr0)/'"
 
 if command -v nvim 1>/dev/null 2>&1; then
