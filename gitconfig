@@ -7,7 +7,6 @@
 	autocorrect = 10
 [core]
 	autocrlf = input
-	editor = vim
 	excludesfile = ~/.gitignore
 [pull]
 	ff = true
