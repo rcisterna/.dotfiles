@@ -242,3 +242,13 @@ function checkport {
     readonly port=${1:?"Especifique puerto."}
     sudo lsof -i :$port
 }
+
+# Chrome color functions
+function chrome_light {
+    defaults write com.google.Chrome NSRequiresAquaSystemAppearance -bool YES
+}
+
+function chrome_default {
+    defaults write com.google.Chrome NSRequiresAquaSystemAppearance -bool NO
+}
+
