@@ -112,6 +112,21 @@ if [[ -d "$HOME/.poetry/bin/" ]]; then
     path=("$HOME/.poetry/bin" $path)
 fi
 
+# libPQ binaries
+if command -v brew &> /dev/null && [[ -d "$(brew --prefix)/opt/libpq/bin" ]]; then
+    path+=("$(brew --prefix)/opt/libpq/bin")
+fi
+
+# Load NVM
+if command -v brew &> /dev/null && [[ -f "$(brew --prefix)/opt/nvm/nvm.sh" ]]; then
+    if ! [[ -d "$HOME/.nvm" ]]; then
+        mkdir $HOME/.nvm
+    fi
+    export NVM_DIR="$HOME/.nvm"
+    [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
+    [ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
+fi
+
 ########## Autocompletion Configurations
 
 # Enable autocomplete
