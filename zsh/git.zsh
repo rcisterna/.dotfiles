@@ -1,5 +1,6 @@
 # Git aliases
 local commit_format="%C(auto)%h %C(cyan)%ad %C(green)%ae %C(auto)%s%d"
+local commit_short="%C(auto)%h %C(cyan)%ad %C(green)%ae %C(auto)%s"
 local date_format="format:%d-%m\ %H:%M"
 
 alias g="git --no-pager"
@@ -16,7 +17,8 @@ alias gcherry="g cherry --abbrev --verbose"
 alias gchpick="g cherry-pick"
 alias gd="g diff"
 alias gf="g fetch --all --prune"
-alias gl="g log --graph --pretty=format:'$commit_format' --date=$date_format"
+alias gle="g log --graph --pretty=format:'$commit_format' --date=$date_format"
+alias gl="g log --graph --pretty=format:'$commit_short' --date=$date_format"
 alias glb="g log --graph --pretty=format:'$commit_format' --date=relative"
 alias gm="g merge"
 alias gmr="g merge --rebase"
