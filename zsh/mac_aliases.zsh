@@ -1,5 +1,5 @@
 # Aliases generales
-alias ls="ls -GFh"
+alias ls="ls -lGFh"
 alias tree="tree --dirsfirst -hpCL 2"
 alias grep="grep --color=auto"
 alias marked="open -a 'Marked 2'"
