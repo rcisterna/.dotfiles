@@ -25,24 +25,24 @@
 	<key>createdby</key>
 	<string>Ricardo Cisterna</string>
 	<key>description</key>
-	<string>Open gmail</string>
+	<string>Open WJ platform repo on Github</string>
 	<key>disabled</key>
 	<false/>
 	<key>name</key>
-	<string>Gmail</string>
+	<string>Platform Github WJ</string>
 	<key>objects</key>
 	<array>
 		<dict>
 			<key>config</key>
 			<dict>
 				<key>argumenttype</key>
-				<integer>1</integer>
+				<integer>2</integer>
 				<key>keyword</key>
-				<string>mail</string>
+				<string>platform github</string>
 				<key>subtext</key>
-				<string>Open gmail</string>
+				<string>Open WJ platform repo on Github</string>
 				<key>text</key>
-				<string>Gmail</string>
+				<string>Platform Github WJ</string>
 				<key>withspace</key>
 				<false/>
 			</dict>
@@ -61,7 +61,7 @@
 				<key>spaces</key>
 				<string></string>
 				<key>url</key>
-				<string>https://mail.google.com/</string>
+				<string>https://github.com/WanderJaunt/wjplatform</string>
 				<key>utf8</key>
 				<true/>
 			</dict>
