@@ -69,13 +69,13 @@ fi
 
 # Auto fetch all repos
 CODE_LOCATION="${HOME}/Code"
-FETCH_ALL_CMD="find ${CODE_LOCATION} -type d -execdir test -d '{}/.git' \; -execdir git -C {} fetch --all --quiet \; -print -prune"
+SCRIPT_LOCATION="${HOME}/.dotfiles/git_autofetch.sh"
 if ! test -d $CODE_LOCATION; then
     mkdir -p $CODE_LOCATION
 fi
-if ! crontab -l | grep "fetch --all"; then
+if ! crontab -l | grep "${SCRIPT_LOCATION}"; then
     crontab -l && crontab -l > local.cron
-    echo "*/5 * * * * ${FETCH_ALL_CMD}" >> local.cron
+    echo "*/5 * * * * /bin/sh ${SCRIPT_LOCATION}" >> local.cron
     crontab local.cron
     rm local.cron
 fi
