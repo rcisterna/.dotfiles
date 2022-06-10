@@ -57,3 +57,12 @@ if ! defaults read com.apple.LaunchServices/com.apple.launchservices.secure LSHa
         defaults write com.apple.LaunchServices/com.apple.launchservices.secure LSHandlers -array-add "{LSHandlerContentType=public.plain-text;LSHandlerRoleAll=${SUBL_BUNDLE_ID};}"
     fi
 fi
+
+# Change default screenshots location
+SCREENSHOTS_LOCATION="${HOME}/Pictures/Screenshots"
+if ! test -d $SCREENSHOTS_LOCATION; then
+    mkdir -p $SCREENSHOTS_LOCATION
+fi
+if test "$(defaults read com.apple.screencapture location)" != "${SCREENSHOTS_LOCATION}"; then
+    defaults write com.apple.screencapture location $SCREENSHOTS_LOCATION
+fi
