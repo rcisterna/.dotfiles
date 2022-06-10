@@ -158,6 +158,7 @@ colors
 promptinit
 prompt spaceship
 export SPACESHIP_TIME_SHOW=true
+export SPACESHIP_EXIT_CODE_SHOW=true
 export SPACESHIP_TIME_FORMAT=%D{%a\ %d-%m\ %H:%M}
 
 ########## Environment Variables Configurations
