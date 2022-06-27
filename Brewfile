@@ -16,9 +16,11 @@ tap "homebrew/cask-fonts"
 cask "font-fira-code"
 
 # Python utilities
+brew "poetry"
 brew "pyenv"
 brew "black"
 brew "isort"
+brew "flake8"
 
 # ZSH plugins
 brew "zsh-syntax-highlighting"
