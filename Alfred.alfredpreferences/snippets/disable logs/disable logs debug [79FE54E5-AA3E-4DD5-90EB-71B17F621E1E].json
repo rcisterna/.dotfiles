@@ -1,0 +1,8 @@
+{
+  "alfredsnippet" : {
+    "snippet" : "import logging\n\nlogging.disable(logging.DEBUG)",
+    "uid" : "79FE54E5-AA3E-4DD5-90EB-71B17F621E1E",
+    "name" : "disable logs debug",
+    "keyword" : "disable debug"
+  }
+}

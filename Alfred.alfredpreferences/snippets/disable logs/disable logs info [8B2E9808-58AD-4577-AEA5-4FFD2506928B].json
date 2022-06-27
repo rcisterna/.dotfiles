@@ -1,0 +1,8 @@
+{
+  "alfredsnippet" : {
+    "snippet" : "import logging\n\nlogging.disable(logging.INFO)",
+    "uid" : "8B2E9808-58AD-4577-AEA5-4FFD2506928B",
+    "name" : "disable logs info",
+    "keyword" : "disable info"
+  }
+}
