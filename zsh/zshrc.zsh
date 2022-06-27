@@ -103,13 +103,7 @@ fi
 if [[ -d "$HOME/.pyenv" ]] && command -v pyenv &> /dev/null; then
     export PYENV_ROOT="$HOME/.pyenv"
     path=("$PYENV_ROOT/bin" $path)
-    eval "$(pyenv init --path)"
-fi
-
-# Poetry autocompletion (must be prior to compinit)
-if [[ -d "$HOME/.poetry/bin/" ]]; then
-    fpath+=($HOME/.zfunc)
-    path=("$HOME/.poetry/bin" $path)
+    eval "$(pyenv init -)"
 fi
 
 # libPQ binaries
