@@ -102,7 +102,7 @@ fi
 # Load pyenv
 if [[ -d "$HOME/.pyenv" ]] && command -v pyenv &> /dev/null; then
     export PYENV_ROOT="$HOME/.pyenv"
-    path=("$PYENV_ROOT/bin" $path)
+    # path=("$PYENV_ROOT/bin" $path)
     eval "$(pyenv init -)"
 fi
 
