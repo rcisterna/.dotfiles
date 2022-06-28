@@ -16,7 +16,7 @@ tap "homebrew/cask-fonts"
 cask "font-fira-code"
 
 # Python utilities
-brew "poetry"
+# brew "poetry"  # installed manually because of this issue: https://github.com/python-poetry/poetry/issues/5252
 brew "pyenv"
 brew "black"
 brew "isort"

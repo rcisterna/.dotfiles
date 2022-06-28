@@ -106,6 +106,13 @@ if [[ -d "$HOME/.pyenv" ]] && command -v pyenv &> /dev/null; then
     eval "$(pyenv init -)"
 fi
 
+# Load poetry
+POETRY_DIR="${HOME}/Library/Python/3.9/bin"
+if [[ -d "${POETRY_DIR}" ]]; then
+    path=("${POETRY_DIR}" $path)
+    fpath+=("${HOME}/.zfunc")
+fi
+
 # libPQ binaries
 if command -v brew &> /dev/null && [[ -d "$(brew --prefix)/opt/libpq/bin" ]]; then
     path+=("$(brew --prefix)/opt/libpq/bin")
