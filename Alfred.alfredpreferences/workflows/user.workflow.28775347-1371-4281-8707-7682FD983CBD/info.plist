@@ -25,24 +25,24 @@
 	<key>createdby</key>
 	<string>Ricardo Cisterna</string>
 	<key>description</key>
-	<string>Open localhost HOV</string>
+	<string>Open Github</string>
 	<key>disabled</key>
 	<false/>
 	<key>name</key>
-	<string>Backend HOV Dev</string>
+	<string>Github</string>
 	<key>objects</key>
 	<array>
 		<dict>
 			<key>config</key>
 			<dict>
 				<key>argumenttype</key>
-				<integer>1</integer>
+				<integer>2</integer>
 				<key>keyword</key>
-				<string>backend hov dev</string>
+				<string>github</string>
 				<key>subtext</key>
-				<string>Open localhost HOV</string>
+				<string>Open Github</string>
 				<key>text</key>
-				<string>Backend HOV Dev</string>
+				<string>Github</string>
 				<key>withspace</key>
 				<false/>
 			</dict>
@@ -61,7 +61,7 @@
 				<key>spaces</key>
 				<string></string>
 				<key>url</key>
-				<string>https://localhost:8000/hov/</string>
+				<string>https://github.com/</string>
 				<key>utf8</key>
 				<true/>
 			</dict>
