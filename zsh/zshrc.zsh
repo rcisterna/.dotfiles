@@ -107,7 +107,8 @@ if [[ -d "$HOME/.pyenv" ]] && command -v pyenv &> /dev/null; then
 fi
 
 # Load poetry
-POETRY_DIR="${HOME}/Library/Python/3.9/bin"
+# POETRY_DIR="${HOME}/Library/Python/3.9/bin"
+POETRY_DIR="${HOME}/.poetry/bin"
 if [[ -d "${POETRY_DIR}" ]]; then
     path=("${POETRY_DIR}" $path)
     fpath+=("${HOME}/.zfunc")

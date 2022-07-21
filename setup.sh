@@ -81,7 +81,9 @@ if ! crontab -l | grep "${SCRIPT_LOCATION}"; then
 fi
 
 # Manually install poetry
-POETRY_LOCATION="${HOME}/Library/Python/3.9/bin"
+# POETRY_LOCATION="${HOME}/Library/Python/3.9/bin"
+POETRY_LOCATION="${HOME}/.poetry/bin"
 if ! command -v poetry 2> /dev/null || ! test -d "${POETRY_LOCATION}"; then
-    curl -sSL https://install.python-poetry.org/ | python3 -
+    # curl -sSL https://install.python-poetry.org/ | python3 -
+    curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python3 - --no-modify-path
 fi
